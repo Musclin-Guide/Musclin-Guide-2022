@@ -35,6 +35,13 @@ ButtonStory.args = {
 export const ButtonVariationsStory = () => {
   return (
     <div className="card max-w-800 p-3">
+      <div className="bg-outline-icon">icon color</div>
+      <div className="bg-outline-default">neutral100</div>
+      <div className="text-state-positive">positive - #22C55E</div>
+      <div className="text-state-negative">negative -#CC0000</div>
+      <div className="text-state-accent">accent - #186faf</div>
+      <div className="text-state-updated">updated - #EF4444</div>
+      <div className="text-state-warning">waring - #FACC15</div>
       <h1 className="text-2xl font-pretendard font-semibold mb-2">Buttons</h1>
 
       <h2 className="text-xl mt-6">Contained Buttons</h2>
