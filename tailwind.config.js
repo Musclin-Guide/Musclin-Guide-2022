@@ -89,6 +89,7 @@ module.exports = {
           ...colors.neutral,
           default: colors.neutral['100'],
           icon: colors.neutral['200'],
+          another: colors.neutral['300'],
         },
         state: {
           ...colors,
