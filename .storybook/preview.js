@@ -22,7 +22,7 @@ export const parameters = {
   },
   a11y: {
     config: {
-      locate: ko,
+      locale: ko,
       rules: [
         {
           id: 'color-contrast',
