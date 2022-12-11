@@ -1,5 +1,6 @@
 import 'tailwindcss/tailwind.css';
 import * as NextImage from 'next/image';
+import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 NextImage.defaultProps = {
@@ -27,5 +28,8 @@ export const parameters = {
         },
       ],
     },
+  },
+  nextRouter: {
+    Provider: RouterContext.Provider,
   },
 };
