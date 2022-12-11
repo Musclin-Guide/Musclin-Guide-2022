@@ -1,5 +1,6 @@
 import 'tailwindcss/tailwind.css';
 import * as NextImage from 'next/image';
+import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 NextImage.defaultProps = {
   unoptimized: true,
@@ -13,6 +14,9 @@ export const parameters = {
       date: /Date$/,
     },
     exclude: ['role'],
+  },
+  viewport: {
+    viewports: INITIAL_VIEWPORTS,
   },
   a11y: {
     config: {
