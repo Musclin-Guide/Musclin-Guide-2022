@@ -49,6 +49,7 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-storybook": "0.6.8",
+    "msw-storybook-addon": "1.6.3",
     "postcss": "8.4.19",
     "prettier": "2.8.1",
     "react-query": "3.39.2",

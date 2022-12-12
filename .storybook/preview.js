@@ -3,6 +3,15 @@ import * as NextImage from 'next/image';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import ko from 'axe-core/locales/ko.json';
+import { RecoilRoot } from 'recoil';
+
+export const decorators = [
+  (Story) => (
+    <RecoilRoot>
+      <Story />
+    </RecoilRoot>
+  ),
+];
 
 NextImage.defaultProps = {
   unoptimized: true,
