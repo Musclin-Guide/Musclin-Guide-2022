@@ -1,6 +1,8 @@
 .menuShapeDefault {
-  @apply font-pretendard rounded-md inline-block;
+  @apply rounded-md inline-block;
   @apply bg-white;
+
+
 }
 
 .menuShapeShadow {
@@ -9,6 +11,7 @@
 
 .listTextStype {
   @apply text-sm;
+
 }
 
 
