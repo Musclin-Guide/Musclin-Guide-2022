@@ -6,6 +6,7 @@ import clsx from 'clsx';
 interface MenuItemsProps {
   className: string;
   addClassName?: string;
+  onClick?: () => void;
 }
 
 export const Menu = ({

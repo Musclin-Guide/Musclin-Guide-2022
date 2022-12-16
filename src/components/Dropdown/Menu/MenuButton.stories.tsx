@@ -9,16 +9,11 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story = (args) => (
-  <MenuButton onClick={args.onClick} className={args.className}></MenuButton>
-);
+const Template: Story = (args) => <MenuButton {...args}></MenuButton>;
 
 export const CreateDropdownButton = Template.bind({});
 CreateDropdownButton.args = {
   className: clsx(menuButton.MenuButtonDefault, menuButton.writeButton),
-  onclick: () => {
-    console.log('성공');
-  },
 };
 export const ImageTagButton = Template.bind({});
 ImageTagButton.args = {

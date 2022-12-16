@@ -1,5 +1,6 @@
 .menuShapeDefault {
   @apply font-pretendard rounded-md inline-block;
+  @apply bg-white;
 }
 
 .menuShapeShadow {
