@@ -4,6 +4,7 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import ko from 'axe-core/locales/ko.json';
 import { RecoilRoot } from 'recoil';
+import { themes } from '@storybook/theming';
 
 export const decorators = [
   (Story) => (
@@ -12,10 +13,6 @@ export const decorators = [
     </RecoilRoot>
   ),
 ];
-
-NextImage.defaultProps = {
-  unoptimized: true,
-};
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -43,4 +40,14 @@ export const parameters = {
   nextRouter: {
     Provider: RouterContext.Provider,
   },
+  darkMode: {
+    dark: { ...themes.dark, appBg: 'black' },
+  },
+};
+NextImage.defaultProps = {
+  unoptimized: true,
+};
+
+export const globalTypes = {
+  darkMode: true,
 };
