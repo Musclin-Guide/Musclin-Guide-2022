@@ -4,16 +4,8 @@ import * as NextImage from 'next/image';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import ko from 'axe-core/locales/ko.json';
-import { RecoilRoot } from 'recoil';
+import globalDecorator from './decorators';
 import { themes } from '@storybook/theming';
-
-export const decorators = [
-  (Story) => (
-    <RecoilRoot>
-      <Story />
-    </RecoilRoot>
-  ),
-];
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -52,3 +44,5 @@ NextImage.defaultProps = {
 export const globalTypes = {
   darkMode: true,
 };
+
+export const decorators = globalDecorator;
