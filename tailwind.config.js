@@ -72,7 +72,11 @@ const colors = {
 };
 
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './.storybook/**/*.{js,jsx,ts,tsx}',
+    './src/**/*.{js,jsx,ts,tsx}',
+    './src/**/**/*.{ts,tsx}',
+  ],
   darkMode: 'class',
   theme: {
     extend: {
@@ -101,9 +105,9 @@ module.exports = {
           warning: colors.warning,
         },
       },
-      fontFamily: {
-        pretendard: ['pretendard', ...defaultTheme.fontFamily.sans],
-      },
+      // fontFamily: {
+      //   pretendard: ['pretendard', ...defaultTheme.fontFamily.sans],
+      // },
     },
   },
 };

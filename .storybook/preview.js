@@ -1,4 +1,5 @@
 import 'tailwindcss/tailwind.css';
+import '@styles/globals.css';
 import * as NextImage from 'next/image';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
