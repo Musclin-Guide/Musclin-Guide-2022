@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 import { Button_Test } from '@components/Button_test/Button_test';
-
+import { addFigmaToken } from '@utils/addFigmaToken';
 export default {
   title: 'Components/Button',
   component: Button_Test,
@@ -41,6 +41,11 @@ Focus.args = {
   disabled: false,
   text: 'Button',
 };
+
+addFigmaToken(
+  Focus,
+  'https://www.figma.com/file/9Q9d6I31A1lMp11UMLZjA1/wireFrames(1st-Cycle)?node-id=121%3A11279&t=9DlsQXxvM06MZwwp-4'
+);
 
 export const FocusVisible = Template.bind({});
 FocusVisible.storyName = 'ButtonFocusVisible';
