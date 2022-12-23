@@ -71,15 +71,11 @@ const colors = {
 };
 
 module.exports = {
-<<<<<<< HEAD
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './src/**/**/*.{ts,tsx}'],
-=======
   content: [
     './.storybook/**/*.{js,jsx,ts,tsx}',
     './src/**/*.{js,jsx,ts,tsx}',
     './src/**/**/*.{ts,tsx}',
   ],
->>>>>>> 4a33cb79a5f44a8dace7c33df620ac40fc064be7
   darkMode: 'class',
   theme: {
     extend: {
