@@ -22,7 +22,8 @@
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["styles/*"],
       "@public/*": ["public/*"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": ["./@types/*.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],

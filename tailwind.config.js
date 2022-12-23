@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = {
   black: '#000000',
   white: '#ffffff',
@@ -72,7 +71,15 @@ const colors = {
 };
 
 module.exports = {
+<<<<<<< HEAD
   content: ['./src/**/*.{js,jsx,ts,tsx}', './src/**/**/*.{ts,tsx}'],
+=======
+  content: [
+    './.storybook/**/*.{js,jsx,ts,tsx}',
+    './src/**/*.{js,jsx,ts,tsx}',
+    './src/**/**/*.{ts,tsx}',
+  ],
+>>>>>>> 4a33cb79a5f44a8dace7c33df620ac40fc064be7
   darkMode: 'class',
   theme: {
     extend: {
@@ -100,9 +107,6 @@ module.exports = {
           updated: colors.updated,
           warning: colors.warning,
         },
-      },
-      fontFamily: {
-        pretendard: ['pretendard', ...defaultTheme.fontFamily.sans],
       },
     },
   },

@@ -10,6 +10,7 @@ module.exports = {
     'storybook-dark-mode',
     'storybook-addon-next',
     'storybook-addon-next-router',
+    'storybook-addon-designs',
     {
       name: '@storybook/addon-postcss',
       options: {

@@ -21,14 +21,20 @@ const variantStyles = {
 
 const colorStyles = {
   contained: {
-    default: 'text-neutral-900 bg-gray-200 hover:bg-gray-300',
-    primary: 'text-white bg-primary-default hover:bg-primary-900',
+    default: 'text-neutral-900 bg-gray-200 hover:bg-gray-300 ',
+    primary: 'text-white bg-primary-default hover:bg-primary-600',
     secondary: 'text-neutral-900 bg-secondary-default hover:bg-secondary-500',
   },
   outlined: {
     default: 'text-gray-600 border-gray-600 hover:bg-gray-200',
     primary: 'text-primary-default border-primary-default hover:bg-primary-50',
     secondary: 'text-secondary-800 border-secondary-800 hover:bg-secondary-100',
+  },
+  focus: {
+    normal:
+      'text-white bg-primary-default hover:bg-primary-600 Primaryfocus__test',
+    focusVisible:
+      'text-white bg-primary-default hover:bg-primary-600 Primaryfocus',
   },
 };
 

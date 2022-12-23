@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react';
 import { Button_Test } from '@components/Button_test/Button_test';
-
+import { addFigmaToken } from '@utils/addFigmaToken';
 export default {
   title: 'Components/Button',
   component: Button_Test,
@@ -31,6 +31,33 @@ ButtonStory.args = {
   text: 'Button',
 };
 
+export const Focus = Template.bind({});
+Focus.storyName = 'ButtonFocus';
+Focus.args = {
+  className: '',
+  variant: 'focus',
+  color: 'normal',
+  size: 'medium',
+  disabled: false,
+  text: 'Button',
+};
+
+addFigmaToken(
+  Focus,
+  'https://www.figma.com/file/9Q9d6I31A1lMp11UMLZjA1/wireFrames(1st-Cycle)?node-id=121%3A11279&t=9DlsQXxvM06MZwwp-4'
+);
+
+export const FocusVisible = Template.bind({});
+FocusVisible.storyName = 'ButtonFocusVisible';
+FocusVisible.args = {
+  className: '',
+  variant: 'focus',
+  color: 'focusVisible',
+  size: 'medium',
+  disabled: false,
+  text: 'Button',
+};
+
 export const ButtonVariationsStory = () => {
   return (
     <div className="card max-w-800 p-3">
@@ -41,7 +68,7 @@ export const ButtonVariationsStory = () => {
       <div className="text-state-accent">accent - #186faf</div>
       <div className="text-state-updated">updated - #EF4444</div>
       <div className="text-state-warning">waring - #FACC15</div>
-      <h1 className="text-2xl font-pretendard font-semibold mb-2">Buttons</h1>
+      <h1 className="text-2xl font-semibold mb-2">Buttons</h1>
 
       <h2 className="text-xl mt-6">Contained Buttons</h2>
       <div className="mt-1">
