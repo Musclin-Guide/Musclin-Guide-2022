@@ -1,1 +1,2 @@
-export * from '@components/index';
+export * from '@components/CareerInput/index';
+export * from '@components/EditButton/index';

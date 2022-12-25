@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
-import styles from '@components/CareerInput/CareerButton.module.css';
+import styles from '@components/EditButton/EditButton.module.css';
 
-interface CareerButtonProps
+interface EditButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   type?: 'submit' | 'reset' | 'button' | undefined;
@@ -10,13 +10,13 @@ interface CareerButtonProps
   icon?: ReactNode;
 }
 
-export const CareerButton = ({
+export const EditButton = ({
   className,
   type = 'button',
   title,
   icon,
   ...props
-}: CareerButtonProps) => {
+}: EditButtonProps) => {
   return (
     <button
       type={type}

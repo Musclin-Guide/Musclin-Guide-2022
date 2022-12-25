@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { HTMLAttributes, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styles from '@components/CareerInput/CareerInput.module.css';
 
 export const ListNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
@@ -60,19 +60,3 @@ export const CareerInput = ({
     </div>
   );
 };
-
-// DateInputOptions.option = DateInputSelect;
-
-// import { HTMLAttributes } from 'react';
-//
-// const List = ({ children, ...props }: HTMLAttributes<HTMLUListElement>) => {
-//   return <ul {...props}>{children}</ul>;
-// };
-//
-// const ListItem = ({ children, ...props }: HTMLAttributes<HTMLLIElement>) => {
-//   return <li {...props}>{children}</li>;
-// };
-//
-// List.Item = ListItem;
-//
-// export default List;
