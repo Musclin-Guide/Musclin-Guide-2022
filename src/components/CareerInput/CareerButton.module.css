@@ -1,0 +1,23 @@
+.button {
+  @apply border  border-neutral-100 rounded-md;
+  @apply flex justify-center;
+  @apply w-7 h-7 bg-white;
+}
+
+.button:disabled {
+  @apply hidden;
+}
+
+.icon {
+  @apply justify-center self-center stroke-primary-default;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.sampleBackGround {
+  @apply mt-2 w-20 h-14  bg-slate-200;
+}
+
+.wrapper {
+  @apply flex gap-2 justify-center items-center;
+}

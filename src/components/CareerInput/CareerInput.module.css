@@ -1,0 +1,28 @@
+.wrapper {
+  @apply inline-flex gap-2 items-center;
+}
+.select {
+  @apply bg-white;
+  @apply appearance-none;
+  @apply text-center text-neutral-500;
+  @apply border border-neutral-100;
+}
+
+.select:disabled {
+  @apply bg-transparent;
+  @apply text-right;
+  @apply text-black text-lg;
+  @apply border-none;
+}
+
+/* -------------------------------------------------------------------------- */
+.inputCommon {
+  @apply text-base rounded-md;
+}
+.inputNormalSize {
+  @apply w-8 h-8;
+}
+
+.inputWideSize {
+  @apply w-16 h-8;
+}
