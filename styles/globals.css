@@ -26,4 +26,7 @@
     padding: 0;
     white-space: nowrap;
   }
+  .mypageWrapper {
+    @apply flex items-center justify-between;
+  }
 }

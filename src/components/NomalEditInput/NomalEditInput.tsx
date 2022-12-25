@@ -19,7 +19,7 @@ export const NomalEditInput = ({
   ...props
 }: NomalEditInput) => {
   return (
-    <div className="flex items-center justify-between bg-slate-200 w-[312px] gap-0">
+    <div className={clsx('mypageWrapper', 'bg-slate-200 w-[312px]')}>
       <label htmlFor={type} className="a11yHidden">
         Enter your globex.com email:
       </label>

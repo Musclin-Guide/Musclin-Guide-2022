@@ -11,7 +11,7 @@ import clsx from 'clsx';
 
 export const CareerEditInput = ({ disabled = false }) => {
   return (
-    <div className="w-80 h-10 gap-6  flex justify-between items-center">
+    <div className={clsx('mypageWrapper', 'w-80 h-10 gap-6')}>
       <div className="flex gap-5">
         <CareerInput
           disabled={disabled}
