@@ -15,5 +15,5 @@ const Template: Story = (args) => {
   return <CareerEditInput disabled={args.disabled}></CareerEditInput>;
 };
 
-export const Primary = Template.bind({});
-Primary.storyName = 'CareerEditInput';
+export const CareerEdit = Template.bind({});
+CareerEdit.storyName = 'CareerEditInput';

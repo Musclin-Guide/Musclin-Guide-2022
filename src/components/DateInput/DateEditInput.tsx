@@ -6,18 +6,18 @@ import {
   ListNumber2,
   empty,
 } from '@components/CareerInput/CareerInput';
-import { FiX, FiCheck, FiCheckSquare } from 'react-icons/fi';
+import { FiX, FiCheck, FiCheckSquare, FiCalendar } from 'react-icons/fi';
 import clsx from 'clsx';
 
-export const CareerEditInput = ({ disabled = false }) => {
+export const DataEditInput = ({ disabled = false }) => {
   return (
     <div className="w-80 h-10 gap-6  flex justify-between items-center">
       <div className="flex gap-5">
         <CareerInput
           disabled={disabled}
           id="Year"
-          List={ListNumber}
-          className={clsx(Inputstyles.inputCommon, Inputstyles.inputNormalSize)}
+          List={ListNumber2}
+          className={clsx(Inputstyles.inputCommon, Inputstyles.inputWideSize)}
           selectName="year"
           text={'년'}
         />
@@ -30,27 +30,32 @@ export const CareerEditInput = ({ disabled = false }) => {
             Inputstyles.inputNormalSize,
           ])}
           selectName="month"
-          text={'개월'}
+          text={'월'}
+        />
+        <CareerInput
+          disabled={disabled}
+          id="Day"
+          List={ListNumber}
+          className={clsx([
+            Inputstyles.inputCommon,
+            Inputstyles.inputNormalSize,
+          ])}
+          selectName="day"
+          text={'일'}
         />
       </div>
-      <div className="flex gap-2 items-center">
-        <EditButton
-          disabled={!disabled}
-          type="button"
-          title="체크하기"
-          icon={<FiCheck className={Buttonstyles.icon} />}
-        ></EditButton>
+      <div className={Buttonstyles.wrapper}>
         <EditButton
           disabled={!disabled}
           type="button"
           title="나가기"
-          icon={<FiX className={Buttonstyles.icon} />}
+          icon={<FiCalendar className={Buttonstyles.icon} />}
         ></EditButton>
         <EditButton
           disabled={disabled}
           type="button"
           title="수정하기"
-          icon={<FiCheckSquare className={Buttonstyles.icon} />}
+          icon={<FiCheck className={Buttonstyles.icon} />}
         ></EditButton>
       </div>
     </div>
