@@ -1,0 +1,5 @@
+.RowListInput{
+  @apply w-fit;
+  @apply flex items-end gap-10;
+  @apply px-8 pt-8;
+}
