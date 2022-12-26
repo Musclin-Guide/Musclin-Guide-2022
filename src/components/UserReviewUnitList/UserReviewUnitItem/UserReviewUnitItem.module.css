@@ -1,0 +1,11 @@
+.UserReviewUnitItem{
+  @apply w-fit;
+  @apply flex items-center gap-2;
+  @apply text-neutral-700;
+}
+.IconStyle{
+  @apply text-neutral-700;
+}
+.TextStyle{
+  @apply font-extrabold leading-5 text-sm;
+}
