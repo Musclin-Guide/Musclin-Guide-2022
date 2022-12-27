@@ -31,10 +31,9 @@ const colorStyles = {
     secondary: 'text-secondary-800 border-secondary-800 hover:bg-secondary-100',
   },
   focus: {
-    normal:
-      'text-white bg-primary-default hover:bg-primary-600 Primaryfocus__test',
+    normal: 'text-white bg-primary-default hover:bg-primary-600 PrimaryFocus',
     focusVisible:
-      'text-white bg-primary-default hover:bg-primary-600 Primaryfocus',
+      'text-white bg-primary-default hover:bg-primary-600 primaryFocusVisible',
   },
 };
 
