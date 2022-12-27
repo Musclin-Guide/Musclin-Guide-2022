@@ -1,0 +1,5 @@
+.aLink {
+  @apply inline-flex flex-col justify-center text-center gap-[6px];
+  @apply w-[120px] h-[90px] pt-5;
+  @apply bg-white border-b border-b-neutral-100;
+}
