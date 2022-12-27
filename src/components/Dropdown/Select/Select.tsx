@@ -27,7 +27,7 @@ export const Select = ({
             select.selectText,
             select.selectButton,
             className,
-            'defaultFocus'
+            'primaryFocusVisible'
           )}
         >
           {ListDummy[0].text}
@@ -41,7 +41,11 @@ export const Select = ({
         {ListDummy.map(({ id, value, text, href, isExternal }) => {
           return (
             <li className={select.selectLiShort} key={id} value={value}>
-              <ALinkMenuItem href={href} isExternal={isExternal}>
+              <ALinkMenuItem
+                className="px-4"
+                href={href}
+                isExternal={isExternal}
+              >
                 {text}
               </ALinkMenuItem>
             </li>

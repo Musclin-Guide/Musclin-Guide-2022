@@ -13,9 +13,17 @@ const Template: Story = (args) => <MenuButton {...args}></MenuButton>;
 
 export const CreateDropdownButton = Template.bind({});
 CreateDropdownButton.args = {
-  className: clsx(menuButton.MenuButtonDefault, menuButton.writeButton),
+  className: clsx(
+    menuButton.MenuButtonDefault,
+    menuButton.writeButton,
+    'primaryFocusVisible'
+  ),
 };
 export const ImageTagButton = Template.bind({});
 ImageTagButton.args = {
-  className: clsx(menuButton.MenuButtonDefault, menuButton.addItemButton),
+  className: clsx(
+    menuButton.MenuButtonDefault,
+    menuButton.addItemButton,
+    'primaryFocusVisible'
+  ),
 };
