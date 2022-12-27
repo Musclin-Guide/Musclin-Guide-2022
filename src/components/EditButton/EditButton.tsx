@@ -21,7 +21,7 @@ export const EditButton = ({
     <button
       type={type}
       title={title}
-      className={clsx(className, styles.button, 'Primaryfocus__test')}
+      className={clsx(className, styles.button, 'primaryFocusVisible')}
       {...props}
     >
       {icon}

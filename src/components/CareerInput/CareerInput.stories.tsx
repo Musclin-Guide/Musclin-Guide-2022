@@ -38,7 +38,7 @@ Primary.args = {
   className: clsx(
     styles.inputCommon,
     styles.inputNormalSize,
-    'Primaryfocus__test'
+    'primaryFocusVisible'
   ),
   text: '개월',
 };
@@ -53,7 +53,7 @@ Second.args = {
   className: clsx(
     styles.inputCommon,
     styles.inputWideSize,
-    'Primaryfocus__test'
+    'primaryFocusVisible'
   ),
   text: '년',
 };
@@ -66,7 +66,7 @@ export const CareerInputVariationStory = () => {
           className={clsx(
             styles.inputCommon,
             styles.inputWideSize,
-            'Primaryfocus__test'
+            'primaryFocusVisible'
           )}
           List={ListNumber2}
           text={'년'}
@@ -75,7 +75,7 @@ export const CareerInputVariationStory = () => {
           className={clsx(
             styles.inputCommon,
             styles.inputNormalSize,
-            'Primaryfocus__test'
+            'primaryFocusVisible'
           )}
           List={ListNumber}
           text={'월'}
@@ -84,7 +84,7 @@ export const CareerInputVariationStory = () => {
           className={clsx(
             styles.inputCommon,
             styles.inputNormalSize,
-            'Primaryfocus__test'
+            'primaryFocusVisible'
           )}
           List={ListNumber}
           text={'일'}
@@ -96,7 +96,7 @@ export const CareerInputVariationStory = () => {
           className={clsx(
             styles.inputCommon,
             styles.inputNormalSize,
-            'Primaryfocus__test'
+            'primaryFocusVisible'
           )}
           List={ListNumber}
           text={'년'}
@@ -105,7 +105,7 @@ export const CareerInputVariationStory = () => {
           className={clsx(
             styles.inputCommon,
             styles.inputNormalSize,
-            'Primaryfocus__test'
+            'primaryFocusVisible'
           )}
           List={ListNumber}
           text={'개월'}

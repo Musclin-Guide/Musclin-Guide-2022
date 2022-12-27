@@ -25,7 +25,7 @@ export const NomalEditInput = ({
       </label>
       <input
         disabled={disabled}
-        className={clsx('Primaryfocus__test', InputStyles.input, className)}
+        className={clsx('primaryFocusVisible', InputStyles.input, className)}
         type={type}
         id={type}
         name={name}
