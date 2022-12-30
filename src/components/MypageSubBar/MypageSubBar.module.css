@@ -1,0 +1,8 @@
+.li {
+  @apply bg-slate-100;
+  @apply text-black;
+}
+
+.li:active {
+  @apply bg-red-500;
+}
