@@ -1,8 +1,11 @@
 .li {
-  @apply bg-slate-100;
-  @apply text-black;
+  @apply text-xs text-center;
+  @apply w-[90px] h-[42px] leading-[42px];
+  @apply justify-center items-center;
+  @apply bg-white text-neutral-200;
+  @apply cursor-pointer;
 }
 
-.li:active {
-  @apply bg-red-500;
+.liActive {
+  @apply border-black border-b-2 text-black;
 }
