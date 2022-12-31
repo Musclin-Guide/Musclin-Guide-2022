@@ -9,7 +9,6 @@ const colorState = atom({
 
 export function MyPagSubBar() {
   const [color, setcolor] = useRecoilState(colorState);
-
   const Dummydata = [
     {
       id: 1,
