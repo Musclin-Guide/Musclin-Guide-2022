@@ -1,0 +1,15 @@
+.wrapper {
+  @apply flex flex-col gap-2.5 justify-center items-center;
+  @apply w-[5.625rem] h-[5.625rem] bg-white;
+  @apply border-t border-neutral-100;
+  @apply text-sm;
+}
+
+.active {
+  @apply text-primary-default stroke-primary-default;
+  @apply font-semibold;
+}
+
+.noActive {
+  @apply text-neutral-200 stroke-neutral-200;
+}
