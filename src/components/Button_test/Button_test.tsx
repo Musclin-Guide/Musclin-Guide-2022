@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-
+import { ProfileCard } from '@components/index';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'contained' | 'outlined';
   color?: 'default' | 'primary' | 'secondary';
