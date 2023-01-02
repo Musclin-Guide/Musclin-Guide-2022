@@ -1,0 +1,5 @@
+.RowImageListInputSmall{
+  @apply w-fit;
+  @apply flex items-center gap-7;
+  @apply py-1;
+}

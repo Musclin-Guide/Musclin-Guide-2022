@@ -1,24 +1,16 @@
-import { ImageInputButton } from '@components/ImageInputList/ImageInputButton/ImageInputButton';
+import { ImageListInputButton } from '@components/ImageListInput/ImageListInputButton/ImageListInputButton';
 import { Story, Meta } from '@storybook/react';
 import { addFigmaToken } from '@utils/addFigmaToken';
-import { useState } from 'react';
 
 export default {
-  title: 'Components/ImageInputList/Button',
-  component: ImageInputButton,
+  title: 'Components/ImageListInput/Button',
+  component: ImageListInputButton,
   argTypes: { onchange: { action: 'change' } },
 } as Meta;
 
-const Template: Story = (args) => {
-  const [images, setImages] = useState<{ key: string; value: File }[]>();
-  return (
-    <ImageInputButton
-      size={args.size}
-      setImages={setImages}
-      file={args.file}
-    ></ImageInputButton>
-  );
-};
+const Template: Story = (args) => (
+  <ImageListInputButton size={args.size}></ImageListInputButton>
+);
 
 export const ButtonPrimary = Template.bind({});
 ButtonPrimary.storyName = 'ButtonPrimary';
