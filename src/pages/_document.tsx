@@ -11,6 +11,7 @@ export default function Document() {
           crossOrigin={'crossorigin'}
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
         />
+        <link rel="icon" href="/public/assets/favicon.ico" sizes="16x16" />
       </Head>
       <body>
         <Main />
