@@ -4,14 +4,20 @@ import styles from '@components/ProfileCard/ProfileCard.module.css';
 
 interface ProfileCardProps {
   userName?: string;
-  userCareer?: string;
+  userCareer: string;
   src?: string;
+  undertext?: string;
 }
 export const ProfileCard = ({
   userName,
   userCareer,
+  undertext = '년',
   ...props
 }: ProfileCardProps) => {
+  if (userCareer < '1') {
+    userCareer = '1';
+    undertext = '년 이하';
+  }
   return (
     <div className={styles.wrapper}>
       <Image
@@ -23,7 +29,10 @@ export const ProfileCard = ({
       />
       <div className={styles.wrapper2}>
         <span className={styles.username}>{userName} </span>
-        <span className={styles.usercareer}>운동경력 {userCareer}년</span>
+        <span className={styles.usercareer}>
+          운동경력 {userCareer}
+          <span>{undertext}</span>
+        </span>
       </div>
     </div>
   );

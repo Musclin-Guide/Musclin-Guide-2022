@@ -18,3 +18,11 @@ Primary.args = {
   userName: '김삿갓2',
   userCareer: '2',
 };
+
+export const Under1year = Template.bind({});
+
+Under1year.storyName = 'demouser2';
+Under1year.args = {
+  userName: '김삿갓2',
+  userCareer: '0',
+};
