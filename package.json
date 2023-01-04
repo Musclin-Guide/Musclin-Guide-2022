@@ -55,6 +55,7 @@
     "postcss": "8.4.19",
     "prettier": "2.8.1",
     "react-query": "3.39.2",
+    "swiper": "8.4.5",
     "storybook": "6.5.14",
     "storybook-addon-designs": "6.3.1",
     "storybook-addon-next": "1.7.1",
