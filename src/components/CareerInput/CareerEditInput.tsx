@@ -21,17 +21,6 @@ export const CareerEditInput = ({ disabled = false }) => {
           selectName="year"
           text={'년'}
         />
-        <CareerInput
-          disabled={disabled}
-          id="Month"
-          List={ListNumber}
-          className={clsx([
-            Inputstyles.inputCommon,
-            Inputstyles.inputNormalSize,
-          ])}
-          selectName="month"
-          text={'개월'}
-        />
       </div>
       <div className="flex gap-2 items-center">
         <EditButton
