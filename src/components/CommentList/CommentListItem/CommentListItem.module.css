@@ -1,0 +1,22 @@
+.CommentListItem{
+  @apply w-full;
+  @apply flex flex-col items-start gap-2;
+  @apply px-6 py-8;
+}
+
+.Info{
+  @apply text-neutral-700;
+  @apply flex gap-1 items-end;
+}
+
+.Writer{
+  @apply text-sm leading-5 font-bold;
+}
+
+.Date{
+  @apply text-neutral-500 font-normal text-xs leading-4;
+}
+
+.Comment{
+  @apply text-xl leading-8 font-semibold text-neutral-700;
+}
