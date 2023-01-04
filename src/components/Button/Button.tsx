@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import React from 'react';
 import { IconContext } from 'react-icons';
 import { HiMail } from 'react-icons/hi';
 import buttonStyles from './Button.module.css';
