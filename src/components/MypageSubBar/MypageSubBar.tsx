@@ -2,13 +2,13 @@ import clsx from 'clsx';
 import { atom, useRecoilState } from 'recoil';
 import styles from '@components/MypageSubBar/MypageSubBar.module.css';
 
-const colorState = atom({
+const getContentsState = atom({
   key: 'color',
   default: 1,
 });
 
 export function MyPagSubBar() {
-  const [color, setcolor] = useRecoilState(colorState);
+  const [contents, setcontents] = useRecoilState(getContentsState);
   const Dummydata = [
     {
       id: 1,
@@ -42,15 +42,15 @@ export function MyPagSubBar() {
             key={item.id}
             className={clsx(
               styles.li,
-              color === item.id ? styles.liActive : null
+              contents === item.id ? styles.liActive : null
             )}
-            onClick={() => setcolor(item.id)}
+            onClick={() => setcontents(item.id)}
           >
             {item.title}
           </li>
         ))}
       </ul>
-      {Dummydata.filter((item) => item.id === color).map((item) => {
+      {Dummydata.filter((item) => item.id === contents).map((item) => {
         return (
           <div key={item.id} className="m-4">
             {item.description}
