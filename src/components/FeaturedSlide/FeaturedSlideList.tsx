@@ -40,7 +40,7 @@ export const FeaturedSlideList = () => {
         {demoImgList.map((i) => {
           return (
             <SwiperSlide key={`${i.id}`} className={styles.swiperslide}>
-              <Image src={i.src} width={360} height={360} alt={i.alt} />
+              <Image src={i.src} width={320} height={320} alt={i.alt} />
             </SwiperSlide>
           );
         })}
