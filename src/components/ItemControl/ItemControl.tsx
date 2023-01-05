@@ -33,7 +33,7 @@ export const ItemControl = ({
           setselect((prev) => !prev);
         }}
         name={'check'}
-        className={clsx('absolute left-[10px] top-[10px] ', clear && 'hidden')}
+        className={clsx(styles.checkButton, clear && 'hidden')}
       />
       {/* 머지 후 X버튼 컴포넌트로 바꿀 예정 */}
       <Checkbox
@@ -42,7 +42,7 @@ export const ItemControl = ({
           setclear(() => true);
         }}
         name={'check'}
-        className={clsx('absolute right-[10px] top-[10px] ', clear && 'hidden')}
+        className={clsx(styles.exitButton, clear && 'hidden')}
       />
     </article>
   );
