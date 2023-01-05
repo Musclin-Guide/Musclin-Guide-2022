@@ -9,6 +9,10 @@
 
 .common {
   @apply font-semibold line-clamp-2 break-words;
+  @apply underline-offset-1;
+}
+.common:hover {
+  @apply underline underline-offset-1;
 }
 
 .row {
@@ -20,7 +24,7 @@
 }
 
 .wrapperCol {
-  @apply w-[7.375rem];
+  @apply w-36;
   @apply h-[108px];
 }
 

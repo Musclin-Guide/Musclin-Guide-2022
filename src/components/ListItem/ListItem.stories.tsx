@@ -9,6 +9,7 @@ export default {
 
 const Template: Story = (args) => (
   <ListItem
+    id={args.id}
     time={args.time}
     subject={args.subject}
     likeQuantity={args.likeQuantity}

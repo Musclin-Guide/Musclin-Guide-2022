@@ -1,14 +1,15 @@
 import styles from '@components/ListItem/ListItem.module.css';
 import clsx from 'clsx';
 
-interface ListItemProps {
-  subject: string;
+export interface ListItemProps {
+  id?: number;
+  subject?: string;
   time?: string;
   likeQuantity?: number;
   wishQuantity?: number;
   className?: string;
-  contentsStyle: 'Row' | 'Col';
-  wrapperStyle: 'Row' | 'Col';
+  contentsStyle?: 'Row' | 'Col';
+  wrapperStyle?: 'Row' | 'Col';
 }
 
 const contentsStyles = {
@@ -22,10 +23,11 @@ const wrapperStyles = {
 };
 
 export const ListItem = ({
+  id,
   subject = '고양이는 귀엽고 또 귀여우니 우리는 받아들여야해 그렇단말이야!',
   time = '3일전',
-  likeQuantity = 30,
-  wishQuantity = 30,
+  likeQuantity,
+  wishQuantity,
   contentsStyle = 'Row',
   wrapperStyle = 'Row',
   className,
@@ -34,6 +36,7 @@ export const ListItem = ({
   return (
     <>
       <div
+        id={`${id}`}
         className={clsx(styles.wrapper, wrapperStyles[wrapperStyle], className)}
       >
         <span>{time}</span>
