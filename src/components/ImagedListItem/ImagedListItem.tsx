@@ -4,9 +4,8 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import styles from '@components/ImagedListItem/ImagedListItem.module.css';
 import { ListItemProps } from '@components/ListItem/ListItem';
-import { Children } from 'react';
 
-interface ImagedListItem extends ListItemProps {
+export interface ImagedListItem extends ListItemProps {
   imgWrapper: 'Row' | 'Col';
   listWrapper: 'Row' | 'Col';
   className?: string;

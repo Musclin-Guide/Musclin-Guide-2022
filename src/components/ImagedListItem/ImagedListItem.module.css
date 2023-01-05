@@ -1,6 +1,5 @@
 .wrapper {
   @apply inline-flex items-center gap-4 px-6;
-  @apply bg-white;
 }
 
 .wrapperRow {

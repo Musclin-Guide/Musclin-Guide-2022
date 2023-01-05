@@ -1,5 +1,5 @@
 .selected {
-  @apply bg-neutral-200 opacity-50;
+  @apply bg-neutral-400 opacity-50;
 }
 
 .exited {
