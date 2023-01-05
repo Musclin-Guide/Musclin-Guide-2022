@@ -1,6 +1,5 @@
 import { Story, Meta } from '@storybook/react';
 import { Checkbox } from '@components/Checkbox/Checkbox';
-import { addFigmaToken } from '@utils/addFigmaToken';
 
 export default {
   title: 'Components/ Checkbox',
