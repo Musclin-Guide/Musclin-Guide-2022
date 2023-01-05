@@ -8,7 +8,14 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => (
-  <ListItem time={args.time} subject={args.subject} />
+  <ListItem
+    time={args.time}
+    subject={args.subject}
+    likeQuantity={args.likeQuantity}
+    wishQuantity={args.wishQuantity}
+    contentsStyle={args.contentsStyle}
+    wrapperStyle={args.wrapperStyle}
+  />
 );
 
 export const IMGCONTENTS = Template.bind({});

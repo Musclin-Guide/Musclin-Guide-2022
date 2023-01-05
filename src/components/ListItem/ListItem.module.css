@@ -1,0 +1,30 @@
+.wrapper {
+  @apply flex flex-col gap-2;
+  @apply text-neutral-700;
+}
+
+.wrapper > span {
+  @apply text-sm text-neutral-500;
+}
+
+.common {
+  @apply font-semibold line-clamp-2 break-words;
+}
+
+.row {
+  @apply text-xl;
+  @apply h-14;
+}
+.col {
+  @apply text-base;
+}
+
+.wrapperCol {
+  @apply w-[7.375rem];
+  @apply h-[108px];
+}
+
+.wrapperRow {
+  @apply h-[116px];
+  @apply w-[185px];
+}
