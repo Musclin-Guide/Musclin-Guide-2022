@@ -1,5 +1,5 @@
 .wrapper {
-  @apply flex items-center gap-4 px-6;
+  @apply inline-flex items-center gap-4 px-6;
   @apply bg-white;
 }
 
@@ -8,19 +8,20 @@
 }
 
 .wrapperCol {
-  @apply w-[12rem] h-[16.5rem] py-4;
+  @apply w-[11.25rem] h-[16.5rem] py-4;
   @apply flex-col;
 }
 
 .imgWrapper {
-  @apply rounded-md relative bg-[url('/assets/non_img.png')] bg-center;
+  @apply rounded-md bg-auto bg-center relative;
+  /* @apply bg-[url('/assets/non_img.png')]; */
 }
 
 .imgWrapperRow {
   @apply w-[6.25rem] h-[7.25rem];
 }
 .imgWrapperCol {
-  @apply w-[9rem] h-[7.25rem];
+  @apply w-[8.25rem] h-[7.25rem];
 }
 
 .imgCommon {

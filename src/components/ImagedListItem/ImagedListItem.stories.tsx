@@ -20,9 +20,9 @@ const Template: Story = (args) => (
   />
 );
 
-export const Primary = Template.bind({});
-Primary.storyName = 'RowStyle';
-Primary.args = {
+export const RowStyle = Template.bind({});
+RowStyle.storyName = 'RowStyle';
+RowStyle.args = {
   imgWrapper: 'Row',
   listWrapper: 'Row',
   contentsStyle: 'Row',
@@ -33,9 +33,9 @@ Primary.args = {
   wishQuantity: 24,
 };
 
-export const Secondary = Template.bind({});
-Secondary.storyName = 'Coltyle';
-Secondary.args = {
+export const ColStyle = Template.bind({});
+ColStyle.storyName = 'ColStyle';
+ColStyle.args = {
   imgWrapper: 'Col',
   listWrapper: 'Col',
   contentsStyle: 'Col',
@@ -44,4 +44,144 @@ Secondary.args = {
   time: '2일전',
   likeQuantity: 244,
   wishQuantity: 24,
+};
+
+export const VariationRow = () => {
+  return (
+    <section className="flex flex-col">
+      <ImagedListItem
+        contentsStyle="Row"
+        imgWrapper="Row"
+        likeQuantity={244}
+        listWrapper="Row"
+        subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+        time="2일전"
+        wishQuantity={24}
+        wrapperStyle="Row"
+      />
+      <ImagedListItem
+        contentsStyle="Row"
+        imgWrapper="Row"
+        likeQuantity={244}
+        listWrapper="Row"
+        subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+        time="2일전"
+        wishQuantity={24}
+        wrapperStyle="Row"
+      />
+      <ImagedListItem
+        contentsStyle="Row"
+        imgWrapper="Row"
+        likeQuantity={244}
+        listWrapper="Row"
+        subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+        time="2일전"
+        wishQuantity={24}
+        wrapperStyle="Row"
+      />
+      <ImagedListItem
+        contentsStyle="Row"
+        imgWrapper="Row"
+        likeQuantity={244}
+        listWrapper="Row"
+        subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+        time="2일전"
+        wishQuantity={24}
+        wrapperStyle="Row"
+      />
+      <ImagedListItem
+        contentsStyle="Row"
+        imgWrapper="Row"
+        likeQuantity={244}
+        listWrapper="Row"
+        subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+        time="2일전"
+        wishQuantity={24}
+        wrapperStyle="Row"
+      />
+      <ImagedListItem
+        contentsStyle="Row"
+        imgWrapper="Row"
+        likeQuantity={244}
+        listWrapper="Row"
+        subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+        time="2일전"
+        wishQuantity={24}
+        wrapperStyle="Row"
+      />
+    </section>
+  );
+};
+
+export const VariationCol = () => {
+  return (
+    <>
+      <section className="flex no-wrap">
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wishQuantity={24}
+          wrapperStyle="Col"
+        />
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wishQuantity={24}
+          wrapperStyle="Col"
+        />
+      </section>
+      <section className="flex no-wrap">
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wishQuantity={24}
+          wrapperStyle="Col"
+        />
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wishQuantity={24}
+          wrapperStyle="Col"
+        />
+      </section>
+      <section className="flex no-wrap">
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wishQuantity={24}
+          wrapperStyle="Col"
+        />
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wishQuantity={24}
+          wrapperStyle="Col"
+        />
+      </section>
+    </>
+  );
 };

@@ -1,11 +1,11 @@
 .checkbox {
   @apply appearance-none;
-  @apply w-4 h-4;
+  @apply w-8 h-8;
   @apply border border-neutral-100 rounded;
 }
 
 .checkbox:checked {
   @apply bg-primary-default border-transparent;
   @apply bg-contain bg-center bg-no-repeat;
-  @apply bg-[length:10px_10px];
+  @apply bg-[length:20px_20px];
 }

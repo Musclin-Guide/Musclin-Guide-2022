@@ -4,10 +4,12 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import styles from '@components/ImagedListItem/ImagedListItem.module.css';
 import { ListItemProps } from '@components/ListItem/ListItem';
+import { Children } from 'react';
 
 interface ImagedListItem extends ListItemProps {
   imgWrapper: 'Row' | 'Col';
   listWrapper: 'Row' | 'Col';
+  className?: string;
 }
 
 const imgWrappers = {
@@ -26,18 +28,19 @@ export const ImagedListItem = ({
   contentsStyle,
   wrapperStyle,
   wishQuantity,
+  className,
   subject,
   time,
   likeQuantity,
 }: ImagedListItem): JSX.Element => {
   return (
-    <div className={clsx(styles.wrapper, wrappers[listWrapper])}>
+    <div className={clsx(styles.wrapper, wrappers[listWrapper], className)}>
       <div className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
         <Image
           src={'/assets/demo.jpeg'}
           alt={'대체 텍스트'}
           fill
-          className={styles.imgCommon}
+          className={clsx(styles.imgCommon, className)}
           placeholder="blur"
           blurDataURL="/assets/non_img"
         />

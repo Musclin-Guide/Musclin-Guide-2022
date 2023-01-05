@@ -37,7 +37,7 @@ export const ListItem = ({
     <>
       <div
         id={`${id}`}
-        className={clsx(styles.wrapper, wrapperStyles[wrapperStyle], className)}
+        className={clsx(className, styles.wrapper, wrapperStyles[wrapperStyle])}
       >
         <span>{time}</span>
         <strong className={clsx(styles.common, contentsStyles[contentsStyle])}>

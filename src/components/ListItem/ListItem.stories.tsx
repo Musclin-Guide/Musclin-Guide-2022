@@ -19,4 +19,4 @@ const Template: Story = (args) => (
   />
 );
 
-export const IMGCONTENTS = Template.bind({});
+export const ImgContent = Template.bind({});

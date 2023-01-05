@@ -24,11 +24,11 @@
 }
 
 .wrapperCol {
-  @apply w-36;
-  @apply h-[108px];
+  @apply w-[8.25rem];
+  @apply h-[6.75rem];
 }
 
 .wrapperRow {
-  @apply h-[116px];
-  @apply w-[185px];
+  @apply h-[7.25rem];
+  @apply w-[11.5625rem];
 }
