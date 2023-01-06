@@ -10,6 +10,10 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
+<<<<<<< HEAD
     "**/node_modules": false
+=======
+    "**/node_modules": true
+>>>>>>> 9543c37097fea04bfdf5590c9ae0ce8a9b512260
   }
 }
