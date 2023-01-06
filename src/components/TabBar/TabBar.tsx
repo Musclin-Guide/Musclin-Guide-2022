@@ -3,15 +3,12 @@ import { atom, useRecoilState } from 'recoil';
 import SvgCocktail from './Cocktail';
 import { HiOutlineHome, HiOutlineUser, HiOutlineSearch } from 'react-icons/hi';
 import styles from '@components/TabBar/TabBar.module.css';
+import { useState } from 'react';
 
 // A컴포넌트와 합쳐서 리팩토링 거쳐야함.
-const tabColor = atom({
-  key: 'tabColor',
-  default: 0,
-});
 
 export const Tabbar = () => {
-  const [color, setcolor] = useRecoilState(tabColor);
+  const [color, setcolor] = useState(0);
 
   function changecolor(number: number) {
     return setcolor(number);
