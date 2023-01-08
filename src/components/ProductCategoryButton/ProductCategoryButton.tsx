@@ -13,6 +13,7 @@ const toggle = atom({
   key: 'toggle',
   default: true,
 });
+const DummyData: string[] = ['크레아틴', '베타알라닌', '시트룰린'];
 
 interface ProductCategoryButtonProps {
   icon?: {
@@ -20,7 +21,6 @@ interface ProductCategoryButtonProps {
     element: JSX.Element;
   };
   listName?: string;
-  listchildName?: string;
 }
 
 export const ProductCategoryButton = ({
@@ -29,7 +29,6 @@ export const ProductCategoryButton = ({
     element: <Down />,
   },
   listName,
-  listchildName,
 }: ProductCategoryButtonProps): JSX.Element => {
   const [istoggle, settoggle] = useRecoilState(toggle);
 
@@ -48,10 +47,12 @@ export const ProductCategoryButton = ({
           </IconContext.Provider>
         </li>
         <ul>
-          <li className={clsx(istoggle ? 'hidden' : styles.li)}>
-            {listchildName}
-            <Right className={styles.icon} />
-          </li>
+          {DummyData.map((i) => (
+            <li key={i} className={clsx(istoggle ? 'hidden' : styles.li)}>
+              {i}
+              <Right className={styles.icon} />
+            </li>
+          ))}
         </ul>
       </ul>
     </>

@@ -8,15 +8,11 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => (
-  <ProductCategoryButton
-    listName={args.listName}
-    listchildName={args.listchildName}
-  />
+  <ProductCategoryButton listName={args.listName} />
 );
 
 export const Primary = Template.bind({});
 Primary.storyName = 'Category';
 Primary.args = {
   listName: '성분',
-  listchildName: '크레아틴',
 };
