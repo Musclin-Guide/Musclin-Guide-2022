@@ -1,18 +1,11 @@
-import Image from 'next/image';
 import Logo from '@components/Header/Logo';
 import Noti from '@components/Header/Noti';
-import { ReactNode } from 'react';
 import styles from '@components/Header/Header.module.css';
-import clsx from 'clsx';
 
-export const Header = ({ ...props }) => {
+export const Header = (): JSX.Element => {
   return (
     <>
-      <header
-        className={clsx(
-          'bg-white w-[360px] h-16 flex justify-between px-5 border-b border-neutral-100 fixed top-0 '
-        )}
-      >
+      <header className={styles.container}>
         <h1 className="sr-only">머슬랭 가이드 홈페이지 입니다.</h1>
         {/* A링크로 감쌀예정*/}
         <Logo className="mt-1.5" />
@@ -37,11 +30,3 @@ export const Header = ({ ...props }) => {
     </>
   );
 };
-
-// export const Header2 = () => {
-//   return (
-//     <Header>
-//       <Logo />
-//     </Header>
-//   );
-// };

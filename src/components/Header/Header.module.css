@@ -1,13 +1,7 @@
 .container {
-  @apply w-80 h-16;
-}
-
-.img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  height: 100%;
+  @apply w-[22.5rem] h-16 px-5;
+  @apply fixed top-0;
+  @apply flex justify-between;
+  @apply bg-white;
+  @apply border-b border-neutral-100;
 }
