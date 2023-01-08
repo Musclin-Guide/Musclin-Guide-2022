@@ -1,15 +1,15 @@
-.TextInput{
+.TextInput {
   @apply w-full;
   @apply flex flex-col items-start gap-1;
 }
 
-.Label{
+.Label {
   @apply w-fit;
   @apply flex items-start;
   @apply text-sm leading-5 font-medium text-neutral-700;
 }
 
-.Input{
+.Input {
   @apply w-full;
   @apply px-3 py-2;
   @apply text-sm leading-5 font-normal text-neutral-900 align-middle text-start;
@@ -17,17 +17,16 @@
   @apply border border-solid border-neutral-300;
   @apply shadow-sm;
   @apply rounded-md;
-  @apply primaryFocusVisible;
 }
 
-.Validation{
+.Validation {
   @apply text-base leading-6 font-normal;
 }
 
-.ValidationTrue{
+.ValidationTrue {
   @apply text-green-500;
 }
 
-.ValidationFalse{
+.ValidationFalse {
   @apply text-red-500;
 }

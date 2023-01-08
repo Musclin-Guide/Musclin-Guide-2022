@@ -1,6 +1,6 @@
 .Button {
   @apply flex flex-row justify-center items-center;
-  @apply font-medium font-pretendard;
+  @apply font-medium;
   @apply shadow-sm focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-default;
 }
 

@@ -1,4 +1,5 @@
 import textInputStyle from '@components/TextInput/TextInput.module.css';
+import clsx from 'clsx';
 import {
   ChangeEvent,
   Dispatch,
@@ -44,7 +45,7 @@ export const TextInput = ({
         </label>
       )}
       <input
-        className={textInputStyle.Input}
+        className={clsx(textInputStyle.Input, 'primaryFocusVisible')}
         type="text"
         name={label}
         id={label}
