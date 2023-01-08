@@ -7,7 +7,7 @@
     font-family: 'Pretendard';
   }
   header + * {
-    @apply mt-12;
+    @apply pt-16;
   }
 }
 
