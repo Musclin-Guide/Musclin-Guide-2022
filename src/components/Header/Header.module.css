@@ -1,0 +1,7 @@
+.container {
+  @apply w-[22.5rem] h-16 px-5;
+  @apply fixed top-0;
+  @apply flex justify-between;
+  @apply bg-white;
+  @apply border-b border-neutral-100;
+}
