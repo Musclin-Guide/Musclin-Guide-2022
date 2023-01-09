@@ -1,0 +1,10 @@
+.StarRateSlider{
+  @apply flex items-center gap-1;
+  @apply w-fit;
+}
+.StarFill{
+  @apply fill-yellow-300 text-neutral-700;
+}
+.StarEmpty{
+  @apply text-neutral-400 fill-neutral-300;
+}

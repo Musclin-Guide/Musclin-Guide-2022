@@ -1,0 +1,17 @@
+.LikeToggleButton{
+  @apply w-fit;
+  @apply flex items-center gap-2;
+  @apply font-extrabold text-sm leading-5;
+}
+.FillHeart{
+  @apply fill-red-500 text-neutral-700;
+}
+.EmptyHeart{
+  @apply fill-neutral-300 text-neutral-400
+}
+.FillText{
+  @apply text-black;
+}
+.EmptyText{
+  @apply text-neutral-400;
+}
