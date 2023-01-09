@@ -104,6 +104,10 @@ module.exports = {
           warning: colors.warning,
         },
       },
+      backgroundImage: {
+        'check-icon': "url('/assets/checkIcon.svg')",
+      },
     },
   },
+  plugins: [require('@tailwindcss/line-clamp')],
 };

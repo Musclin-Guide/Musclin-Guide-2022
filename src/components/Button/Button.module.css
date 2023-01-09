@@ -1,0 +1,68 @@
+.Button {
+  @apply flex flex-row justify-center items-center;
+  @apply font-medium;
+  @apply shadow-sm focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-default;
+}
+
+.Primary {
+  @apply text-white bg-orange-500 hover:bg-orange-400;
+}
+
+.White {
+  @apply text-neutral-700;
+  @apply bg-white border border-inherit hover:bg-neutral-50;
+  @apply border-neutral-300;
+}
+
+.StyleXs {
+  @apply rounded gap-2;
+  @apply leading-4 text-xs;
+}
+
+.StyleSm {
+  @apply rounded-md gap-2;
+  @apply leading-4 text-sm;
+}
+
+.StyleBase {
+  @apply rounded-md gap-2;
+  @apply leading-5 text-sm;
+}
+
+.StyleL {
+  @apply rounded-md gap-3;
+  @apply leading-6 text-base;
+}
+
+.StyleXl {
+  @apply rounded-md gap-3;
+  @apply leading-6 text-base;
+}
+
+.PaddingXs {
+  @apply px-[11px] py-[7px];
+}
+
+.PaddingSm {
+  @apply px-[14px] py-[9px];
+}
+
+.PaddingBase {
+  @apply px-[17px] py-[9px];
+}
+
+.PaddingL {
+  @apply px-[17px] py-[9px];
+}
+
+.PaddingXl {
+  @apply px-[25px] py-[13px];
+}
+
+.IconOnlyPadding {
+  @apply p-2;
+}
+
+.TextStyle {
+  @apply text-center align-middle;
+}

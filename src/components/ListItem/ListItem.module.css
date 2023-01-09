@@ -1,0 +1,34 @@
+.wrapper {
+  @apply flex flex-col gap-2;
+  @apply text-neutral-700;
+}
+
+.wrapper > span {
+  @apply text-sm text-neutral-500;
+}
+
+.common {
+  @apply font-semibold line-clamp-2 break-words;
+  @apply underline-offset-1;
+}
+.common:hover {
+  @apply underline underline-offset-1;
+}
+
+.row {
+  @apply text-xl;
+  @apply h-14;
+}
+.col {
+  @apply text-base;
+}
+
+.wrapperCol {
+  @apply w-[8.25rem];
+  @apply h-[6.75rem];
+}
+
+.wrapperRow {
+  @apply h-[7.25rem];
+  @apply w-[11.5625rem];
+}

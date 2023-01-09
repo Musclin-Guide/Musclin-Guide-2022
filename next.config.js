@@ -7,7 +7,14 @@ module.exports = {
     config.module.rules.push({
       test: /\.svg$/,
       issuer: /\.[jt]sx?$/,
-      use: ['@svgr/webpack'],
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: { plugins: { removeViewBox: false } },
+          },
+        },
+      ],
     });
     return config;
   },
