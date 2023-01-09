@@ -1,3 +1,4 @@
+/* eslint-disable */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +6,9 @@
 @layer base {
   :root {
     font-family: 'Pretendard';
+  }
+  header + * {
+    @apply pt-16;
   }
 }
 
