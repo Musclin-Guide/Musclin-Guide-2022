@@ -1,0 +1,25 @@
+.menuShapeDefault {
+  @apply rounded-md inline-block;
+  @apply bg-white;
+
+
+}
+
+.menuShapeShadow {
+  @apply ring-black ring-opacity-5 shadow-lg;
+}
+
+.listTextStype {
+  @apply text-sm;
+
+}
+
+
+.ItemListDefault {
+  @apply w-56 h-9 flex justify-start items-center;
+  @apply pl-2;
+}
+
+.ItemListCenter {
+  @apply w-[158px] h-9 flex justify-center items-center;
+}

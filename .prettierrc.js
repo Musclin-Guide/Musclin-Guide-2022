@@ -7,6 +7,7 @@ module.exports = {
   //       class="contaienr"
   //     >
   htmlWhitespaceSensitivity: 'css',
+
   bracketSameLine: false,
   // 객체 표기 괄호 사이 공백 추가 여부 (ex: { foo: bar })
   bracketSpacing: true,
@@ -26,4 +27,4 @@ module.exports = {
   trailingComma: 'es5',
   // 탭 사용 여부
   useTabs: false,
-}
+};
