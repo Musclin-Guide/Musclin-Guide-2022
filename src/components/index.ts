@@ -1,3 +1,4 @@
+export * from '@components/ProductCategoryButton/index';
 export * from '@components/CareerInput/index';
 export * from '@components/EditButton/index';
 export * from '@components/MypageSubBar/index';
@@ -7,4 +8,3 @@ export * from '@components/ImagedListItem/index';
 export * from '@components/ItemControl/ItemControl';
 export * from '@components/ProfileCard/index';
 export * from '@components/Header/index';
-
