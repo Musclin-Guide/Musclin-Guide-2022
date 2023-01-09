@@ -1,0 +1,4 @@
+.UserReviewUnitList{
+  @apply w-fit;
+  @apply flex items-center gap-8;
+}

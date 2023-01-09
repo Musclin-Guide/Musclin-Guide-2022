@@ -1,3 +1,4 @@
+/* eslint-disable */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +6,9 @@
 @layer base {
   :root {
     font-family: 'Pretendard';
+  }
+  header + * {
+    @apply pt-16;
   }
 }
 
@@ -25,5 +29,8 @@
     border: 0;
     padding: 0;
     white-space: nowrap;
+  }
+  .mypageWrapper {
+    @apply flex items-center justify-between;
   }
 }

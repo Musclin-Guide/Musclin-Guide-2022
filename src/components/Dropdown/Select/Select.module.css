@@ -1,0 +1,27 @@
+.selectText {
+  @apply text-sm text-neutral-700;
+}
+
+.selectButton {
+  @apply ring-1 rounded-md ring-neutral-200 ring-inset;
+}
+.icon {
+  @apply w-5 h-5 stroke-neutral-400;
+}
+.selectButtonShort {
+  @apply flex gap-2 justify-center items-center;
+  @apply w-[108px] h-[38px];
+}
+.selectButtonLong {
+  @apply flex gap-52 items-center;
+  @apply w-[312px] h-[42px];
+  @apply justify-start;
+  @apply pl-3;
+}
+.selectButtonLong > * {
+  @apply -translate-x-4;
+}
+
+.selectUl {
+  @apply flex-col inline-block rounded-md ring-inset ring-1 ring-neutral-200;
+}
