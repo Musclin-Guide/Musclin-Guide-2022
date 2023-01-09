@@ -1,7 +1,6 @@
 .swiperslide {
   @apply h-96 w-fit;
   @apply text-center;
-  @apply flex;
 
   /* Center slide text vertically */
   display: -webkit-box;

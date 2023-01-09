@@ -1,4 +1,3 @@
-import { ALink } from '@components/ReviewBar/Alink';
 import clsx from 'clsx';
 import styles from '@components/ReviewBar/ReviewButton.module.css';
 
@@ -17,18 +16,9 @@ export const ReviewButton = ({
   ...props
 }: ReviewButtonProps) => {
   return (
-    <>
-      <li className="list-none">
-        <ALink
-          href={href}
-          className={clsx(styles.aLink, className)}
-          isExternal={false}
-          {...props}
-        >
-          <b className="text-xl">{number}</b>
-          <span className="text-neutral-300 ">{listName}</span>
-        </ALink>
-      </li>
-    </>
+    <li className={clsx(styles.aLink, 'list-none', className)}>
+      <b className="text-xl">{number}</b>
+      <span className="text-neutral-300 ">{listName}</span>
+    </li>
   );
 };

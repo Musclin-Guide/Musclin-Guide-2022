@@ -7,6 +7,7 @@ import {
 import clsx from 'clsx';
 import styles from '@components/ProductCategoryButton/ProductCategoryButton.module.css';
 import { IconContext } from 'react-icons';
+import { ALinkMenuItem as ALink } from '@components/index';
 
 // ? 하위 리스트들 칠드런으로 빼야할까요?
 const toggle = atom({
@@ -49,8 +50,10 @@ export const ProductCategoryButton = ({
         <ul>
           {DummyData.map((i) => (
             <li key={i} className={clsx(istoggle ? 'hidden' : styles.li)}>
-              {i}
-              <Right className={styles.icon} />
+              <ALink className={styles.aLink} href={''} isExternal={false}>
+                {i}
+                <Right className={styles.icon} />
+              </ALink>
             </li>
           ))}
         </ul>

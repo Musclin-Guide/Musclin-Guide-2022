@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import styles from '@components/ImagedListItem/ImagedListItem.module.css';
 import { ListItemProps } from '@components/ListItem/ListItem';
+import { ALinkMenuItem as ALink } from '@components/index';
 
 export interface ImagedListItem extends ListItemProps {
   imgWrapper: 'Row' | 'Col';
@@ -33,7 +34,11 @@ export const ImagedListItem = ({
   likeQuantity,
 }: ImagedListItem): JSX.Element => {
   return (
-    <div className={clsx(styles.wrapper, wrappers[listWrapper], className)}>
+    <ALink
+      className={clsx(styles.wrapper, wrappers[listWrapper], className)}
+      href={'/'}
+      isExternal={false}
+    >
       <div className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
         <Image
           src={'/assets/demo.jpeg'}
@@ -52,6 +57,6 @@ export const ImagedListItem = ({
         subject={subject}
         time={time}
       />
-    </div>
+    </ALink>
   );
 };

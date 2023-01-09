@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { atom, useRecoilState } from 'recoil';
 import styles from '@components/MypageSubBar/MypageSubBar.module.css';
-
+import { ALinkMenuItem as ALink } from '@components/index';
 const getContentsState = atom({
   key: 'color',
   default: 1,
@@ -35,28 +35,31 @@ export function MyPagSubBar() {
     },
   ];
   return (
-    <section>
-      <ul className="inline-flex">
-        {Dummydata.map((item) => (
-          <li
-            key={item.id}
-            className={clsx(
-              styles.li,
-              contents === item.id ? styles.liActive : null
-            )}
-            onClick={() => setcontents(item.id)}
-          >
+    <ul className="inline-flex">
+      {Dummydata.map((item) => (
+        <li
+          key={item.id}
+          className={clsx(
+            styles.li,
+            contents === item.id ? styles.liActive : null
+          )}
+          onClick={() => setcontents(item.id)}
+        >
+          <ALink href={'/'} isExternal={false}>
             {item.title}
-          </li>
-        ))}
-      </ul>
-      {Dummydata.filter((item) => item.id === contents).map((item) => {
+          </ALink>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+{
+  /* {Dummydata.filter((item) => item.id === contents).map((item) => {
         return (
           <div key={item.id} className="m-4">
             {item.description}
           </div>
         );
-      })}
-    </section>
-  );
+      })} */
 }
