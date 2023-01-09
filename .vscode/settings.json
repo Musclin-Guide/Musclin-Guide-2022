@@ -10,15 +10,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "**/node_modules": false
-=======
     "**/node_modules": true
->>>>>>> 9543c37097fea04bfdf5590c9ae0ce8a9b512260
-=======
-    "**/node_modules": true,
 
->>>>>>> 1174a4e3e0e06f4c5a8ce450d080761c2d369114
   }
 }
