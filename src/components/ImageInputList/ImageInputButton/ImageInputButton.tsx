@@ -17,16 +17,17 @@ const FILE_SIZE_MAX_LIMIT = 5 * 1024 * 1024;
 interface ImageInputButtonProps {
   file?: File;
   size?: 'primary' | 'small';
-  setImages: Dispatch<
-    SetStateAction<{ key: string; value: File }[] | undefined>
-  >;
+  // setImages: Dispatch<
+  //   SetStateAction<{ key: string; value: File }[] | undefined>
+  // >;
+  formData: FormData;
 }
 
 export const ImageInputButton = ({
   // formData,
   size = 'primary',
   file,
-  setImages,
+  formData,
 }: ImageInputButtonProps): JSX.Element => {
   const [imgSrc, setImgSrc] = useState<string>('');
   const setImg = useCallback((newFile: File) => {
@@ -36,58 +37,50 @@ export const ImageInputButton = ({
       setImgSrc(reader.result as string);
     };
   }, []);
-  const hasSameFile = useCallback(
-    (images: { key: string; value: File }[], newFile: File) => {
-      if (images) {
-        const hasSameFile = images.some((element) => {
-          if (element.key === newFile.name) {
-            return true;
-          }
-        });
-        if (hasSameFile) {
-          alert('동일한 이름의 파일을 등록할수 없습니다.');
-          return true;
-        }
-      }
-      return false;
-    },
-    []
-  );
+  // const hasSameFile = useCallback(
+  //   (images: { key: string; value: File }[], newFile: File) => {
+  //     if (images) {
+  //       const hasSameFile = images.some((element) => {
+  //         if (element.key === newFile.name) {
+  //           return true;
+  //         }
+  //       });
+  //       if (hasSameFile) {
+  //         alert('동일한 이름의 파일을 등록할수 없습니다.');
+  //         return true;
+  //       }
+  //     }
+  //     return false;
+  //   },
+  //   []
+  // );
   const handleAdd = useCallback(
     (newFile: File) => {
-      setImages((c) => {
-        if (c) {
-          if (hasSameFile(c, newFile)) {
-            return c;
-          }
-          return [...c, { key: newFile.name, value: newFile }];
-        }
-        return [{ key: newFile.name, value: newFile }];
-      });
+      formData.append(newFile.name, newFile);
     },
-    [hasSameFile, setImages]
+    [formData]
   );
 
-  const handleUpdate = useCallback(
-    (newFile: File) => {
-      setImages((c) => {
-        if (file && c) {
-          if (hasSameFile(c, newFile)) {
-            return c;
-          }
-          const oldIdx = c?.findIndex((element) =>
-            element.key === file.name ? true : false
-          );
-          const newImages = c;
-          newImages[oldIdx] = { key: newFile.name, value: newFile };
-          setImg(newFile);
-          return newImages;
-        }
-        return c;
-      });
-    },
-    [file, hasSameFile, setImages, setImg]
-  );
+  // const handleUpdate = useCallback(
+  //   (newFile: File) => {
+  //     setImages((c) => {
+  //       if (file && c) {
+  //         if (hasSameFile(c, newFile)) {
+  //           return c;
+  //         }
+  //         const oldIdx = c?.findIndex((element) =>
+  //           element.key === file.name ? true : false
+  //         );
+  //         const newImages = c;
+  //         newImages[oldIdx] = { key: newFile.name, value: newFile };
+  //         setImg(newFile);
+  //         return newImages;
+  //       }
+  //       return c;
+  //     });
+  //   },
+  //   [file, hasSameFile, setImages, setImg]
+  // );
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const newFile = (e.target.files as FileList)[0];
@@ -98,13 +91,13 @@ export const ImageInputButton = ({
         alert('업로드 가능한 최대 용량은 5MB입니다. ');
         return true;
       }
-      if (file) {
-        handleUpdate(newFile);
-        return;
-      }
+      // if (file) {
+      //   handleUpdate(newFile);
+      //   return;
+      // }
       handleAdd(newFile);
     },
-    [file, handleAdd, handleUpdate]
+    [handleAdd]
   );
   // 삭제 버튼 클릭 핸들러
   // const handleDelete = useCallback(() => {
@@ -132,8 +125,8 @@ export const ImageInputButton = ({
       <input
         accept=".jpg, .jpeg, .png"
         className="hidden"
-        type="file"
         onChange={handleChange}
+        type="file"
         alt="inputImage"
         form="ImageListInputForm"
       />

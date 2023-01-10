@@ -8,11 +8,11 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => {
-  const [images, setImages] = useState<{ key: string; value: File }[]>();
+  // const [images, setImages] = useState<{ key: string; value: File }[]>();
+  const formData = new FormData();
   return (
     <ImageInputList
-      images={images}
-      setImages={setImages}
+      formData={formData}
       size={args.size}
       remit={args.remit}
       {...args}
