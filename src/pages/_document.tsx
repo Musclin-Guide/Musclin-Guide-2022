@@ -20,5 +20,3 @@ export default function Document() {
     </Html>
   );
 }
-
-// $figd_o0x4g5dyiuaJ5P2PnRX0XehbPbjT7qZmnSDi0kp5 npm run storybook
