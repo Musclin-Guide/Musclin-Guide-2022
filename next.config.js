@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withTM = require('next-transpile-modules')(['react-icons']);
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
-
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -19,3 +20,4 @@ module.exports = {
     return config;
   },
 };
+module.exports = withTM({});

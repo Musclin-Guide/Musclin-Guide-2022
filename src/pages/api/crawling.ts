@@ -26,7 +26,7 @@ getHtml().then((html) => {
     // // };
     $('.basicList_link__JLQJf').each((i, elem) => {
       const datas = $(elem).text();
-      console.log(datas);
+      log(datas);
       return datas;
     });
   }

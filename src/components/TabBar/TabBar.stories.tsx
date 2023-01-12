@@ -1,13 +1,13 @@
 import { Story, Meta } from '@storybook/react';
-import { Tabbar } from '@components/TabBar/TabBar';
+import { TabBar } from '@components/TabBar/TabBar';
 import { addFigmaToken } from '@utils/addFigmaToken';
 export default {
   title: 'Components/TabBar',
-  component: Tabbar,
+  component: TabBar,
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story = () => <Tabbar></Tabbar>;
+const Template: Story = () => <TabBar></TabBar>;
 
 export const Primary = Template.bind({});
 

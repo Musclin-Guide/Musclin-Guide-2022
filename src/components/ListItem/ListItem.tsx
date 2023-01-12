@@ -1,5 +1,7 @@
 import styles from '@components/ListItem/ListItem.module.css';
 import clsx from 'clsx';
+import { UserReviewUnitItem } from '@components/index';
+import { HiOutlineHeart, HiOutlineStar } from 'react-icons/hi';
 
 export interface ListItemProps {
   id?: number;
@@ -43,10 +45,16 @@ export const ListItem = ({
         <strong className={clsx(styles.common, contentsStyles[contentsStyle])}>
           {subject}
         </strong>
-        {/* 임시 데모 컴포넌트 */}
-        <div className="inline-flex gap-2">
-          <span>별점 {likeQuantity}</span>
-          <span>찜 {wishQuantity}</span>
+
+        <div className="inline-flex gap-4">
+          <UserReviewUnitItem
+            count={81}
+            icon={<HiOutlineStar className="fill-yellow-300" />}
+          />
+          <UserReviewUnitItem
+            count={81}
+            icon={<HiOutlineHeart className="fill-red-500" />}
+          />
         </div>
       </div>
     </>

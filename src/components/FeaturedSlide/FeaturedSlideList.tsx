@@ -17,10 +17,12 @@ export const FeaturedSlideList = ({ ...props }: FeaturedSlideListProps) => {
   const [list, setlist] = useState<FeaturedSlideListProps[]>([]);
   useEffect(() => {
     fetchusers();
+    const $ = document.querySelector('.swiper-slide');
+    console.log($);
   }, []);
 
   async function fetchusers() {
-    const { data } = await supabase.from('cocktail').select('*');
+    const { data } = await supabase.from('cocktail_img').select('*');
     if (data !== null) {
       setlist(data);
     }
@@ -33,7 +35,6 @@ export const FeaturedSlideList = ({ ...props }: FeaturedSlideListProps) => {
       <Swiper
         spaceBetween={1}
         slidesPerView={1}
-        rewind={true}
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
         pagination={{ clickable: true }}
@@ -44,11 +45,11 @@ export const FeaturedSlideList = ({ ...props }: FeaturedSlideListProps) => {
         {list.map((i) => {
           return (
             <SwiperSlide
-              key={`${i.article_number}`}
+              key={`cocktail_${i.id}`}
               className={styles.swiperslide}
             >
               <Image
-                src={`${i.article_img}`}
+                src={`${i.img_path}`}
                 width={320}
                 height={320}
                 alt={'유저가 업로드한 이미지'}
