@@ -40,6 +40,7 @@ module.exports = {
       (config.resolve.alias = {
         ...config.resolve.alias,
         '@components/*': path.resolve('src/components/*'),
+        '@lib/*': path.resolve('lib/supabase/*'),
         '@hooks/*': path.resolve('src/hooks/*'),
         '@pages/*': path.resolve('src/pages/*'),
         '@styles/*': path.resolve('styles/*'),

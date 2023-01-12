@@ -21,3 +21,9 @@ export default function App({
     </SessionContextProvider>
   );
 }
+
+// <Auth.UserContextProvider supabaseClient={supabase}>
+//   <Container supabaseClient={supabase}>
+//     <Auth providers={['facebook', 'github']} supabaseClient={supabase}/>
+//   </Container>
+// </Auth.UserContextProvider>

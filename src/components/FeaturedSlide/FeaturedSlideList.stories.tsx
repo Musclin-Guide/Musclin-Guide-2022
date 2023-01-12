@@ -7,6 +7,6 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story = (args) => <FeaturedSlideList />;
+const Template: Story = () => <FeaturedSlideList />;
 
 export const Primary = Template.bind({});
