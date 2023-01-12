@@ -13,7 +13,7 @@ export const TabBar = () => {
   }
 
   return (
-    <ul id="tabBar" className="flex fixed bottom-0">
+    <ul id="tabBar" className="flex fixed bottom-0 w-full max-w-[360px] z-50">
       <ALink className={styles.aLink} href={'/'} isExternal={false}>
         <li
           onClick={() => changecolor(0)}
