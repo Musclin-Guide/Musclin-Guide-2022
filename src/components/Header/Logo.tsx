@@ -11,7 +11,7 @@ const SvgLogo = (props: SVGProps<SVGSVGElement>) => (
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_443_11238)">
+      <g clipPath="url(#clip0_443_11238)">
         <path
           d="M47.6981 36.1841H45.0044V24.395H48.6768L50.1968 31.9897L51.7724 24.395H55.3254V36.1841H52.6358V29.7588L51.2511 36.1841H49.1662L47.6981 29.7588V36.1841V36.1841Z"
           fill="#F97316"
