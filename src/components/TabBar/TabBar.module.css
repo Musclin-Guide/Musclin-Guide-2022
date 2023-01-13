@@ -9,11 +9,11 @@
   @apply flex flex-col gap-2.5 justify-center items-center;
 }
 
+.default {
+  @apply text-neutral-200 stroke-neutral-200;
+}
+
 .active {
   @apply text-primary-default stroke-primary-default;
   @apply font-semibold;
-}
-
-.noActive {
-  @apply text-neutral-200 stroke-neutral-200;
 }
