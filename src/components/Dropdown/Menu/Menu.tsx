@@ -1,6 +1,6 @@
 import menu from '@components/Dropdown/Menu/Menu.module.css';
 import { ALinkMenuItem } from '@components/Dropdown/ALinkMenuItem';
-import { ListDummy } from '@components/Dropdown/Menu/ListDummy';
+import { List } from '@components/Dropdown/Menu/List';
 import clsx from 'clsx';
 
 interface MenuItemsProps {
@@ -15,7 +15,7 @@ export const Menu = ({
 }: MenuItemsProps): JSX.Element => {
   return (
     <ul className={clsx(menu.menuShapeDefault, addClassName)}>
-      {ListDummy.map(({ id, href, text, isExternal }) => (
+      {List.map(({ id, href, text, isExternal }) => (
         <li className={menu.listTextStype} key={id}>
           <ALinkMenuItem
             className={className}
