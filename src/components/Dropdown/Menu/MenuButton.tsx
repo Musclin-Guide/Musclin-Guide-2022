@@ -8,10 +8,11 @@ interface MenuButtonProps
 }
 export function MenuButton({ className }: MenuButtonProps): JSX.Element {
   const [istoggle, settoggle] = useRecoilState(widgetToggle);
-  console.log(istoggle);
+
   const changeToggle = () => {
     settoggle((prev: boolean) => !prev);
   };
+
   return (
     <button
       id="MenuButton"

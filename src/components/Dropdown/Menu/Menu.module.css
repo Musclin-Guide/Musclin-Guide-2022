@@ -20,7 +20,3 @@
 .ItemListCenter {
   @apply w-[158px] h-9 flex justify-center items-center;
 }
-
-.itemHidden {
-  @apply invisible;
-}

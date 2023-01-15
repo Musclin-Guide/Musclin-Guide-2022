@@ -6,20 +6,21 @@ import { useRecoilValue } from 'recoil';
 import menuStyle from '@components/Dropdown/Menu/Menu.module.css';
 import widgetStyle from '@components/Widget/Widget.module.css';
 import clsx from 'clsx';
+import { useEffect } from 'react';
 
 export const Widget = (): JSX.Element => {
   const Toggle = useRecoilValue(widgetToggle);
+
   return (
     <aside
       className={clsx(widgetStyle.widgetWrapper, menuStyle.menuShapeShadow)}
     >
-      <Menu
-        addClassName={clsx(
-          menuStyle.menuShapeShadow,
-          Toggle ? menuStyle.itemHidden : ''
-        )}
-        className={clsx(menuStyle.ItemListCenter)}
-      />
+      {!Toggle && (
+        <Menu
+          addClassName={clsx(menuStyle.menuShapeShadow)}
+          className={clsx(menuStyle.ItemListCenter)}
+        />
+      )}
       <MenuButton
         className={clsx(
           'MenuButton_MenuButtonDefault__Si_1G MenuButton_writeButton__V7Ts2 primaryFocusVisible',
