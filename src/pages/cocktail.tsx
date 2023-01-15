@@ -1,4 +1,5 @@
 import { Header, TabBar } from '@components/index';
+import { Widget } from '@components/index';
 import Head from 'next/head';
 
 export default function Cocktail() {
@@ -15,6 +16,8 @@ export default function Cocktail() {
       <div>
         <Header />
         <h2>This is Cocktail</h2>
+        <div className="w-[360px] h-[800px] bg-red-500">wdw</div>
+        <Widget />
         <TabBar />
       </div>
     </>

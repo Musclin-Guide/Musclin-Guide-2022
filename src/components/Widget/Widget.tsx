@@ -4,15 +4,21 @@ import { Menu, MenuButton } from '@components/index';
 import { widgetToggle } from '@atoms/Widget';
 import { useRecoilValue } from 'recoil';
 import menuStyle from '@components/Dropdown/Menu/Menu.module.css';
+import widgetStyle from '@components/Widget/Widget.module.css';
 import clsx from 'clsx';
 
 export const Widget = (): JSX.Element => {
   const Toggle = useRecoilValue(widgetToggle);
   return (
-    <aside className="inline-flex flex-col gap-2 fixed'">
+    <aside
+      className={clsx(widgetStyle.widgetWrapper, menuStyle.menuShapeShadow)}
+    >
       <Menu
-        addClassName={Toggle ? menuStyle.itemHidden : ''}
-        className={menuStyle.ItemListCenter}
+        addClassName={clsx(
+          menuStyle.menuShapeShadow,
+          Toggle ? menuStyle.itemHidden : ''
+        )}
+        className={clsx(menuStyle.ItemListCenter)}
       />
       <MenuButton
         className={clsx(

@@ -1,8 +1,9 @@
 .menuShapeDefault {
   @apply rounded-md inline-block;
   @apply bg-white;
+  @apply fixed;
+  @apply bottom-40 left-2/4;
 }
-
 .menuShapeShadow {
   @apply ring-black ring-opacity-5 shadow-lg;
 }
