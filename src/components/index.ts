@@ -22,3 +22,5 @@ export * from '@components/StarRateSlider/index';
 export * from '@components/TabBar/index';
 export * from '@components/TextInput/index';
 export * from '@components/UserReviewUnitList/index';
+export * from '@components/ActiveLink/index';
+export * from '@components/Widget/index';

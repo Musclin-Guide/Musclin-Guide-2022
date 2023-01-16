@@ -1,3 +1,4 @@
+import { TabBar } from '@components/index';
 import Head from 'next/head';
 import { FeaturedSlideList } from '@components/FeaturedSlide';
 import { Button } from '@components/Button';
