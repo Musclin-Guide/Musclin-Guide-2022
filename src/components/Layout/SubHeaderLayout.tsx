@@ -2,20 +2,45 @@ import { SubHeader, TabBar, Widget } from '@components/index';
 import styles from '@components/Layout/Layout.module.css';
 import clsx from 'clsx';
 import { LayoutProps } from '@components/Layout/Layout';
+import { widgetToggle } from '@atoms/Widget';
+import { useRef, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 
 export const SubHeaderLayout = ({
   className,
   wrapperClassName,
   children,
 }: LayoutProps): JSX.Element => {
+  const Ref = useRef<HTMLElement>(null);
+  const [toggle, setToggle] = useRecoilState(widgetToggle);
+  useEffect(() => {
+    const clickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (Ref.current && !Ref.current.contains(target)) {
+        setToggle(true);
+      }
+    };
+    document.addEventListener('mousedown', clickOutside);
+    return () => {
+      document.removeEventListener('mousedown', clickOutside);
+    };
+  }, [setToggle]);
   return (
-    <div className={clsx(styles.wrapper, wrapperClassName)}>
-      <SubHeader />
-      <main className={(styles.main, className)}>
-        {children}
-        <Widget />
-      </main>
-      <TabBar />
-    </div>
+    <>
+      <div
+        className={clsx(
+          styles.wrapper,
+          wrapperClassName,
+          toggle ? '' : 'opacity-50'
+        )}
+      >
+        <SubHeader />
+        <main ref={Ref} className={(styles.main, className)}>
+          {children}
+        </main>
+        <TabBar />
+      </div>
+      <Widget />
+    </>
   );
 };

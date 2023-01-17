@@ -1,8 +1,9 @@
 .wrapper {
   @apply flex flex-col gap-2.5 justify-center items-center;
-  @apply w-[5.625rem] h-[5.625rem] bg-white;
+  @apply w-[5.625rem] h-[5.625rem];
   @apply border-t border-neutral-100;
   @apply text-sm;
+  @apply bg-white;
 }
 
 .aLink {

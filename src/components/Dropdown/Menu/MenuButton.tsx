@@ -7,16 +7,15 @@ interface MenuButtonProps
   className?: string;
 }
 export function MenuButton({ className }: MenuButtonProps): JSX.Element {
-  const [istoggle, settoggle] = useRecoilState(widgetToggle);
+  const [istoggle, setToggle] = useRecoilState(widgetToggle);
 
   const changeToggle = () => {
-    settoggle((prev: boolean) => !prev);
+    setToggle((prev: boolean) => !prev);
   };
 
   return (
     <button
       id="MenuButton"
-      // aria-label="open"
       type="button"
       className={className}
       onClick={changeToggle}
