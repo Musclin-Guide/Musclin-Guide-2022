@@ -1,6 +1,6 @@
 ---
 name: Feature Development
-about: Suggest an idea for this project
+about: 태스크 매니지먼트를 위한 템플릿입니다.
 title: ''
 labels: ''
 assignees: ''

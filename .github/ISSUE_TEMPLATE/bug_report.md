@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: 버그가 일어났을 때 혹은 해결했을 때 사용합니다.
 title: ''
 labels: ''
 assignees: ''
@@ -17,7 +17,7 @@ Steps to reproduce the behavior:
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+**Expected behavior or solution**
 A clear and concise description of what you expected to happen.
 
 **Screenshots**
