@@ -21,22 +21,28 @@ export const Layout = ({
   useEffect(() => {
     const clickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      if (target.classList.contains(styles.disableContents)) {
+        setToggle(true);
+      }
+
       if (Ref.current && Ref.current.contains(target)) {
         setToggle(true);
       }
     };
+
     document.addEventListener('mousedown', clickOutside);
+
     return () => {
       document.removeEventListener('mousedown', clickOutside);
     };
-  }, [setToggle]);
+  }, [toggle]);
   return (
     <>
       <div
         className={clsx(
           styles.wrapper,
           wrapperClassName,
-          toggle ? '' : 'opacity-50'
+          toggle ? '' : styles.disableContents
         )}
       >
         <Header />

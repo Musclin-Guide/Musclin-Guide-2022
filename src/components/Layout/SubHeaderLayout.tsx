@@ -16,6 +16,10 @@ export const SubHeaderLayout = ({
   useEffect(() => {
     const clickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      if (target.classList.contains(styles.disableContents)) {
+        setToggle(true);
+      }
+
       if (Ref.current && !Ref.current.contains(target)) {
         setToggle(true);
       }
@@ -31,7 +35,7 @@ export const SubHeaderLayout = ({
         className={clsx(
           styles.wrapper,
           wrapperClassName,
-          toggle ? '' : 'opacity-50'
+          toggle ? '' : styles.disableContents
         )}
       >
         <SubHeader />

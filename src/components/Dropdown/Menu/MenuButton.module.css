@@ -7,7 +7,7 @@
 
 .MenuButtonDefault {
   @apply w-9 h-9;
-  @apply fixed z-10;
+  @apply fixed z-50;
   @apply bottom-28 left-2/4;
   @apply bg-primary-default;
 }
