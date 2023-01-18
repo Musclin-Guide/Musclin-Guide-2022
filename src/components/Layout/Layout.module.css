@@ -8,5 +8,5 @@
 
 .main {
   @apply w-[22.5rem] h-full;
-  @apply px-6 pt-16 pb-[5.625rem];
+  @apply px-6 pt-24 pb-[5.625rem];
 }
