@@ -1,0 +1,15 @@
+.wrapper {
+  @apply inline-flex justify-center items-center gap-4;
+}
+
+.wrapper2 {
+  @apply flex flex-col gap-1;
+}
+
+.username {
+  @apply text-sm font-medium;
+}
+
+.usercareer {
+  @apply text-xs font-light text-neutral-500;
+}

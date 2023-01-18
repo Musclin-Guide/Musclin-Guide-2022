@@ -1,0 +1,25 @@
+.box {
+  @apply w-[344px] h-6 text-base;
+}
+
+.produectImg {
+  @apply w-10 h-10;
+  @apply rounded-md bg-primary-default;
+}
+
+.icon {
+  @apply w-6 h-6 fill-neutral-500;
+}
+
+.li {
+  @apply h-10 px-6 py-2;
+  @apply bg-neutral-100;
+}
+
+.lis {
+  @apply flex bg-white items-center gap-4 px-6 py-3;
+}
+
+.aLink {
+  @apply flex items-center justify-between gap-4;
+}

@@ -27,12 +27,20 @@ module.exports = {
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ['@svgr/webpack'],
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: { plugins: { removeViewBox: false } },
+          },
+        },
+      ],
     }),
       // console.log(config.module.rules);
       (config.resolve.alias = {
         ...config.resolve.alias,
         '@components/*': path.resolve('src/components/*'),
+        '@lib/*': path.resolve('lib/supabase/*'),
         '@hooks/*': path.resolve('src/hooks/*'),
         '@pages/*': path.resolve('src/pages/*'),
         '@styles/*': path.resolve('styles/*'),

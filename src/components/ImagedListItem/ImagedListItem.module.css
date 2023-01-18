@@ -1,0 +1,28 @@
+.wrapper {
+  @apply inline-flex items-center gap-4;
+}
+
+.wrapperRow {
+  @apply py-8 w-[21.8125rem] h-[180px];
+}
+
+.wrapperCol {
+  @apply w-[11.25rem] h-[16.5rem] py-4;
+  @apply flex-col;
+}
+
+.imgWrapper {
+  @apply rounded-md bg-auto bg-center relative;
+  /* @apply bg-[url('/assets/non_img.png')]; */
+}
+
+.imgWrapperRow {
+  @apply w-[6.25rem] h-[7.25rem];
+}
+.imgWrapperCol {
+  @apply w-[8.25rem] h-[7.25rem];
+}
+
+.imgCommon {
+  @apply object-cover rounded-md;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,13 +7,16 @@
   :root {
     font-family: 'Pretendard';
   }
+  header + * {
+    @apply pt-16;
+  }
 }
 
 @layer components {
-  .Primaryfocus {
+  .primaryFocusVisible {
     @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-state-accent;
   }
-  .Primaryfocus__test {
+  .PrimaryFocus {
     @apply focus:outline-none focus:outline-2 focus:outline-state-accent;
   }
   .a11yHidden {
@@ -25,5 +29,8 @@
     border: 0;
     padding: 0;
     white-space: nowrap;
+  }
+  .mypageWrapper {
+    @apply flex items-center justify-between;
   }
 }

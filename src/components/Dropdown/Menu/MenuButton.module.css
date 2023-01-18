@@ -1,0 +1,21 @@
+.plusCircle {
+  @apply stroke-primary-default fill-white;
+  @apply w-5 h-5;
+  @apply absolute;
+  @apply left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2;
+}
+
+.MenuButtonDefault {
+  @apply w-9 h-9;
+  @apply fixed z-50;
+  @apply bottom-28 left-2/4;
+  @apply bg-primary-default;
+}
+
+.writeButton {
+  @apply rounded-lg;
+}
+
+.addItemButton {
+  @apply rounded-full;
+}

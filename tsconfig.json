@@ -8,10 +8,11 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
+    "module": "CommonJS",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "preserveValueImports": false,
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./",
@@ -22,6 +23,7 @@
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["styles/*"],
       "@public/*": ["public/*"],
+      "@assets/*": ["public/assets/*"],
       "@lib/*": ["lib/*"],
       "@utils/*": ["src/utils/*"]
     }

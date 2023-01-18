@@ -11,6 +11,7 @@ export default function Document() {
           crossOrigin={'crossorigin'}
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css"
         />
+        <link rel="icon" href="/public/assets/favicon.ico" sizes="16x16" />
       </Head>
       <body>
         <Main />
@@ -19,5 +20,3 @@ export default function Document() {
     </Html>
   );
 }
-
-// $figd_o0x4g5dyiuaJ5P2PnRX0XehbPbjT7qZmnSDi0kp5 npm run storybook

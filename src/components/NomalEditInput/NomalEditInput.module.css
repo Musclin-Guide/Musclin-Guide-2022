@@ -1,0 +1,11 @@
+.input {
+  @apply w-[216px] h-7 rounded-md;
+  @apply pl-1 text-neutral-500;
+  @apply border border-neutral-100;
+}
+
+.input:disabled {
+  @apply justify-between bg-transparent;
+  @apply border-none;
+  @apply text-black;
+}

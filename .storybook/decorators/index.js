@@ -1,6 +1,10 @@
 import { wrapperDecorator } from './wrapper';
 import { recoilDecorator } from './recoil';
-
-const globalDecorator = [wrapperDecorator, recoilDecorator];
+import { ReactQueryDecorator } from './react-query';
+const globalDecorator = [
+  wrapperDecorator,
+  recoilDecorator,
+  ReactQueryDecorator,
+];
 
 export default globalDecorator;
