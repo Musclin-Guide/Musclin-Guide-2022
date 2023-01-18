@@ -4,7 +4,6 @@
 .Contents{
   @apply w-full max-w-[360px] min-h-full;
   @apply m-auto;
-  @apply pb-32 pt-[88px];
 }
 .FixedContents{
   @apply w-full h-full;

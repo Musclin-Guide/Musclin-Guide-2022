@@ -1,13 +1,26 @@
-import { TabBar } from '@components/index';
 import Head from 'next/head';
 import { FeaturedSlideList } from '@components/FeaturedSlide';
 import { Button } from '@components/Button';
 import { ImagedListItem } from '@components/ImagedListItem';
-import { Header } from '@components/Header';
-import { TabBar } from '@components/TabBar';
+import { Layout } from '@components/Layout/Layout';
 import styles from '@pages/homepage.module.css';
+import { supabase } from '@lib/supabase';
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+
+async function getCocktails() {
+  const { data: cocktail } = await supabase
+    .from('cocktail')
+    .select(`*`)
+    .order('like', { ascending: false })
+    .limit(3);
+  return cocktail;
+}
 
 export default function Home() {
+  const [cocktail, setCocktail] = useState();
+  const { data, isLoading } = useQuery(['Articles'], () => getCocktails());
+  console.log(data);
   return (
     <>
       <Head>
@@ -18,11 +31,7 @@ export default function Home() {
           sizes="16x16"
         />
       </Head>
-      <div className={styles.FixedContents}>
-        <Header></Header>
-        <TabBar></TabBar>
-      </div>
-      <main className={styles.Main}>
+      <Layout>
         <div className={styles.Contents}>
           <section>
             <FeaturedSlideList></FeaturedSlideList>
@@ -36,24 +45,17 @@ export default function Home() {
             </div>
             <div>
               <ul className={styles.Cocktail}>
-                <li>
-                  <ImagedListItem
-                    imgWrapper="Row"
-                    listWrapper="Row"
-                  ></ImagedListItem>
-                </li>
-                <li>
-                  <ImagedListItem
-                    imgWrapper="Row"
-                    listWrapper="Row"
-                  ></ImagedListItem>
-                </li>
-                <li>
-                  <ImagedListItem
-                    imgWrapper="Row"
-                    listWrapper="Row"
-                  ></ImagedListItem>
-                </li>
+                {data &&
+                  data.map((cocktail) => (
+                    <li key={cocktail.article_number}>
+                      <ImagedListItem
+                        subject={cocktail.article}
+                        likeQuantity={cocktail.like}
+                        imgWrapper="Row"
+                        listWrapper="Row"
+                      ></ImagedListItem>
+                    </li>
+                  ))}
               </ul>
             </div>
           </section>
@@ -107,7 +109,7 @@ export default function Home() {
             </div>
           </section>
         </div>
-      </main>
+      </Layout>
     </>
   );
 }
