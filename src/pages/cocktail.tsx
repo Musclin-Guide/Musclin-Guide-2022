@@ -1,5 +1,6 @@
-import { Header, TabBar } from '@components/index';
+import { Header, ImagedListItem, TabBar } from '@components/index';
 import { Widget } from '@components/index';
+import { Layout } from '@components/Layout/Layout';
 import Head from 'next/head';
 
 export default function Cocktail() {
@@ -13,13 +14,24 @@ export default function Cocktail() {
           sizes="16x16"
         />
       </Head>
-      <div>
-        <Header />
-        <h2>This is Cocktail</h2>
-        <div className="w-[360px] h-[800px] bg-red-500">wdw</div>
-        <Widget />
-        <TabBar />
-      </div>
+
+      <Layout className="s-center">
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+        <ImagedListItem imgWrapper={'Row'} listWrapper={'Row'} />
+      </Layout>
     </>
   );
 }

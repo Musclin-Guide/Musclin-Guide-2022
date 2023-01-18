@@ -1,7 +1,7 @@
 .menuShapeDefault {
   @apply rounded-md inline-block;
   @apply bg-white;
-  @apply fixed;
+  @apply fixed z-50;
   @apply bottom-40 left-2/4;
 }
 .menuShapeShadow {

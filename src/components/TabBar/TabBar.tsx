@@ -3,10 +3,15 @@ import SvgCocktail from './Cocktail';
 import styles from '@components/TabBar/TabBar.module.css';
 import clsx from 'clsx';
 import { ActiveLink } from '@components/index';
+import { type } from 'os';
 
-export const TabBar = () => {
+interface TabBarProps {
+  className?: string;
+}
+
+export const TabBar = ({ className }: TabBarProps) => {
   return (
-    <ul id="tabBar" className={'flex fixed bottom-0'}>
+    <ul id="tabBar" className={clsx('flex fixed bottom-0', [className])}>
       <li className={styles.wrapper}>
         <ActiveLink
           href={'/'}
