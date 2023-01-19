@@ -10,12 +10,14 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => {
-  const [images, setImages] = useState<{ key: string; value: File }[]>();
+  const formData = new FormData();
+  const [datas, setDatas] = useState<File[]>();
   return (
     <ImageInputButton
       size={args.size}
-      setImages={setImages}
+      formData={formData}
       file={args.file}
+      setDatas={setDatas}
     ></ImageInputButton>
   );
 };
