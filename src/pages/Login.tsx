@@ -6,7 +6,7 @@ import { HiKey } from 'react-icons/hi';
 import { ALinkMenuItem as ALink } from '@components/index';
 import style from '@pages/Login.module.css';
 
-export const Login = (): JSX.Element => {
+export default function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   return (
@@ -46,5 +46,5 @@ export const Login = (): JSX.Element => {
         </ALink>
       </div>
     </Layout>
-  )
+  );
 }
