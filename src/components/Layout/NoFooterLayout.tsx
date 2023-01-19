@@ -10,9 +10,11 @@ export const NoFooterLayout = ({
   children,
 }: LayoutProps): JSX.Element => {
   return (
-    <div className={clsx(styles.wrapper, wrapperClassName)}>
-      <SubHeader />
-      <main className={(styles.main, className)}>{children}</main>
-    </div>
+    <>
+      <div className={clsx(styles.wrapper, wrapperClassName)}>
+        <SubHeader />
+        <main className={clsx(styles.main, className)}>{children}</main>
+      </div>
+    </>
   );
 };
