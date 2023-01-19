@@ -17,6 +17,7 @@ const Template: Story = (args) => {
         value={value}
         setValue={setValue}
         required={args.required}
+        type={args.type}
         {...args}
       />
     </div>

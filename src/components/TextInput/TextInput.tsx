@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import {
   ChangeEvent,
   Dispatch,
+  HTMLInputTypeAttribute,
   SetStateAction,
   useCallback,
   useState,
@@ -14,6 +15,7 @@ interface TextInputProps {
   validator?: (value: string) => { text: string; result: boolean };
   setValue: Dispatch<SetStateAction<string>>;
   required?: boolean;
+  type?: HTMLInputTypeAttribute;
 }
 export const TextInput = ({
   label,
@@ -22,6 +24,7 @@ export const TextInput = ({
   setValue,
   validator,
   required = false,
+  type = 'text',
 }: TextInputProps): JSX.Element => {
   const [validation, setValidation] = useState<{
     text: string;
@@ -46,7 +49,7 @@ export const TextInput = ({
       )}
       <input
         className={clsx(textInputStyle.Input, 'primaryFocusVisible')}
-        type="text"
+        type={type}
         name={label}
         id={label}
         value={value}
