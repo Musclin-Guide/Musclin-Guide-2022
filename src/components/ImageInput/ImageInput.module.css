@@ -1,0 +1,18 @@
+.ImageInput{
+  @apply w-fit;
+  @apply flex flex-col items-center gap-1;
+  @apply border-dashed border-2 border-neutral-300;
+  @apply px-7 pt-5 pb-7
+}
+
+.Text{
+  @apply text-sm font-medium leading-5 text-neutral-600;
+}
+
+.AccentText{
+  @apply text-orange-500;
+}
+
+.HelpText{
+  @apply text-xs leading-4 font-normal text-neutral-500;
+}

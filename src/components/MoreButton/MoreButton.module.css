@@ -1,0 +1,4 @@
+.MoreButton{
+  @apply w-8;
+  @apply text-xs leading-4 font-medium text-right;
+}
