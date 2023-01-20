@@ -2,8 +2,9 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 import styles from '@components/CareerInput/CareerInput.module.css';
 
-export const ListNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-export const ListNumber2 = [2002, 2001, 2003, 2005];
+export const CAREERNUMBER = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+];
 export const empty = [];
 
 interface CareerInputSelectProps {
@@ -11,7 +12,7 @@ interface CareerInputSelectProps {
   formName?: string;
   selectName?: string;
   className?: string;
-  List: string[] | number[];
+  List?: string[] | number[];
   text?: string;
   id?: string | undefined;
   disabled?: boolean | undefined;
@@ -29,7 +30,7 @@ export const CareerInput = ({
 }: CareerInputSelectProps) => {
   return (
     <div className={styles.wrapper}>
-      <label className="a11yHidden" htmlFor={id}>
+      <label className="sr-only" htmlFor={id}>
         `${id}`(을/를) 선택해주세요
       </label>
       <select
@@ -42,7 +43,7 @@ export const CareerInput = ({
         form={formName}
         {...props}
       >
-        {List.map((number) => {
+        {CAREERNUMBER.map((number) => {
           return (
             <option
               id={`${id}_${number}`}
@@ -56,7 +57,7 @@ export const CareerInput = ({
         })}
       </select>
       <input type="hidden" name="input" />
-      <p className="text-neutral-900">{text}</p>
+      <p className="text-sm text-neutral-900">{text}</p>
     </div>
   );
 };
