@@ -32,10 +32,10 @@ export const TextInput = ({
   }>();
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      setValue(e.target.value);
-      if (validator && value) {
-        setValidation(validator(value));
+      if (validator) {
+        setValidation(validator(e.target.value));
       }
+      setValue(e.target.value);
     },
     [setValue, validator, value]
   );

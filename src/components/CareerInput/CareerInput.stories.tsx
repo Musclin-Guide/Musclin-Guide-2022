@@ -3,11 +3,7 @@ import styles from '@components/CareerInput/CareerInput.module.css';
 import { addFigmaToken } from '@utils/addFigmaToken';
 import { CareerInput } from '@components/CareerInput/CareerInput';
 
-import {
-  ListNumber,
-  ListNumber2,
-  empty,
-} from '@components/CareerInput/CareerInput';
+import { empty } from '@components/CareerInput/CareerInput';
 import clsx from 'clsx';
 
 export default {
@@ -32,7 +28,7 @@ export const Primary = Template.bind({});
 Primary.storyName = 'Month';
 Primary.args = {
   disabled: false,
-  List: ListNumber,
+  List: empty,
   formName: 'form',
   selectName: 'name',
   className: clsx(
@@ -47,7 +43,7 @@ export const Second = Template.bind({});
 Second.storyName = 'Year';
 Second.args = {
   disabled: false,
-  List: ListNumber2,
+  List: empty,
   formName: 'form',
   selectName: 'name',
   className: clsx(
@@ -68,7 +64,7 @@ export const CareerInputVariationStory = () => {
             styles.inputWideSize,
             'primaryFocusVisible'
           )}
-          List={ListNumber2}
+          List={empty}
           text={'년'}
         ></CareerInput>
         <CareerInput
@@ -77,7 +73,7 @@ export const CareerInputVariationStory = () => {
             styles.inputNormalSize,
             'primaryFocusVisible'
           )}
-          List={ListNumber}
+          List={empty}
           text={'월'}
         ></CareerInput>
         <CareerInput
@@ -86,7 +82,7 @@ export const CareerInputVariationStory = () => {
             styles.inputNormalSize,
             'primaryFocusVisible'
           )}
-          List={ListNumber}
+          List={empty}
           text={'일'}
         ></CareerInput>
       </div>
@@ -98,7 +94,7 @@ export const CareerInputVariationStory = () => {
             styles.inputNormalSize,
             'primaryFocusVisible'
           )}
-          List={ListNumber}
+          List={empty}
           text={'년'}
         ></CareerInput>
         <CareerInput
@@ -107,7 +103,7 @@ export const CareerInputVariationStory = () => {
             styles.inputNormalSize,
             'primaryFocusVisible'
           )}
-          List={ListNumber}
+          List={empty}
           text={'개월'}
         ></CareerInput>
       </div>

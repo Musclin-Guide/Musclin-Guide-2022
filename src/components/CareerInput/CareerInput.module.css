@@ -23,6 +23,9 @@
   @apply w-8 h-8;
 }
 
+.inputSmallSize {
+  @apply w-4 h-4;
+}
 .inputWideSize {
   @apply w-16 h-8;
 }
