@@ -10,6 +10,7 @@ export interface ImagedListItem extends ListItemProps {
   imgWrapper: 'Row' | 'Col';
   listWrapper: 'Row' | 'Col';
   className?: string;
+  src?: string;
 }
 
 const imgWrappers = {
@@ -27,10 +28,11 @@ export const ImagedListItem = ({
   listWrapper,
   contentsStyle,
   wrapperStyle,
-  wishQuantity,
+  count,
   className,
   subject,
   time,
+  src = '/assets/demo.jpeg',
   likeQuantity,
 }: ImagedListItem): JSX.Element => {
   return (
@@ -41,7 +43,7 @@ export const ImagedListItem = ({
     >
       <div className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
         <Image
-          src={'/assets/demo.jpeg'}
+          src={src}
           alt={'대체 텍스트'}
           fill
           className={clsx(styles.imgCommon, className)}
@@ -51,7 +53,7 @@ export const ImagedListItem = ({
       </div>
       <ListItem
         contentsStyle={contentsStyle}
-        wishQuantity={wishQuantity}
+        count={count}
         likeQuantity={likeQuantity}
         wrapperStyle={wrapperStyle}
         subject={subject}
