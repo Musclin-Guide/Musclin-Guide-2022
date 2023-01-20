@@ -7,15 +7,19 @@ import {
   useQueryClient,
   QueryClient,
   QueryClientProvider,
+  Hydrate,
 } from 'react-query';
+import { useState } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
+  const [queryClient] = useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <Component {...pageProps} />
-      </RecoilRoot>
+      <Hydrate state={pageProps.dehydratedState}>
+        <RecoilRoot>
+          <Component {...pageProps} />
+        </RecoilRoot>
+      </Hydrate>
     </QueryClientProvider>
   );
 }
