@@ -16,7 +16,7 @@ import { ALinkMenuItem as ALink } from '@components/index';
 export default function Cocktail({ subject, time, src }: ImagedListItem) {
   const [value, setValue] = useState<string>('');
   const [datas, setDatas] = useState<any[]>();
-  console.log(value);
+
   useEffect(() => {
     getData();
   }, []);
@@ -53,7 +53,7 @@ export default function Cocktail({ subject, time, src }: ImagedListItem) {
           <ALink
             href={{
               pathname: '/cocktail/[result]',
-              query: { result: `result_${value}` },
+              query: { result: `${value}` },
             }}
             isExternal={false}
           >
@@ -102,17 +102,3 @@ export default function Cocktail({ subject, time, src }: ImagedListItem) {
     </>
   );
 }
-// export async function getStaticProps() {
-//   // Call an external API endpoint to get posts.
-//   // You can use any data fetching library
-//   const res = await fetch('https://.../cocktail');
-//   const posts = await res.json();
-//
-//   // By returning { props: { posts } }, the Blog component
-//   // will receive `posts` as a prop at build time
-//   return {
-//     props: {
-//       posts,
-//     },
-//   };
-// }

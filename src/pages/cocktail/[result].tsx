@@ -1,30 +1,52 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { supabase } from '@lib/supabase/supabase';
+import { strict } from 'assert';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function test() {
   const router = useRouter();
-  console.log(router);
-  const querys = router.query;
-  const [subject, value] = router.query.params || [];
+  const [saveQuery, setsaveQuery] = useState('');
+  const [fetch, setfetch] = useState<any[]>();
+  const queries = router.query.result;
+
+  async function filterData() {
+    const { data: cocktail, error } = await supabase
+      .from('cocktail')
+      .select()
+      .textSearch('subject', `${queries}`)
+      .select('subject , article');
+
+    console.log(cocktail);
+
+    if (cocktail !== null) {
+      // console.log(fetch);
+      setfetch(cocktail);
+    }
+  }
   useEffect(() => {
-    if (!router.isReady) return;
-    console.log(querys);
-  });
+    filterData();
+    setsaveQuery(queries as string);
+  }, [queries]);
+  // const [subject, value] = router.query.params || [];
+  // useEffect(() => {
+  //   if (!router.isReady) return;
+  // });
 
   return (
     <>
-      <p>{subject}</p>
-      <p>{value}</p>
+      {fetch?.map((i) => {
+        return <p key={'tet'}>{i.subject}</p>;
+      })}
+
       {/* {datas
         .filter((item) => {
           if (item.subject.includes(value)) return value;
-        })
-        .reverse()
+        }) */}
+      {/* .reverse()
         .map((item) => {
           return <div key={item.id + 1}>RESULT : {item.subject}</div>;
-        })}
-    </> */}
+        })} */}
     </>
   );
 }
