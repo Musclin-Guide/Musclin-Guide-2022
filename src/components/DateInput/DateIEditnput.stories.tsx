@@ -1,11 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import { DataEditInput } from '@components/DateInput/DateEditInput';
 
-import {
-  ListNumber,
-  ListNumber2,
-  empty,
-} from '@components/CareerInput/CareerInput';
+import { empty } from '@components/CareerInput/CareerInput';
 
 export default {
   title: 'Components/EditInput',

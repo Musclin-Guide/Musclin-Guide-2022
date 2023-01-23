@@ -4,6 +4,17 @@
   @apply w-7 h-7 bg-white;
 }
 
+.buttonlg {
+  @apply border  border-neutral-300 rounded-md;
+  @apply flex justify-center;
+  @apply w-9 h-9 bg-white;
+}
+.buttonlg:hover {
+  @apply border  border-primary-default rounded-md;
+  @apply flex justify-center;
+  @apply w-9 h-9 bg-primary-400;
+}
+
 .button:disabled {
   @apply hidden;
 }

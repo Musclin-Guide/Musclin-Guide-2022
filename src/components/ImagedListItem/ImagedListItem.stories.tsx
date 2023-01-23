@@ -12,7 +12,7 @@ const Template: Story = (args) => (
     subject={args.subject}
     time={args.time}
     likeQuantity={args.likeQuantity}
-    wishQuantity={args.wishQuantity}
+    count={args.count}
     imgWrapper={args.imgWrapper}
     listWrapper={args.listWrapper}
     contentsStyle={args.contentsStyle}
@@ -30,7 +30,7 @@ RowStyle.args = {
   subject: '고양이가 고양고양해서 고양시 스타필드 하남시 스타필드',
   time: '2일전',
   likeQuantity: 244,
-  wishQuantity: 24,
+  count: 24,
 };
 
 export const ColStyle = Template.bind({});
@@ -43,7 +43,7 @@ ColStyle.args = {
   subject: '고양이가 고양고양해서 고양시 스타필드 하남시 스타필드',
   time: '2일전',
   likeQuantity: 244,
-  wishQuantity: 24,
+  count: 0,
 };
 
 export const VariationRow = () => {
@@ -56,8 +56,8 @@ export const VariationRow = () => {
         listWrapper="Row"
         subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
         time="2일전"
-        wishQuantity={24}
         wrapperStyle="Row"
+        count={0}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -66,8 +66,8 @@ export const VariationRow = () => {
         listWrapper="Row"
         subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
         time="2일전"
-        wishQuantity={24}
         wrapperStyle="Row"
+        count={0}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -76,8 +76,8 @@ export const VariationRow = () => {
         listWrapper="Row"
         subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
         time="2일전"
-        wishQuantity={24}
         wrapperStyle="Row"
+        count={0}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -86,8 +86,8 @@ export const VariationRow = () => {
         listWrapper="Row"
         subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
         time="2일전"
-        wishQuantity={24}
         wrapperStyle="Row"
+        count={0}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -96,8 +96,8 @@ export const VariationRow = () => {
         listWrapper="Row"
         subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
         time="2일전"
-        wishQuantity={24}
         wrapperStyle="Row"
+        count={0}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -106,8 +106,8 @@ export const VariationRow = () => {
         listWrapper="Row"
         subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
         time="2일전"
-        wishQuantity={24}
         wrapperStyle="Row"
+        count={0}
       />
     </section>
   );
@@ -124,8 +124,8 @@ export const VariationCol = () => {
           listWrapper="Col"
           subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
           time="2일전"
-          wishQuantity={24}
           wrapperStyle="Col"
+          count={0}
         />
         <ImagedListItem
           contentsStyle="Col"
@@ -134,30 +134,8 @@ export const VariationCol = () => {
           listWrapper="Col"
           subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
           time="2일전"
-          wishQuantity={24}
           wrapperStyle="Col"
-        />
-      </section>
-      <section className="flex no-wrap">
-        <ImagedListItem
-          contentsStyle="Col"
-          imgWrapper="Col"
-          likeQuantity={244}
-          listWrapper="Col"
-          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
-          time="2일전"
-          wishQuantity={24}
-          wrapperStyle="Col"
-        />
-        <ImagedListItem
-          contentsStyle="Col"
-          imgWrapper="Col"
-          likeQuantity={244}
-          listWrapper="Col"
-          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
-          time="2일전"
-          wishQuantity={24}
-          wrapperStyle="Col"
+          count={0}
         />
       </section>
       <section className="flex no-wrap">
@@ -168,8 +146,8 @@ export const VariationCol = () => {
           listWrapper="Col"
           subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
           time="2일전"
-          wishQuantity={24}
           wrapperStyle="Col"
+          count={0}
         />
         <ImagedListItem
           contentsStyle="Col"
@@ -178,8 +156,30 @@ export const VariationCol = () => {
           listWrapper="Col"
           subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
           time="2일전"
-          wishQuantity={24}
           wrapperStyle="Col"
+          count={0}
+        />
+      </section>
+      <section className="flex no-wrap">
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wrapperStyle="Col"
+          count={0}
+        />
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wrapperStyle="Col"
+          count={0}
         />
       </section>
     </>
