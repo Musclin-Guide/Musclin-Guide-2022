@@ -1,6 +1,6 @@
 ---
 name: "\U0001F4D1 Feature request"
-about: 태스크 매니지먼트 및 추가 태스크 제시 시 사용합니다.
+about: 로직 변경 요청 등 추가 태스크 제시 시 사용합니다.
 title: ''
 labels: ''
 assignees: ''
