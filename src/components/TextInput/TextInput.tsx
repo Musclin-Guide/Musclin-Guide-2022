@@ -1,16 +1,6 @@
 import textInputStyle from '@components/TextInput/TextInput.module.css';
 import clsx from 'clsx';
-import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  Dispatch,
-  FC,
-  InputHTMLAttributes,
-  SetStateAction,
-  forwardRef,
-  useCallback,
-  useState,
-} from 'react';
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import {
   FieldErrors,
   FieldValues,
@@ -59,13 +49,15 @@ export const TextInput = ({
         {...(register && register(name, validationSchema))}
         {...props}
       />
-      <ErrorMessage
-        errors={errors}
-        name={name}
-        render={({ message }) => {
-          return <p className={textInputStyle.ValidError}>{message}</p>;
-        }}
-      />
+      {errors && (
+        <ErrorMessage
+          errors={errors}
+          name={name}
+          render={({ message }) => {
+            return <p className={textInputStyle.ValidError}>{message}</p>;
+          }}
+        />
+      )}
     </div>
   );
 };

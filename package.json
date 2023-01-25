@@ -11,6 +11,7 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@types/cheerio": "0.22.31",
     "axios": "1.2.1",
     "cheerio": "1.0.0-rc.12",
@@ -64,7 +65,7 @@
     "msw-storybook-addon": "1.6.3",
     "postcss": "8.4.19",
     "prettier": "2.8.1",
-    "react-hook-form": "7.41.5",
+    "react-hook-form": "^7.41.5",
     "react-query": "3.39.2",
     "storybook": "6.5.14",
     "storybook-addon-designs": "6.3.1",

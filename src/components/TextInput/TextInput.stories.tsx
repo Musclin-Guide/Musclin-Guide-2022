@@ -15,15 +15,12 @@ const Template: Story = (args) => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
-  console.log(errors.test);
+  } = useForm({ mode: 'onBlur' });
   console.log(watch());
   return (
     <form className={'w-80'}>
       <TextInput
-        value={args.value}
-        onChange={args.onChange}
-        errors={errors}
+        // errors={errors}
         label={args.label}
         placeHolder={args.placeHolder}
         required={args.required}
@@ -39,9 +36,17 @@ const Template: Story = (args) => {
 export const TextInputStory = Template.bind({});
 TextInputStory.storyName = 'Default';
 TextInputStory.args = {
-  type: 'email',
+  type: 'text',
   name: 'test',
-  placeHolder: '테스트용',
+};
+
+export const EmailStory = Template.bind({});
+EmailStory.storyName = 'EmailExample';
+EmailStory.args = {
+  type: 'email',
+  name: 'email',
+  label: true,
+  placeHolder: '이메일을 입력해 주세요.',
   validationSchema: {
     required: 'Required',
     pattern: {
@@ -49,4 +54,5 @@ TextInputStory.args = {
       message: 'invalid email address',
     },
   },
+  required: true,
 };
