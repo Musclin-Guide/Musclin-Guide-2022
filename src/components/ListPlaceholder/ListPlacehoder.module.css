@@ -1,8 +1,9 @@
 .box {
-  @apply w-2/3 h-screen relative;
+  @apply w-full h-[500px] relative;
   @apply bg-white;
 }
 .contents {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-  @apply text-xl  text-neutral-500;
+  @apply text-base text-neutral-500;
+  @apply self-center w-full text-center;
 }

@@ -9,8 +9,9 @@ import { ALinkMenuItem as ALink } from '@components/index';
 export interface ImagedListItem extends ListItemProps {
   imgWrapper: 'Row' | 'Col';
   listWrapper: 'Row' | 'Col';
+  href: string;
   className?: string;
-  src?: string;
+  src: string;
 }
 
 const imgWrappers = {
@@ -32,13 +33,14 @@ export const ImagedListItem = ({
   className,
   subject,
   time,
-  src = '/assets/demo.jpeg',
+  src,
+  href = '/',
   likeQuantity,
 }: ImagedListItem): JSX.Element => {
   return (
     <ALink
       className={clsx(styles.wrapper, wrappers[listWrapper], className)}
-      href={'/'}
+      href={href}
       isExternal={false}
     >
       <div className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>

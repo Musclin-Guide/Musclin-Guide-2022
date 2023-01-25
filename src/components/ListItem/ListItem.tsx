@@ -28,13 +28,11 @@ export const ListItem = ({
   id,
   subject = '고양이는 귀엽고 또 귀여우니 우리는 받아들여야해 그렇단말이야!',
   time = '3일전',
-  likeQuantity,
   count,
   contentsStyle = 'Row',
   wrapperStyle = 'Row',
   className,
 }: ListItemProps) => {
-  //병합 후 가장 바깥쪽에 ALINK 컴포넌트에 감쌀 예정
   return (
     <>
       <div

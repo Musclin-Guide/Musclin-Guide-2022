@@ -39,7 +39,7 @@ export const SubHeaderLayout = ({
         )}
       >
         <SubHeader />
-        <main ref={Ref} className={(styles.main, className)}>
+        <main ref={Ref} className={clsx(styles.main, className)}>
           {children}
         </main>
         <TabBar />
