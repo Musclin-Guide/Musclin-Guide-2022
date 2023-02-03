@@ -15,6 +15,7 @@ interface TextInputProps
     HTMLInputElement
   > {
   label?: boolean;
+  labelName?: string;
   placeHolder?: string;
   required?: boolean;
   register?: UseFormRegister<FieldValues>;
@@ -23,6 +24,7 @@ interface TextInputProps
   validationSchema?: RegisterOptions;
 }
 export const TextInput = ({
+  labelName,
   name,
   label = true,
   placeHolder = '',
@@ -37,7 +39,7 @@ export const TextInput = ({
     <div className={textInputStyle.TextInput}>
       {label && (
         <label htmlFor={name} className={textInputStyle.Label}>
-          {name}
+          {labelName}
           {required && ' *'}
         </label>
       )}

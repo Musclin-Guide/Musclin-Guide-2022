@@ -3,19 +3,22 @@ import { IconContext } from 'react-icons';
 import { HiMail } from 'react-icons/hi';
 import buttonStyles from './Button.module.css';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: {
     type: 'Leading' | 'Only' | 'False';
     element: JSX.Element;
   };
   size?: 'xs' | 'sm' | 'base' | 'l' | 'xl';
-  color?: 'Primary' | 'White';
+  color?: 'Primary' | 'White' | 'Outline' | 'Disabled';
 }
 
 /* --------------------------------- 스타일 상수 --------------------------------- */
 const styleByColor = {
   Primary: buttonStyles.Primary,
   White: buttonStyles.White,
+  Outline: buttonStyles.Outline,
+  Disabled: buttonStyles.Disabled,
 };
 
 const styleBySize = {

@@ -14,6 +14,18 @@
   @apply border-neutral-300;
 }
 
+.Outline {
+  @apply text-orange-500;
+  @apply bg-white border;
+  @apply border-orange-500;
+}
+
+.Disabled {
+  @apply text-neutral-500;
+  @apply bg-neutral-200 border;
+  @apply border-neutral-500;
+}
+
 .StyleXs {
   @apply rounded gap-2;
   @apply leading-4 text-xs;

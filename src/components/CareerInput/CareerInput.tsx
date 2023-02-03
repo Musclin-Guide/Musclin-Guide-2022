@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
 import styles from '@components/CareerInput/CareerInput.module.css';
+import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 export const CAREERNUMBER = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
@@ -10,20 +11,21 @@ export const empty = [];
 interface CareerInputSelectProps {
   children?: ReactNode;
   formName?: string;
-  selectName?: string;
+  selectName: string;
   className?: string;
   List?: string[] | number[];
   text?: string;
   id?: string | undefined;
   disabled?: boolean | undefined;
-  [key: string]: string | number | ReactNode | boolean | undefined;
+  register?: UseFormRegister<FieldValues>;
+  // [key: string]: unknown;
 }
 export const CareerInput = ({
   selectName,
-  formName = 'UserEdit',
+  formName = '',
   className,
   text,
-  List,
+  register,
   id,
   disabled = false,
   ...props
@@ -35,20 +37,17 @@ export const CareerInput = ({
       </label>
       <select
         disabled={disabled}
-        aria-expanded={false}
-        role="combobox"
         id={id}
         className={clsx(styles.select, className)}
         name={selectName}
-        form={formName}
-        {...props}
+        {...(register && register(selectName))}
       >
         {CAREERNUMBER.map((number) => {
           return (
             <option
               id={`${id}_${number}`}
               key={number.toString()}
-              value={number}
+              value={number.toString()}
               {...props}
             >
               {number}
@@ -56,7 +55,7 @@ export const CareerInput = ({
           );
         })}
       </select>
-      <input type="hidden" name="input" />
+
       <p className="text-sm text-neutral-900">{text}</p>
     </div>
   );

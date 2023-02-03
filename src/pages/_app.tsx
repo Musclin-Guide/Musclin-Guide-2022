@@ -1,25 +1,24 @@
 import 'tailwindcss/tailwind.css';
 import type { AppProps } from 'next/app';
-import { RecoilRoot } from 'recoil';
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-  Hydrate,
-} from 'react-query';
-import { useState } from 'react';
+  createBrowserSupabaseClient,
+  Session,
+} from '@supabase/auth-helpers-nextjs';
+import { SessionContextProvider } from '@supabase/auth-helpers-react';
+import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider, Hydrate } from 'react-query';
+import { StrictMode, useState } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [queryClient] = useState(() => new QueryClient());
+  // const [queryClient] = useState(() => new QueryClient());
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <RecoilRoot>
-          <Component {...pageProps} />
-        </RecoilRoot>
-      </Hydrate>
-    </QueryClientProvider>
+    <RecoilRoot>
+      {/* <QueryClientProvider client={queryClient}> */}
+      {/* <Hydrate state={pageProps.dehydratedState}> */}
+      <Component {...pageProps} />
+      {/* </Hydrate> */}
+      {/* </QueryClientProvider> */}
+    </RecoilRoot>
   );
 }

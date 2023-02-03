@@ -3,7 +3,7 @@ import { SVGProps } from 'react';
 import { ALinkMenuItem as ALink } from '@components/index';
 const Bell = (props: SVGProps<SVGSVGElement>) => {
   return (
-    <ALink href={'/'} isExternal={false} replace>
+    <ALink hidden href={'/'} isExternal={false} replace>
       <svg
         width={28}
         height={28}
@@ -27,7 +27,7 @@ const Bell = (props: SVGProps<SVGSVGElement>) => {
 
 const NotiCircle = () => {
   //임시로 true; default false
-  const [isNoti, setNoti] = useState(true);
+  const [isNoti, setNoti] = useState(false);
   return (
     <circle
       className={isNoti ? 'visibilty' : 'hidden'}

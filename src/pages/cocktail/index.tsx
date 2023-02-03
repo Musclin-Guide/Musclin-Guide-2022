@@ -23,7 +23,7 @@ export default function Cocktail() {
       .from('cocktail')
       .select('*')
       .order('created_at', { ascending: true });
-
+    console.log(cocktail);
     if (cocktail !== null) {
       console.log(cocktail);
       setDatas(cocktail);
