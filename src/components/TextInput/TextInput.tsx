@@ -1,71 +1,62 @@
 import textInputStyle from '@components/TextInput/TextInput.module.css';
 import clsx from 'clsx';
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import {
-  ChangeEvent,
-  Dispatch,
-  HTMLInputTypeAttribute,
-  SetStateAction,
-  useCallback,
-  useState,
-} from 'react';
-interface TextInputProps {
-  label?: string;
+  FieldErrors,
+  FieldValues,
+  RegisterOptions,
+  UseFormRegister,
+} from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
+
+interface TextInputProps
+  extends DetailedHTMLProps<
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
+  label?: boolean;
   placeHolder?: string;
-  value: string;
-  validator?: (value: string) => { text: string; result: boolean };
-  setValue: Dispatch<SetStateAction<string>>;
   required?: boolean;
-  type?: HTMLInputTypeAttribute;
+  register?: UseFormRegister<FieldValues>;
+  name: string;
+  errors?: FieldErrors;
+  validationSchema?: RegisterOptions;
 }
 export const TextInput = ({
-  label,
-  placeHolder,
-  value,
-  setValue,
-  validator,
+  name,
+  label = true,
+  placeHolder = '',
   required = false,
   type = 'text',
-}: TextInputProps): JSX.Element => {
-  const [validation, setValidation] = useState<{
-    text: string;
-    result: boolean;
-  }>();
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setValue(e.target.value);
-      if (validator && value) {
-        setValidation(validator(value));
-      }
-    },
-    [setValue, validator, value]
-  );
+  register,
+  errors,
+  validationSchema,
+  ...props
+}: TextInputProps) => {
   return (
     <div className={textInputStyle.TextInput}>
       {label && (
-        <label htmlFor={label} className={textInputStyle.Label}>
-          {label}
+        <label htmlFor={name} className={textInputStyle.Label}>
+          {name}
           {required && ' *'}
         </label>
       )}
       <input
         className={clsx(textInputStyle.Input, 'primaryFocusVisible')}
         type={type}
-        name={label}
-        id={label}
-        value={value}
+        id={name}
         placeholder={placeHolder}
-        onChange={handleChange}
+        {...(register && register(name, validationSchema))}
+        {...props}
       />
-      {validation && (
-        <span
-          className={
-            validation.result
-              ? textInputStyle.ValidationTrue
-              : textInputStyle.ValidationFalse
-          }
-        >
-          {validation.text}
-        </span>
+      {errors && (
+        <ErrorMessage
+          errors={errors}
+          name={name}
+          render={({ message }) => {
+            return <p className={textInputStyle.ValidError}>{message}</p>;
+          }}
+        />
       )}
     </div>
   );

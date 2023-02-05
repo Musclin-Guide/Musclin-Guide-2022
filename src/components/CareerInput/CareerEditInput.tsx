@@ -1,11 +1,7 @@
 import { EditButton, CareerInput } from '@components/index';
 import Inputstyles from '@components/CareerInput/CareerInput.module.css';
 import Buttonstyles from '@components/EditButton/EditButton.module.css';
-import {
-  ListNumber,
-  ListNumber2,
-  empty,
-} from '@components/CareerInput/CareerInput';
+import { empty } from '@components/CareerInput/CareerInput';
 import { FiX, FiCheck, FiCheckSquare } from 'react-icons/fi';
 import clsx from 'clsx';
 
@@ -16,7 +12,7 @@ export const CareerEditInput = ({ disabled = false }) => {
         <CareerInput
           disabled={disabled}
           id="Year"
-          List={ListNumber}
+          List={empty}
           className={clsx(Inputstyles.inputCommon, Inputstyles.inputNormalSize)}
           selectName="year"
           text={'년'}

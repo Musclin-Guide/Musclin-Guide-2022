@@ -12,8 +12,7 @@ const Template: Story = (args) => (
     id={args.id}
     time={args.time}
     subject={args.subject}
-    likeQuantity={args.likeQuantity}
-    wishQuantity={args.wishQuantity}
+    count={args.count}
     contentsStyle={args.contentsStyle}
     wrapperStyle={args.wrapperStyle}
   />

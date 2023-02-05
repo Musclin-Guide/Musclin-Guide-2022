@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { UrlObject } from 'url';
 
 interface ALinkMenuItemProps {
-  href: string;
+  href: string | object;
   isExternal: boolean;
   [key: string]: unknown;
 }
