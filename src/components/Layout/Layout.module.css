@@ -3,10 +3,10 @@
 }
 
 .disableContents::after {
-  @apply content-[''] bg-neutral-500 opacity-50  absolute w-[360px] h-full z-10;
+  @apply content-[''] bg-neutral-500 opacity-50  absolute w-[360px] h-[5000vh] z-10;
 }
 
 .main {
-  @apply w-[22.5rem] h-full;
+  @apply w-[22.5rem] h-fit;
   @apply px-6 pt-24 pb-[5.625rem];
 }

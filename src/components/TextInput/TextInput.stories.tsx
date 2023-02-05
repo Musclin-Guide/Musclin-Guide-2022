@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react';
 import { TextInput } from '@components/TextInput/TextInput';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 export default {
   title: 'Components/TextInput',
@@ -8,42 +9,50 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => {
-  const [value, setValue] = useState<string>('');
+  const {
+    register,
+    watch,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({ mode: 'onBlur' });
+  console.log(watch());
   return (
-    <div className={'w-80'}>
+    <form className={'w-80'}>
       <TextInput
+        // errors={errors}
         label={args.label}
         placeHolder={args.placeHolder}
-        value={value}
-        setValue={setValue}
         required={args.required}
         type={args.type}
-        {...args}
+        name={args.name}
+        validationSchema={args.validationSchema}
+        register={register}
       />
-    </div>
+    </form>
   );
 };
 
 export const TextInputStory = Template.bind({});
 TextInputStory.storyName = 'Default';
+TextInputStory.args = {
+  type: 'text',
+  name: 'test',
+};
 
-export const TextInputLabel = Template.bind({});
-TextInputLabel.storyName = 'emailInputExample';
-TextInputLabel.args = {
-  required: true,
-  label: 'email',
-  placeHolder: 'Enter your email',
-  validator: (value: string): { result: boolean; text: string } => {
-    const validRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (value.match(validRegex)) {
-      return {
-        result: true,
-        text: '이메일 형식이 맞습니다.',
-      };
-    }
-    return {
-      result: false,
-      text: '이메일 형식이 틀립니다.',
-    };
+export const EmailStory = Template.bind({});
+EmailStory.storyName = 'EmailExample';
+EmailStory.args = {
+  type: 'email',
+  name: 'email',
+  label: true,
+  placeHolder: '이메일을 입력해 주세요.',
+  validationSchema: {
+    required: 'Required',
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      message: 'invalid email address',
+    },
   },
+  required: true,
 };
