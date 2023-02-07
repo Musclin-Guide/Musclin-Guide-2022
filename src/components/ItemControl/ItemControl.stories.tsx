@@ -8,7 +8,13 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => (
-  <ItemControl imgWrapper={'Row'} listWrapper={'Row'} count={0} />
+  <ItemControl
+    imgWrapper={'Row'}
+    listWrapper={'Row'}
+    count={0}
+    href={''}
+    src={''}
+  />
 );
 
 export const Primary = Template.bind({});
@@ -17,16 +23,52 @@ export const Variation = () => {
   return (
     <>
       <section className="flex">
-        <ItemControl imgWrapper={'Row'} listWrapper={'Row'} count={0} />
-        <ItemControl imgWrapper={'Row'} listWrapper={'Row'} count={0} />
+        <ItemControl
+          imgWrapper={'Row'}
+          listWrapper={'Row'}
+          count={0}
+          href={''}
+          src={''}
+        />
+        <ItemControl
+          imgWrapper={'Row'}
+          listWrapper={'Row'}
+          count={0}
+          href={''}
+          src={''}
+        />
       </section>
       <section className="flex">
-        <ItemControl imgWrapper={'Row'} listWrapper={'Row'} count={0} />
-        <ItemControl imgWrapper={'Row'} listWrapper={'Row'} count={0} />
+        <ItemControl
+          imgWrapper={'Row'}
+          listWrapper={'Row'}
+          count={0}
+          href={''}
+          src={''}
+        />
+        <ItemControl
+          imgWrapper={'Row'}
+          listWrapper={'Row'}
+          count={0}
+          href={''}
+          src={''}
+        />
       </section>
       <section className="flex">
-        <ItemControl imgWrapper={'Row'} listWrapper={'Row'} count={0} />
-        <ItemControl imgWrapper={'Row'} listWrapper={'Row'} count={0} />
+        <ItemControl
+          imgWrapper={'Row'}
+          listWrapper={'Row'}
+          count={0}
+          href={''}
+          src={''}
+        />
+        <ItemControl
+          imgWrapper={'Row'}
+          listWrapper={'Row'}
+          count={0}
+          href={''}
+          src={''}
+        />
       </section>
     </>
   );

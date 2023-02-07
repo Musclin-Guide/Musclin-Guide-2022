@@ -22,10 +22,11 @@ export const FeaturedSlideList = ({ ...props }: FeaturedSlideListProps) => {
   }, []);
 
   async function fetchusers() {
-    const { data } = await supabase.from('cocktail_img').select('*');
+    const { data } = await supabase.from('cocktail').select('cocktail_img');
     if (data !== null) {
       setlist(data);
     }
+    console.log(data);
   }
 
   fetchusers();
@@ -49,7 +50,7 @@ export const FeaturedSlideList = ({ ...props }: FeaturedSlideListProps) => {
               className={styles.swiperslide}
             >
               <Image
-                src={`${i.img_path}`}
+                src={`${i.cocktail_img}`}
                 width={320}
                 height={320}
                 alt={'유저가 업로드한 이미지'}

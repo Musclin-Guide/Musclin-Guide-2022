@@ -4,60 +4,99 @@ import { TextInput } from '@components/TextInput';
 import { useCallback, useState } from 'react';
 import { HiKey } from 'react-icons/hi';
 import { ALinkMenuItem as ALink } from '@components/index';
-import style from '@pages/login.module.css';
+import style from '@pages/Login.module.css';
 import { supabase } from '@lib/supabase';
-
+import { useForm, FieldValues } from 'react-hook-form';
+import { useRouter } from 'next/router';
 export default function Login() {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FieldValues>({ mode: 'onBlur' });
 
-  const handleClick = useCallback(async () => {
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-      console.log(data, error);
-    } catch (err) {
-      alert(err);
+  const router = useRouter();
+
+  const handleClick = async (Formdata: FieldValues) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: Formdata.email,
+      password: Formdata.password,
+    });
+    if (!error) {
+      router.push('/');
     }
-  }, [email, password]);
+    {
+      alert('로그인 정보를 다시 확인해주세요');
+    }
+  };
 
   return (
-    <Layout>
+    <Layout subject="로그인 페이지 입니다">
       <div className={style.Contents}>
         <h2 className={style.Header}>로그인</h2>
-        <form className={style.Form}>
+        <form onSubmit={handleSubmit(handleClick)} className={style.Form}>
           <TextInput
-            label="email"
+            labelName="email"
             type="email"
             placeHolder="이메일을 입력해 주세요"
-            value={email}
-            setValue={setEmail}
-            required
+            name={'email'}
+            id={'email'}
+            label={true}
+            errors={errors}
+            register={register}
+            required={true}
+            validationSchema={{
+              required: '이메일을 입력해주세요',
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: '이메일 형식이 아닙니다',
+              },
+            }}
           ></TextInput>
           <TextInput
-            label="password"
+            labelName="password"
             type="password"
             placeHolder="비밀번호를 입력해 주세요"
-            value={password}
-            setValue={setPassword}
-            required
-          ></TextInput>
+            name={'password'}
+            id={'password'}
+            label={true}
+            errors={errors}
+            register={register}
+            required={true}
+            validationSchema={{
+              required: '비밀번호를 입력해주세요.',
+              pattern: {
+                value:
+                  /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/,
+                message:
+                  '영문+숫자+특수문자(! @ # $ % & * ?) 조합 8~15자리를 입력해주세요.',
+              },
+              minLength: {
+                value: 8,
+                message:
+                  '영문+숫자+특수문자(! @ # $ % & * ?)를 포함한 8자 이상이어야합니다',
+              },
+              maxLength: {
+                value: 15,
+                message:
+                  '영문+숫자+특수문자(! @ # $ % & * ?)를 포함한 15자리 이하여야합니다',
+              },
+            }}
+          />
+          <Button
+            className={'w-full mt-4'}
+            size="xl"
+            icon={{ type: 'Leading', element: <HiKey></HiKey> }}
+            type="submit"
+          >
+            로그인
+          </Button>
         </form>
-        <Button
-          className={'w-full'}
-          size="xl"
-          icon={{ type: 'Leading', element: <HiKey></HiKey> }}
-          onClick={handleClick}
-        >
-          로그인
-        </Button>
         <div className={style.Links}>
           <ALink className={style.Link} href="/password" isExternal={false}>
             비밀번호 찾기
           </ALink>
-          <ALink className={style.Link} href="/register" isExternal={false}>
+          <ALink className={style.Link} href="/signup" isExternal={false}>
             회원 가입
           </ALink>
         </div>

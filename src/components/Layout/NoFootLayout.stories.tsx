@@ -7,6 +7,6 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story = (args) => <NoFooterLayout />;
+const Template: Story = (args) => <NoFooterLayout subject={args.subject} />;
 
 export const NoFooterLayoutPrimary = Template.bind({});

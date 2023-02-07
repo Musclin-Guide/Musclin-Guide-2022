@@ -38,18 +38,13 @@ export default function CocktailResultPage() {
       '.TabBar_default__Dx5I1'
     );
     ActiveCocktailTabBar[1].classList.add(styles.active);
-  }, [key]);
+  }, []);
   return (
-    <>
-      <SubHeaderLayout className="s-center">
-        <Head>
-          <title>Musclin Guide</title>
-          <link
-            rel="icon"
-            href="https://d1ujqdpfgkvqfi.cloudfront.net/favicon-generator/htdocs/favicons/2023-01-02/b4dd2dc59fb2bd725e162d2d104a3a24.ico.png"
-            sizes="16x16"
-          />
-        </Head>
+    <div>
+      <SubHeaderLayout
+        className="s-center"
+        subject={`${searchQueryWord}(으로/로) 검색한 결과입니다`}
+      >
         <section>
           <h2 className="text-neutral-500">
             <strong className="text-lg text-primary-default">{`"${searchQueryWord}"`}</strong>
@@ -77,7 +72,9 @@ export default function CocktailResultPage() {
                       count={item.like}
                       wrapperStyle="Row"
                       src={
-                        item.imgs[0] ? item.imgs[0].img1 : '/assets/noImage.png'
+                        item.cocktail_img[0]
+                          ? item.cocktail_img[0].img1
+                          : '/assets/noImage.png'
                       }
                     />
                   </>
@@ -88,6 +85,6 @@ export default function CocktailResultPage() {
           )}
         </section>
       </SubHeaderLayout>
-    </>
+    </div>
   );
 }

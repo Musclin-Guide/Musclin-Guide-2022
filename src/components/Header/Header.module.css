@@ -1,6 +1,6 @@
 .container {
   @apply w-full max-w-[22.5rem] h-16 pr-5;
-  @apply fixed top-0 z-50;
+  @apply fixed top-0 z-20;
   @apply flex justify-between;
   @apply bg-white;
   @apply border-b border-neutral-100;

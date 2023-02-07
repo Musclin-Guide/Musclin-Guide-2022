@@ -7,11 +7,12 @@ export const ErrorLayout = ({
   className,
   wrapperClassName,
   children,
+  subject,
 }: LayoutProps): JSX.Element => {
   return (
     <>
       <div className={clsx(styles.wrapper, wrapperClassName)}>
-        <Header />
+        <Header subject={'에러가 생겼습니다'} />
         <main className={clsx(styles.main, className)}>{children}</main>
       </div>
     </>

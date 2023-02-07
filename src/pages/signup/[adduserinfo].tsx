@@ -81,7 +81,7 @@ export default function AddUserInfo({ size = 'small', name }: ProfileProps) {
           sizes="16x16"
         />
       </Head>
-      <NoFooterLayout>
+      <NoFooterLayout subject={'추가정보 입력 페이지입니다'}>
         <form onSubmit={handleSubmit(onsumit)}>
           <h2 className="font-semibold text-2xl mb-8">추가 정보</h2>
           <fieldset className="flex flex-col justify-center items-center gap-20 mt-10">

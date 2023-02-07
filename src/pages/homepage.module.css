@@ -1,40 +1,39 @@
-.Main{
+.Main {
   @apply w-full h-full;
 }
-.Contents{
+.Contents {
   @apply w-full max-w-[360px] min-h-full;
   @apply m-auto;
 }
-.FixedContents{
+.FixedContents {
   @apply w-full h-full;
   @apply flex justify-center;
 }
-.Section{
+.Section {
   @apply pt-8;
 }
-.CocktailHeader{
-  @apply h-fit w-full;
-  @apply flex justify-between px-6;
-}
-.ProductInfo{
-  @apply h-fit w-full;
-  @apply flex-col items-start;
-  @apply px-6;
-}
-.ProductHeader{
+.CocktailHeader {
   @apply h-fit w-full;
   @apply flex justify-between;
 }
-.Title{
+.ProductInfo {
+  @apply h-fit w-full;
+  @apply flex-col items-start;
+}
+.ProductHeader {
+  @apply h-fit w-full;
+  @apply flex justify-between;
+}
+.Title {
   @apply text-neutral-700 text-3xl leading-9 font-semibold;
 }
-.Cocktail{
-  @apply flex flex-col items-center;
-}
-.Product{
+.Cocktail {
   @apply flex flex-wrap;
 }
-.InfoText{
+.Product {
+  @apply flex flex-wrap;
+}
+.InfoText {
   @apply pt-3;
   @apply text-sm leading-none font-normal text-neutral-500;
 }

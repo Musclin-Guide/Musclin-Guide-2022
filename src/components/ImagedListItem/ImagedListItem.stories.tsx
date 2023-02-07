@@ -17,6 +17,8 @@ const Template: Story = (args) => (
     listWrapper={args.listWrapper}
     contentsStyle={args.contentsStyle}
     wrapperStyle={args.wrapperStyle}
+    href={args.href}
+    src={args.href}
   />
 );
 
@@ -58,6 +60,8 @@ export const VariationRow = () => {
         time="2일전"
         wrapperStyle="Row"
         count={0}
+        href={''}
+        src={''}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -68,6 +72,8 @@ export const VariationRow = () => {
         time="2일전"
         wrapperStyle="Row"
         count={0}
+        href={''}
+        src={''}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -78,6 +84,8 @@ export const VariationRow = () => {
         time="2일전"
         wrapperStyle="Row"
         count={0}
+        href={''}
+        src={''}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -88,6 +96,8 @@ export const VariationRow = () => {
         time="2일전"
         wrapperStyle="Row"
         count={0}
+        href={''}
+        src={''}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -98,6 +108,8 @@ export const VariationRow = () => {
         time="2일전"
         wrapperStyle="Row"
         count={0}
+        href={''}
+        src={''}
       />
       <ImagedListItem
         contentsStyle="Row"
@@ -108,6 +120,8 @@ export const VariationRow = () => {
         time="2일전"
         wrapperStyle="Row"
         count={0}
+        href={''}
+        src={''}
       />
     </section>
   );
@@ -126,6 +140,8 @@ export const VariationCol = () => {
           time="2일전"
           wrapperStyle="Col"
           count={0}
+          href={''}
+          src={''}
         />
         <ImagedListItem
           contentsStyle="Col"
@@ -136,28 +152,8 @@ export const VariationCol = () => {
           time="2일전"
           wrapperStyle="Col"
           count={0}
-        />
-      </section>
-      <section className="flex no-wrap">
-        <ImagedListItem
-          contentsStyle="Col"
-          imgWrapper="Col"
-          likeQuantity={244}
-          listWrapper="Col"
-          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
-          time="2일전"
-          wrapperStyle="Col"
-          count={0}
-        />
-        <ImagedListItem
-          contentsStyle="Col"
-          imgWrapper="Col"
-          likeQuantity={244}
-          listWrapper="Col"
-          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
-          time="2일전"
-          wrapperStyle="Col"
-          count={0}
+          href={''}
+          src={''}
         />
       </section>
       <section className="flex no-wrap">
@@ -170,6 +166,8 @@ export const VariationCol = () => {
           time="2일전"
           wrapperStyle="Col"
           count={0}
+          href={''}
+          src={''}
         />
         <ImagedListItem
           contentsStyle="Col"
@@ -180,6 +178,34 @@ export const VariationCol = () => {
           time="2일전"
           wrapperStyle="Col"
           count={0}
+          href={''}
+          src={''}
+        />
+      </section>
+      <section className="flex no-wrap">
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wrapperStyle="Col"
+          count={0}
+          href={''}
+          src={''}
+        />
+        <ImagedListItem
+          contentsStyle="Col"
+          imgWrapper="Col"
+          likeQuantity={244}
+          listWrapper="Col"
+          subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+          time="2일전"
+          wrapperStyle="Col"
+          count={0}
+          href={''}
+          src={''}
         />
       </section>
     </>

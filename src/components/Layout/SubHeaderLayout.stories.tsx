@@ -7,6 +7,6 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story = (args) => <SubHeaderLayout />;
+const Template: Story = (args) => <SubHeaderLayout subject={args.subject} />;
 
 export const SubHeaderLayoutPrimary = Template.bind({});

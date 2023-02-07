@@ -23,7 +23,6 @@ export const TabBar = ({ className }: TabBarProps) => {
       </li>
       <li className={styles.wrapper}>
         <ActiveLink
-          prefetch
           href={'/cocktail'}
           className={clsx(styles.default, styles.aLink)}
           activeClassName={styles.active}

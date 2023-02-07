@@ -56,12 +56,12 @@ const ProfileUploader = ({
     });
   };
 
-  // useEffect(() => {
-  // 컴포넌트가 언마운트되면 createObjectURL()을 통해 생성한 기존 URL을 폐기
-  //   return () => {
-  //     URL.revokeObjectURL(image.preview_URL);
-  //   };
-  // }, [image]);
+  useEffect(() => {
+    // 컴포넌트가 언마운트되면 createObjectURL()을 통해 생성한 기존 URL을 폐기
+    return () => {
+      URL.revokeObjectURL(image.preview_URL);
+    };
+  }, [image]);
 
   return (
     <>

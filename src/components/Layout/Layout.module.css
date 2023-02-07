@@ -3,7 +3,7 @@
 }
 
 .disableContents::after {
-  @apply content-[''] bg-neutral-500 opacity-50  absolute w-[360px] h-[5000vh] z-10;
+  @apply content-[''] bg-neutral-500 opacity-50  absolute w-[360px] h-[50000vh] z-20;
 }
 
 .main {

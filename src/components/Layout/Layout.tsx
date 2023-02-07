@@ -4,8 +4,9 @@ import styles from '@components/Layout/Layout.module.css';
 import clsx from 'clsx';
 import { ReactNode, useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
+import type { HeaderProps } from '@components/index';
 
-export interface LayoutProps {
+export interface LayoutProps extends HeaderProps {
   className?: string;
   wrapperClassName?: string;
   children?: ReactNode;
@@ -15,6 +16,7 @@ export const Layout = ({
   className,
   wrapperClassName,
   children,
+  subject,
 }: LayoutProps): JSX.Element => {
   const Ref = useRef<HTMLElement>(null);
   const [toggle, setToggle] = useRecoilState(widgetToggle);
@@ -45,7 +47,7 @@ export const Layout = ({
           toggle ? '' : styles.disableContents
         )}
       >
-        <Header />
+        <Header subject={subject} />
         <main ref={Ref} className={clsx(styles.main, className)}>
           {children}
         </main>

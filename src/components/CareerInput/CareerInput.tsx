@@ -29,7 +29,6 @@ interface CareerInputSelectProps {
 }
 export const CareerInput = ({
   selectName,
-
   className,
   text,
   register,

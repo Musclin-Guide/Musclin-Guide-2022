@@ -4,7 +4,7 @@ import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-export default function error() {
+export default function Error() {
   const router = useRouter();
   return (
     <>
@@ -16,7 +16,7 @@ export default function error() {
           sizes="16x16"
         />
       </Head>
-      <ErrorLayout>
+      <ErrorLayout subject={'접근 불가한 페이지입니다.'}>
         <h1 className="text-center mt-40 mb-40">
           <strong className="text-xl text-state-negative">
             Sorry..

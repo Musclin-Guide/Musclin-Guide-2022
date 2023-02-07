@@ -27,6 +27,8 @@ export const ItemControl = ({
           select ? styles.selected : 'bg-white',
           clear && styles.exited,
         ])}
+        href={''}
+        src={''}
       />
       <Checkbox
         onClick={() => {

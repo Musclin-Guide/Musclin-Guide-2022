@@ -1,13 +1,9 @@
-//위젯 활성화시 뒤의 콘텐츠 등이 disable같은 회식 필터가 씌워지며
-//스크롤및 클릭 이벤트가 비활성화 된다.
-
 import { Menu, MenuButton } from '@components/index';
 import { widgetToggle } from '@atoms/Widget';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import menuStyle from '@components/Dropdown/Menu/Menu.module.css';
 import widgetStyle from '@components/Widget/Widget.module.css';
 import clsx from 'clsx';
-import { useEffect, useRef } from 'react';
 
 export const Widget = (): JSX.Element => {
   const [Toggle, setToggle] = useRecoilState(widgetToggle);

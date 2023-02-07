@@ -1,10 +1,9 @@
 import { Button } from '@components/index';
 import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
-import { Session, User } from '@supabase/supabase-js';
+import { Session } from '@supabase/supabase-js';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import Head from 'next/head';
-import { Waiting } from '@components/index';
+
 import { supabase } from '@lib/supabase';
 import { useRouter } from 'next/router';
 
@@ -18,25 +17,16 @@ export default function Welcome() {
       setToken(userInfo.data.session);
     };
     getToken();
+    if (!token) {
+      router.push('/error');
+    }
 
     console.log(token);
   }, []);
 
-  if (!token) {
-    router.push('/error');
-  }
   return (
     <>
-      <Head>
-        <title>Musclin Guide</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link
-          rel="icon"
-          href="https://d1ujqdpfgkvqfi.cloudfront.net/favicon-generator/htdocs/favicons/2023-01-02/b4dd2dc59fb2bd725e162d2d104a3a24.ico.png"
-          sizes="16x16"
-        />
-      </Head>
-      <NoFooterLayout>
+      <NoFooterLayout subject="가입 환영페이지입니다">
         <h1 className="font-semibold  text-neutral-800 text-2xl mb-8">
           회원 가입 완료
         </h1>

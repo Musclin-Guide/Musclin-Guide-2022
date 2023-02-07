@@ -7,6 +7,6 @@ export default {
   argTypes: { onClick: { action: 'clicked' } },
 } as Meta;
 
-const Template: Story = (args) => <Layout />;
+const Template: Story = (args) => <Layout subject={args.subject} />;
 
 export const LayoutPrimary = Template.bind({});

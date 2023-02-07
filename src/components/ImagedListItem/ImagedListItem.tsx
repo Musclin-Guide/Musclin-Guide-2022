@@ -43,16 +43,16 @@ export const ImagedListItem = ({
       href={href}
       isExternal={false}
     >
-      <div className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
+      <li className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
         <Image
           src={src}
           alt={'대체 텍스트'}
           fill
           className={clsx(styles.imgCommon, className)}
           placeholder="blur"
-          blurDataURL="/assets/non_img"
+          blurDataURL="/assets/noImage.png"
         />
-      </div>
+      </li>
       <ListItem
         contentsStyle={contentsStyle}
         count={count}

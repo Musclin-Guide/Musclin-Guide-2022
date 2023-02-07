@@ -8,7 +8,7 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => {
-  return <SubHeader />;
+  return <SubHeader subject={args.subject} />;
 };
 
 export const SUBHEADER = Template.bind({});

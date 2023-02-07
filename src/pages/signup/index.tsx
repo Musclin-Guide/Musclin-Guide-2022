@@ -92,7 +92,7 @@ export default function Signup({ color = 'Outline' }: ButtonProps) {
           sizes="16x16"
         />
       </Head>
-      <NoFooterLayout>
+      <NoFooterLayout subject={'회원가입페이지입니다'}>
         <form onSubmit={handleSubmit(onsubmitToServer)}>
           <h2 className="font-semibold text-2xl mb-8">회원 가입</h2>
           <fieldset className="flex flex-col gap-4">

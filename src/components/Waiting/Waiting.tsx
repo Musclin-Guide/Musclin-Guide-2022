@@ -12,7 +12,7 @@ export function Waiting() {
           sizes="16x16"
         />
       </Head>
-      <NoFooterLayout>
+      <NoFooterLayout subject={'로딩중입니다. 잠시만 기다려주세요'}>
         <div className="spinnerRolling">
           <div className={'spinner'}>
             <div></div>

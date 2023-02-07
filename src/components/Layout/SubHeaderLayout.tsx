@@ -10,12 +10,13 @@ export const SubHeaderLayout = ({
   className,
   wrapperClassName,
   children,
+  subject,
 }: LayoutProps): JSX.Element => {
   const Ref = useRef<HTMLElement>(null);
   const [toggle, setToggle] = useRecoilState(widgetToggle);
   useEffect(() => {
     const clickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+      const target = e.target as HTMLDivElement;
       if (target.classList.contains(styles.disableContents)) {
         setToggle(true);
       }
@@ -38,10 +39,9 @@ export const SubHeaderLayout = ({
           toggle ? '' : styles.disableContents
         )}
       >
-        <SubHeader />
-        <main ref={Ref} className={clsx(styles.main, className)}>
-          {children}
-        </main>
+        <SubHeader subject={subject} />
+        <main className={clsx(styles.main, className)}>{children}</main>
+
         <TabBar />
       </div>
       <Widget />
