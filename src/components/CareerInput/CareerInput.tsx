@@ -4,7 +4,14 @@ import styles from '@components/CareerInput/CareerInput.module.css';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 export const CAREERNUMBER = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+  '1년 미만',
+  '1 년',
+  '2 년',
+  '3 년',
+  '4 년',
+  '5 년',
+  '6 년',
+  '7년 이상',
 ];
 export const empty = [];
 
@@ -22,7 +29,7 @@ interface CareerInputSelectProps {
 }
 export const CareerInput = ({
   selectName,
-  formName = '',
+
   className,
   text,
   register,
@@ -32,15 +39,14 @@ export const CareerInput = ({
 }: CareerInputSelectProps) => {
   return (
     <div className={styles.wrapper}>
-      <label className="sr-only" htmlFor={id}>
-        `${id}`(을/를) 선택해주세요
-      </label>
+      <label className="sr-only">`${id}`(을/를) 선택해주세요</label>
       <select
         disabled={disabled}
         id={id}
         className={clsx(styles.select, className)}
         name={selectName}
         {...(register && register(selectName))}
+        {...props}
       >
         {CAREERNUMBER.map((number) => {
           return (
@@ -56,7 +62,7 @@ export const CareerInput = ({
         })}
       </select>
 
-      <p className="text-sm text-neutral-900">{text}</p>
+      {/* <p className="text-sm text-neutral-900">{text}</p> */}
     </div>
   );
 };

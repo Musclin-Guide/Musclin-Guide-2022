@@ -1,7 +1,7 @@
 .Button {
   @apply flex flex-row justify-center items-center;
   @apply font-medium;
-  @apply shadow-sm focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary-default;
+  @apply shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-default;
 }
 
 .Primary {
@@ -24,6 +24,12 @@
   @apply text-neutral-500;
   @apply bg-neutral-200 border;
   @apply border-neutral-500;
+  @apply cursor-not-allowed;
+}
+
+.StyleXxs {
+  @apply rounded gap-2;
+  @apply text-xs;
 }
 
 .StyleXs {
@@ -49,6 +55,10 @@
 .StyleXl {
   @apply rounded-md gap-3;
   @apply leading-6 text-base;
+}
+
+.PaddingXxs {
+  @apply px-[8px] py-[5px];
 }
 
 .PaddingXs {

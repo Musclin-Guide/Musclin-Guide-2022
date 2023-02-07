@@ -9,7 +9,7 @@ export interface ButtonProps
     type: 'Leading' | 'Only' | 'False';
     element: JSX.Element;
   };
-  size?: 'xs' | 'sm' | 'base' | 'l' | 'xl';
+  size?: 'xxs' | 'xs' | 'sm' | 'base' | 'l' | 'xl';
   color?: 'Primary' | 'White' | 'Outline' | 'Disabled';
 }
 
@@ -22,6 +22,7 @@ const styleByColor = {
 };
 
 const styleBySize = {
+  xxs: buttonStyles.StyleXxs,
   xs: buttonStyles.StyleXs,
   sm: buttonStyles.StyleSm,
   base: buttonStyles.StyleBase,
@@ -30,6 +31,7 @@ const styleBySize = {
 };
 
 const paddingBySize = {
+  xxs: buttonStyles.PaddingXxs,
   xs: buttonStyles.PaddingXs,
   sm: buttonStyles.PaddingSm,
   base: buttonStyles.PaddingBase,
@@ -38,6 +40,7 @@ const paddingBySize = {
 };
 
 const onlyIconSize = {
+  xxs: '12px',
   xs: '16px',
   sm: '20px',
   base: '24px',
@@ -46,6 +49,7 @@ const onlyIconSize = {
 };
 
 const leadingIconSize = {
+  xxs: '12px',
   xs: '16px',
   sm: '16px',
   base: '20px',

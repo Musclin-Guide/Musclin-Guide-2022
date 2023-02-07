@@ -24,3 +24,5 @@ export * from '@components/TextInput/index';
 export * from '@components/UserReviewUnitList/index';
 export * from '@components/ActiveLink/index';
 export * from '@components/Widget/index';
+export * from '@components/ProfileUploader/ProfileUploader';
+export * from "@components/Waiting/index";

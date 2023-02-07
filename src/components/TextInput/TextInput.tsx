@@ -1,6 +1,12 @@
 import textInputStyle from '@components/TextInput/TextInput.module.css';
 import clsx from 'clsx';
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import {
+  DetailedHTMLProps,
+  forwardRef,
+  InputHTMLAttributes,
+  LegacyRef,
+  MutableRefObject,
+} from 'react';
 import {
   FieldErrors,
   FieldValues,

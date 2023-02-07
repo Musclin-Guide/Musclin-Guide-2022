@@ -1,10 +1,11 @@
-import { TextInput } from '@components/index';
+import { CareerInput, TextInput } from '@components/index';
 import { supabase } from '@lib/supabase/index';
-
+import styles from '@components/CareerInput/CareerInput.module.css';
 import type { UserResponse, User } from '@supabase/supabase-js';
 
 import { ChangeEvent, useEffect, useState, useCallback } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
+import clsx from 'clsx';
 
 interface MypageProps {
   type: string;
@@ -64,6 +65,17 @@ export default function Mypage({ type, disabled }: MypageProps) {
         // onChange={onChangeHandler}
         register={register}
       />
+      <div className="flex justify-between items-center primaryFocusVisible mt-2">
+        <h2 className="text-sm">운동 경력 *</h2>
+        <CareerInput
+          register={register}
+          id="career"
+          className={clsx(styles.inputCommon, styles.inputNormalSize)}
+          formName="career"
+          selectName="career"
+          text="년"
+        />
+      </div>
 
       <div>{getUserInfo.user_metadata.career}</div>
       <div>{getUserInfo.user_metadata.nickname}</div>

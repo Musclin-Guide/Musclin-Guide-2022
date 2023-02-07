@@ -33,4 +33,40 @@
   .mypageWrapper {
     @apply flex items-center justify-between;
   }
+  .spinner div {
+    @apply absolute w-14 h-14;
+    @apply ml-5;
+    @apply border-8 border-neutral-400 border-t-transparent rounded-full;
+  }
+
+  .spinner div {
+    @apply animate-spin;
+    @apply top-24 left-24;
+  }
+
+  .spinnerRolling {
+    @apply w-full h-48 inline-block;
+    @apply overflow-hidden;
+    @apply bg-transparent;
+  }
+  .spinner {
+    @apply w-full h-full;
+    @apply relative;
+    @apply scale-100;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+  }
+  .spinner div {
+    @apply box-content;
+  }
 }
+
+/* @keyframes spinner {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+} */
