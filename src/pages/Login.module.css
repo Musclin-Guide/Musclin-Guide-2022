@@ -1,0 +1,17 @@
+.Contents{
+  @apply flex flex-col justify-center items-start gap-8;
+}
+.Header{
+  @apply text-3xl leading-9 font-semibold;
+}
+.Form{
+  @apply w-full;
+  @apply flex flex-col items-center gap-4;
+}
+.Links{
+  @apply w-full;
+  @apply flex justify-end items-center gap-2;
+}
+.Link{
+  @apply font-normal text-sm leading-4 text-neutral-500;
+}
