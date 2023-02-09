@@ -11,7 +11,8 @@ import { LocalKey, LocalStorage } from 'ts-localstorage';
 export default function CocktailResultPage() {
   const [fetchData, setfetchData] = useState<any[]>();
   const searchParams = useSearchParams();
-  const searchQueryWord = searchParams.get('result');
+  const searchQueryWord = searchParams.get('id');
+  console.log(searchQueryWord);
   const key = new LocalKey('search_result', '');
 
   async function filterData() {
@@ -20,9 +21,6 @@ export default function CocktailResultPage() {
       .select('*')
       .order('created_at', { ascending: true })
       .or(`subject.like.%${searchQueryWord}%,article.like.%${searchQueryWord}%`)
-      // .like('article', `%${searchQueryWord}%`) --> 한 통신에 두 번 사용할 수 없는 듯합니다.
-      // .like('subject', `%${searchQueryWord}%`)
-      // .textSearch('subject', `${queries}`); --> 태그전략에 좋을 것 같습니다. 검색 인덱스 최적화가 안됨
       .limit(50);
 
     if (cocktail !== null) {
@@ -63,7 +61,7 @@ export default function CocktailResultPage() {
                     </div>
                     <ImagedListItem
                       key={item + `${searchQueryWord}`}
-                      href={'/'}
+                      href={`/cocktail/${item.subject}`}
                       contentsStyle="Row"
                       imgWrapper="Row"
                       listWrapper="Row"
@@ -76,6 +74,7 @@ export default function CocktailResultPage() {
                           ? item.cocktail_img[0].img1
                           : '/assets/noImage.png'
                       }
+                      alt={`${item.subject}에 대한 상세 게시물내용`}
                     />
                   </>
                 );

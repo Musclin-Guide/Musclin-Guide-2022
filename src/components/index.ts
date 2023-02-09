@@ -26,3 +26,4 @@ export * from '@components/ActiveLink/index';
 export * from '@components/Widget/index';
 export * from '@components/ProfileUploader/ProfileUploader';
 export * from '@components/Waiting/index';
+export * from '@components/TextArea/TextArea';

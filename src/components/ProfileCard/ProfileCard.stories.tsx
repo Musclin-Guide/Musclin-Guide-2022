@@ -16,7 +16,7 @@ export const Primary = Template.bind({});
 Primary.storyName = 'demouser1';
 Primary.args = {
   userName: '김삿갓2',
-  userCareer: '2',
+  userCareer: '2년',
 };
 
 export const Under1year = Template.bind({});
@@ -24,5 +24,5 @@ export const Under1year = Template.bind({});
 Under1year.storyName = 'demouser2';
 Under1year.args = {
   userName: '김삿갓2',
-  userCareer: '0',
+  userCareer: '3년',
 };

@@ -30,7 +30,7 @@
 }
 
 .Validation {
-  @apply text-base leading-6 font-normal;
+  @apply text-sm leading-6 font-normal;
 }
 
 .ValidError {

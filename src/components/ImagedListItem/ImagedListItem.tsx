@@ -9,9 +9,10 @@ import { ALinkMenuItem as ALink } from '@components/index';
 export interface ImagedListItem extends ListItemProps {
   imgWrapper: 'Row' | 'Col';
   listWrapper: 'Row' | 'Col';
-  href: string;
+  href: string | object;
   className?: string;
   src: string;
+  alt: string;
 }
 
 const imgWrappers = {
@@ -34,6 +35,7 @@ export const ImagedListItem = ({
   subject,
   time,
   src,
+  alt,
   href = '/',
   likeQuantity,
 }: ImagedListItem): JSX.Element => {
@@ -46,7 +48,7 @@ export const ImagedListItem = ({
       <li className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
         <Image
           src={src}
-          alt={'대체 텍스트'}
+          alt={alt}
           fill
           className={clsx(styles.imgCommon, className)}
           placeholder="blur"

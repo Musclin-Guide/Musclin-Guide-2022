@@ -1,20 +1,20 @@
-.Button{
+.Button {
   @apply bg-white rounded-lg z-10;
   @apply relative;
   @apply flex justify-center items-center;
 }
-.HasImgStyle{
-  @apply border-solid border-neutral-700 border-2;
+.HasImgStyle {
+  @apply border-solid border-neutral-200 border-2;
 }
-.NoImgStyle{
-  @apply border-dashed border-2 border-neutral-400;
+.NoImgStyle {
+  @apply border-dashed border-2 border-neutral-200;
 }
-.PrimarySize{
+.PrimarySize {
   @apply w-32 h-32;
 }
-.SmallSize{
+.SmallSize {
   @apply w-[100px] h-[100px];
 }
-.ImgPlaceholderStyle{
+.ImgPlaceholderStyle {
   @apply object-cover object-center rounded-lg -z-10;
 }

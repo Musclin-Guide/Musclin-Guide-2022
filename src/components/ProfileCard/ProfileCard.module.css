@@ -1,5 +1,5 @@
 .wrapper {
-  @apply inline-flex justify-center items-center gap-4;
+  @apply inline-flex justify-center items-center gap-4 py-4;
 }
 
 .wrapper2 {

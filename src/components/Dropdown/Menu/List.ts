@@ -7,7 +7,7 @@ export const List = [
   },
   {
     id: 2,
-    href: '/cocktail/creactCocktail',
+    href: '/cocktail/createCocktail',
     text: '칵테일 작성',
     isExternal: false,
   },

@@ -2,7 +2,7 @@ import ItemStyle from '@components/CommentList/CommentListItem/CommentListItem.m
 import { useMemo } from 'react';
 export interface CommentListItemProps {
   writer: string;
-  date: Date;
+  date: string | number;
   comment: string;
 }
 export const CommentListItem = ({
@@ -10,18 +10,19 @@ export const CommentListItem = ({
   date,
   comment,
 }: CommentListItemProps): JSX.Element => {
-  const dateString = useMemo(
-    () =>
-      `${date.getFullYear()}/${
-        date.getMonth() + 1
-      }/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`,
-    [date]
-  );
+  //DB에 작성시간 나와있어요..
+  // const dateString = useMemo(
+  //   () =>
+  //     `${date.getFullYear()}/${
+  //       date.getMonth() + 1
+  //     }/${date.getDate()} ${date.getHours()}:${date.getMinutes()}`,
+  //   [date]
+  // );
   return (
     <div className={ItemStyle.CommentListItem}>
       <div className={ItemStyle.Info}>
-        <span className={ItemStyle.Writer}>{writer},</span>
-        <span className={ItemStyle.Date}>{dateString}</span>
+        <span className={ItemStyle.Writer}>{writer}</span>
+        <span className={ItemStyle.Date}>{date}</span>
       </div>
       <p className={ItemStyle.Comment}>{comment}</p>
     </div>

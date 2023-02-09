@@ -20,8 +20,8 @@ const Template: Story = (args) => {
 
 export const CommentStory = Template.bind({});
 CommentStory.storyName = 'Comment';
-CommentStory.args = {
-  comment: '최고에요!',
-  writer: 'Lee',
-  date: new Date(),
-};
+// CommentStory.args = {
+//   comment: '최고에요!',
+//   writer: 'Lee',
+//   date: '2022/23/23',
+// };

@@ -2,6 +2,11 @@ import { ImageInputButton } from '@components/ImageInputList/ImageInputButton/Im
 import { Story, Meta } from '@storybook/react';
 import { addFigmaToken } from '@utils/addFigmaToken';
 import { useState } from 'react';
+import {
+  ValidationRule,
+  Validate,
+  UseFormRegisterReturn,
+} from 'react-hook-form';
 
 export default {
   title: 'Components/ImageInputList/Button',
@@ -18,6 +23,7 @@ const Template: Story = (args) => {
       formData={formData}
       file={args.file}
       setDatas={setDatas}
+      name={args.name}
     ></ImageInputButton>
   );
 };
@@ -32,7 +38,3 @@ ButtonSmall.storyName = 'ButtonSmall';
 ButtonSmall.args = {
   size: 'small',
 };
-addFigmaToken(
-  ButtonPrimary,
-  'https://www.figma.com/file/9Q9d6I31A1lMp11UMLZjA1/wireFrames(1st-Cycle)?node-id=14%3A7850&t=2YQHwwS6LdNPrrw0-4'
-);

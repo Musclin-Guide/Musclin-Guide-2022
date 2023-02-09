@@ -6,17 +6,27 @@ import { Layout } from '@components/Layout/Layout';
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '@lib/supabase/supabase';
 import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
+import { loginState } from '@atoms/Login';
+import { useRecoilState } from 'recoil';
+export { loginState } from '@atoms/Login';
 
-export default function Cocktail() {
+function CocktailPage() {
   const router = useRouter();
   const [datas, setDatas] = useState<any[]>();
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isLoggedIn, setLoggedIn] = useRecoilState(loginState);
+  const result = (router.query.id as string[]) || [];
 
   useEffect(() => {
     getData();
     inputValue();
   }, []);
 
+  const { data, isLoading } = useQuery(['Articles'], () => getData(), {
+    staleTime: 5000, // 5초
+    cacheTime: Infinity, // 제한 없음
+  });
   const getData = async () => {
     const { data: cocktail, error } = await supabase
       .from('cocktail')
@@ -51,9 +61,9 @@ export default function Cocktail() {
             onClick={() => {
               if (inputRef.current !== null && inputRef.current.value) {
                 router.push({
-                  pathname: '/cocktail/[result]',
+                  pathname: `/cocktail/result/${result}`,
                   query: {
-                    result: `${inputValue()}`,
+                    id: `${inputValue()}`,
                   },
                 });
               } else {
@@ -73,7 +83,12 @@ export default function Cocktail() {
               return (
                 <ImagedListItem
                   key={item.article_number}
-                  href={'/'}
+                  href={{
+                    pathname: `/cocktail/post/${result}`,
+                    query: {
+                      id: encodeURIComponent(item.cocktail_uuid),
+                    },
+                  }}
                   contentsStyle="Row"
                   imgWrapper="Row"
                   listWrapper="Row"
@@ -83,9 +98,10 @@ export default function Cocktail() {
                   wrapperStyle="Row"
                   src={
                     item.cocktail_img[0]
-                      ? item.cocktail_img[0].img1
+                      ? item.cocktail_img[0].img
                       : '/assets/noImage.png'
                   }
+                  alt={item.subject}
                 />
               );
             })}
@@ -93,3 +109,5 @@ export default function Cocktail() {
     </div>
   );
 }
+
+export default CocktailPage;

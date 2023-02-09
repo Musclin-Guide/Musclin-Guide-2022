@@ -3,6 +3,7 @@
   @apply w-[5.625rem] h-[5.625rem];
   @apply border-t border-neutral-100;
   @apply text-sm;
+  @apply z-50;
   @apply bg-white;
 }
 

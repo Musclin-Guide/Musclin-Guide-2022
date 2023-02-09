@@ -24,8 +24,7 @@ export default function Login() {
     });
     if (!error) {
       router.push('/');
-    }
-    {
+    } else {
       alert('로그인 정보를 다시 확인해주세요');
     }
   };
@@ -93,7 +92,7 @@ export default function Login() {
           </Button>
         </form>
         <div className={style.Links}>
-          <ALink className={style.Link} href="/password" isExternal={false}>
+          <ALink className={style.Link} href="/findpassword" isExternal={false}>
             비밀번호 찾기
           </ALink>
           <ALink className={style.Link} href="/signup" isExternal={false}>

@@ -13,32 +13,44 @@ import { HiOutlinePencilAlt, HiOutlineX } from 'react-icons/hi';
 import buttonStyle from '@components/ImageInputList/ImageInputButton/ImageInputButton.module.css';
 import clsx from 'clsx';
 import { Button } from '@components/Button';
+import { UseFormRegister, FieldValues } from 'react-hook-form';
 
 const FILE_SIZE_MAX_LIMIT = 5 * 1024 * 1024;
+
 interface ImageInputButtonProps {
   file?: File;
   size?: 'primary' | 'small';
   setDatas: Dispatch<SetStateAction<File[] | undefined>>;
-  formData: FormData;
+  formData?: FormData;
+  register?: UseFormRegister<FieldValues>;
+  name: string;
 }
 
 export const ImageInputButton = ({
   size = 'primary',
   file,
+  name,
   formData,
   setDatas,
+  register,
 }: ImageInputButtonProps): JSX.Element => {
   const [imgSrc, setImgSrc] = useState<string>('');
+  const fields = register(name);
+  const { onChange, onBlur, ref, ...newFields } = fields;
+  let inputRef: HTMLInputElement | null;
   const setImg = useCallback((newFile: File) => {
     const reader = new FileReader();
     reader.readAsDataURL(newFile);
     reader.onloadend = () => {
       setImgSrc(reader.result as string);
     };
+    reader.onload = () => {
+      onChange({ target: { name, vlaue: reader.result } });
+    };
   }, []);
   const handleAdd = useCallback(
     (newFile: File) => {
-      formData.append(newFile.name, newFile);
+      formData?.append(newFile.name, newFile);
       setDatas((current) => (current ? [...current, newFile] : [newFile]));
     },
     [formData, setDatas]
@@ -47,8 +59,8 @@ export const ImageInputButton = ({
   const handleUpdate = useCallback(
     (newFile: File) => {
       if (file) {
-        formData.delete(file.name);
-        formData.set(newFile.name, newFile);
+        formData?.delete(file.name);
+        formData?.set(newFile.name, newFile);
         setDatas((current) => {
           return current?.map((data) => {
             if (data.name === file.name) {
@@ -64,6 +76,14 @@ export const ImageInputButton = ({
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const newFile = (e.target.files as FileList)[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        onChange({ target: { name, vlaue: reader.result } });
+      };
+
+      if (e?.target?.files?.[0]) {
+        reader.readAsDataURL(newFile);
+      }
       if (newFile === undefined) {
         return;
       }
@@ -71,7 +91,7 @@ export const ImageInputButton = ({
         alert('업로드 가능한 최대 용량은 5MB입니다. ');
         return;
       }
-      if (formData.has(newFile.name)) {
+      if (formData?.has(newFile.name)) {
         alert('동일한 이름의 파일을 등록할수 없습니다.');
         return;
       }
@@ -86,7 +106,7 @@ export const ImageInputButton = ({
   // 삭제 버튼 클릭 핸들러
   const handleDelete = useCallback(() => {
     if (file) {
-      formData.delete(file.name);
+      formData?.delete(file.name);
       setDatas((current) => {
         return current?.filter((data) => {
           if (data.name === file.name) {
@@ -122,6 +142,11 @@ export const ImageInputButton = ({
         type="file"
         alt="inputImage"
         form="ImageListInputForm"
+        ref={(elem) => {
+          inputRef = elem;
+          ref(elem);
+        }}
+        {...newFields}
       />
       <div className={buttonStyleClassName}>
         <ImagePlaceholder

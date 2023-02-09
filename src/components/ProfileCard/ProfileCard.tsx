@@ -1,27 +1,22 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import demo from '@public/assets/profile_demo.jpg';
 import styles from '@components/ProfileCard/ProfileCard.module.css';
 
 interface ProfileCardProps {
   userName?: string;
   userCareer: string;
-  src?: string;
-  undertext?: string;
+  src?: StaticImageData | string;
 }
 export const ProfileCard = ({
   userName,
   userCareer,
-  undertext = '년',
+  src = demo,
   ...props
 }: ProfileCardProps) => {
-  if (userCareer < '1') {
-    userCareer = '1';
-    undertext = '년 이하';
-  }
   return (
-    <div className={styles.wrapper}>
+    <div role={'userprofile'} className={styles.wrapper}>
       <Image
-        src={demo}
+        src={src}
         alt={'유저 프로필 이미지'}
         className="rounded-full"
         width={56}
@@ -30,8 +25,7 @@ export const ProfileCard = ({
       <div className={styles.wrapper2}>
         <span className={styles.username}>{userName} </span>
         <span className={styles.usercareer}>
-          운동경력 {userCareer}
-          <span>{undertext}</span>
+          <span> 운동경력 {userCareer}</span>
         </span>
       </div>
     </div>
