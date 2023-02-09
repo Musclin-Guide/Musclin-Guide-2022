@@ -3,7 +3,6 @@ import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
 import { Session } from '@supabase/supabase-js';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-
 import { supabase } from '@lib/supabase';
 import { useRouter } from 'next/router';
 

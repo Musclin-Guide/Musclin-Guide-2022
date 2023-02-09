@@ -1,11 +1,10 @@
-import Head from 'next/head';
 import { Button } from '@components/Button';
 import { ImagedListItem } from '@components/ImagedListItem';
 import { Layout } from '@components/Layout/Layout';
 import styles from '@pages/homepage.module.css';
 import { supabase } from '@lib/supabase';
 import { useEffect, useState } from 'react';
-import { QueryClient, useMutation, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { date } from '@utils/dateCalculate';
@@ -17,7 +16,7 @@ async function getCocktails() {
     .from('cocktail')
     .select('*')
     .order('like', { ascending: false })
-    .limit(5);
+    .limit(3);
   return cocktail;
 }
 
@@ -77,11 +76,7 @@ export default function Home() {
                           id: encodeURIComponent(cocktail.cocktail_uuid),
                         },
                       }}
-                      src={
-                        cocktail.cocktail_img[0]
-                          ? cocktail.cocktail_img[0].img
-                          : '/assets/noImage.png'
-                      }
+                      src={'/assets/no_image.png'}
                       count={cocktail.like}
                       alt={cocktail.article}
                     />

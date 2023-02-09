@@ -11,9 +11,9 @@ import { loginState } from '@atoms/Login';
 import { useRecoilState } from 'recoil';
 export { loginState } from '@atoms/Login';
 
-function CocktailPage() {
+export default function CocktailPage() {
   const router = useRouter();
-  const [datas, setDatas] = useState<any[]>();
+  const [datas, setDatas] = useState<any[] | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [isLoggedIn, setLoggedIn] = useRecoilState(loginState);
   const result = (router.query.id as string[]) || [];
@@ -96,11 +96,7 @@ function CocktailPage() {
                   time={date(Number(new Date(item.created_at)))}
                   count={item.like}
                   wrapperStyle="Row"
-                  src={
-                    item.cocktail_img[0]
-                      ? item.cocktail_img[0].img
-                      : '/assets/noImage.png'
-                  }
+                  src={'/assets/no_image.png'}
                   alt={item.subject}
                 />
               );
@@ -109,5 +105,3 @@ function CocktailPage() {
     </div>
   );
 }
-
-export default CocktailPage;

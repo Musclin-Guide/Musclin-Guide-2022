@@ -1,27 +1,10 @@
-// const { data, error } = await supabase.auth.updateUser({
-//   password: new_password,
-// });
-
-/**
- * Step 1: Send the user an email to get a password reset token.
- * This email contains a link which sends the user back to your application.
- */
-
-/**
- * Step 2: Once the user is redirected back to your application,
- * ask the user to reset their password.
- */
-import { Layout } from '@components/Layout/Layout';
 import { Button } from '@components/Button';
 import { TextInput } from '@components/TextInput';
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { HiKey } from 'react-icons/hi';
-import { ALinkMenuItem as ALink } from '@components/index';
+import { useEffect, useState } from 'react';
 import style from '@pages/Login.module.css';
 import { supabase } from '@lib/supabase';
 import { useForm, FieldValues } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import { AuthChangeEvent, User, UserAttributes } from '@supabase/supabase-js';
+import { AuthChangeEvent, User } from '@supabase/supabase-js';
 import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
 export default function FindPassword() {
   const {

@@ -2,8 +2,7 @@ import { CareerInput, TextInput } from '@components/index';
 import { supabase } from '@lib/supabase/index';
 import styles from '@components/CareerInput/CareerInput.module.css';
 import type { UserResponse, User } from '@supabase/supabase-js';
-
-import { ChangeEvent, useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import clsx from 'clsx';
 
@@ -20,7 +19,7 @@ export default function Mypage({ type, disabled }: MypageProps) {
   const { nickname } = value;
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({ mode: 'onBlur' });
   // const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {

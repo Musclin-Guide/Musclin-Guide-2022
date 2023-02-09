@@ -6,10 +6,9 @@ import {
   TextArea,
   Waiting,
 } from '@components/index';
-import { getDate } from '@utils/getDate';
+import { date } from '@utils/dateCalculate';
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { Key, useEffect, useRef, useState } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { loginState } from '.';
@@ -22,9 +21,8 @@ import { supabase } from '@lib/supabase';
 import 'swiper/css/bundle';
 import { SubHeaderLayout } from '@components/Layout/SubHeaderLayout';
 import { useQuery } from 'react-query';
-import ItemStyle from '@components/CommentList/CommentListItem/CommentListItem.module.css';
 import clsx from 'clsx';
-import { Session, User } from '@supabase/supabase-js';
+import { Session } from '@supabase/supabase-js';
 
 export default function Post() {
   /* ---------------------------------- 상태 관리 ---------------------------------- */
@@ -90,7 +88,9 @@ export default function Post() {
     getUser();
   }, []);
 
-  const { data, isLoading } = useQuery(['Cocktails'], () => getArticle());
+  const { data, isLoading } = useQuery(['Cocktails'], () => getArticle(), {
+    staleTime: Infinity,
+  });
 
   return (
     <SubHeaderLayout subject={'칵테일 게시물 상세 페이지입니다.'}>
@@ -109,36 +109,53 @@ export default function Post() {
                   <Swiper
                     spaceBetween={1}
                     slidesPerView={1}
-                    // onSlideChange={() => console.log('slide change')}
-                    // onSwiper={(swiper) => console.log(swiper)}
                     pagination={{ clickable: true }}
                     keyboard={true}
                     centeredSlides={true}
                     centeredSlidesBounds={true}
                   >
-                    {data[0].cocktail_img.map((image: any) => (
-                      <>
-                        <SwiperSlide
-                          key={`cocktail${Math.random(1, 1000)}_${image.img}`}
-                          className={styles.swiperslide}
-                        >
-                          <div className="w-[20rem] h-[20rem] flex justify-center items-center">
-                            <Image
-                              src={image.storage_url}
-                              width={320}
-                              height={320}
-                              alt={'유저가 업로드한 이미지'}
-                            />
-                          </div>
-                        </SwiperSlide>
-                        <Image
-                          src={image.img}
-                          width={320}
-                          height={320}
-                          alt={'유저가 업로드한 이미지'}
-                        />
-                      </>
-                    ))}
+                    <>
+                      <SwiperSlide
+                        key={`cocktail${Math.random()}}`}
+                        className={styles.swiperslide}
+                      >
+                        <div className="w-[20rem] h-[20rem] flex justify-center items-center">
+                          <Image
+                            src={'/assets/no_image.png'}
+                            width={320}
+                            height={320}
+                            alt={'유저가 업로드한 이미지'}
+                          />
+                        </div>
+                      </SwiperSlide>
+                      <Image
+                        src={'/assets/no_image.png'}
+                        width={320}
+                        height={320}
+                        alt={'유저가 업로드한 이미지'}
+                      />
+                    </>
+                    <>
+                      <SwiperSlide
+                        key={`cocktail${Math.random()}}`}
+                        className={styles.swiperslide}
+                      >
+                        <div className="w-[20rem] h-[20rem] flex justify-center items-center">
+                          <Image
+                            src={'/assets/no_image.png'}
+                            width={320}
+                            height={320}
+                            alt={'유저가 업로드한 이미지'}
+                          />
+                        </div>
+                      </SwiperSlide>
+                      <Image
+                        src={'/assets/no_image.png'}
+                        width={320}
+                        height={320}
+                        alt={'유저가 업로드한 이미지'}
+                      />
+                    </>
                   </Swiper>
 
                   <LikeToggleButton
@@ -248,32 +265,40 @@ export default function Post() {
                     )}
                   </div>
                   {data &&
-                    data[0].cocktail_comment.map((comment: any) => (
-                      <section
-                        key={comment.comment_number}
-                        className={'relative'}
-                      >
-                        {comment.user_id === session?.user.id && (
-                          <Button
-                            className="absolute right-0 top-14"
-                            size="xxs"
-                            onClick={async () => {
-                              await supabase
-                                .from('cocktail_comment')
-                                .delete()
-                                .eq('user_id', comment.user_id);
-                            }}
-                          >
-                            삭제
-                          </Button>
-                        )}
-                        <CommentListItem
-                          writer={comment.profile.nickname}
-                          date={getDate(comment.created_at)}
-                          comment={comment.body_comment}
-                        />
-                      </section>
-                    ))}
+                    data[0].cocktail_comment.map(
+                      (comment: {
+                        comment_number: Key | null | undefined;
+                        user_id: string | undefined;
+                        profile: { nickname: string };
+                        created_at: string | number | Date;
+                        body_comment: string;
+                      }) => (
+                        <section
+                          key={comment.comment_number}
+                          className={'relative'}
+                        >
+                          {comment.user_id === session?.user.id && (
+                            <Button
+                              className="absolute right-0 top-14"
+                              size="xxs"
+                              onClick={async () => {
+                                await supabase
+                                  .from('cocktail_comment')
+                                  .delete()
+                                  .eq('user_id', comment.user_id);
+                              }}
+                            >
+                              삭제
+                            </Button>
+                          )}
+                          <CommentListItem
+                            writer={comment.profile.nickname}
+                            date={date(Number(new Date(comment.created_at)))}
+                            comment={comment.body_comment}
+                          />
+                        </section>
+                      )
+                    )}
                   {data[0].cocktail_comment.length === 0 && (
                     <div role={'no_comment'} className={'mt-24 text-center'}>
                       <span className="text-neutral-400">

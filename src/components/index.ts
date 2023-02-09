@@ -10,7 +10,6 @@ export * from '@components/EditButton/index';
 export * from '@components/FeaturedSlide/index';
 export * from '@components/Header/index';
 export * from '@components/ImagedListItem/index';
-export * from '@components/ItemControl/index';
 export * from '@components/LikeToggleButton/index';
 export * from '@components/ListItem/index';
 export * from '@components/ListPlaceholder/index';

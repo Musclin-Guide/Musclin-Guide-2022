@@ -22,7 +22,7 @@ interface ImageInputButtonProps {
   size?: 'primary' | 'small';
   setDatas: Dispatch<SetStateAction<File[] | undefined>>;
   formData?: FormData;
-  register?: UseFormRegister<FieldValues>;
+  register: UseFormRegister<FieldValues>;
   name: string;
 }
 
@@ -35,17 +35,16 @@ export const ImageInputButton = ({
   register,
 }: ImageInputButtonProps): JSX.Element => {
   const [imgSrc, setImgSrc] = useState<string>('');
+
   const fields = register(name);
   const { onChange, onBlur, ref, ...newFields } = fields;
+
   let inputRef: HTMLInputElement | null;
   const setImg = useCallback((newFile: File) => {
     const reader = new FileReader();
     reader.readAsDataURL(newFile);
     reader.onloadend = () => {
       setImgSrc(reader.result as string);
-    };
-    reader.onload = () => {
-      onChange({ target: { name, vlaue: reader.result } });
     };
   }, []);
   const handleAdd = useCallback(

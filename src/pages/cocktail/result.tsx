@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { ImagedListItem, ListPlacehoder } from '@components/index';
 import { SubHeaderLayout } from '@components/Layout/SubHeaderLayout';
 import { supabase } from '@lib/supabase/supabase';
@@ -6,15 +5,16 @@ import { date } from '@utils/dateCalculate';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import styles from '@components/TabBar/TabBar.module.css';
+import { useRouter } from 'next/router';
 import { LocalKey, LocalStorage } from 'ts-localstorage';
 
 export default function CocktailResultPage() {
   const [fetchData, setfetchData] = useState<any[]>();
   const searchParams = useSearchParams();
   const searchQueryWord = searchParams.get('id');
-  console.log(searchQueryWord);
+  const router = useRouter();
   const key = new LocalKey('search_result', '');
-
+  const result = (router.query.id as string[]) || [];
   async function filterData() {
     const { data: cocktail, error } = await supabase
       .from('cocktail')
@@ -61,7 +61,12 @@ export default function CocktailResultPage() {
                     </div>
                     <ImagedListItem
                       key={item + `${searchQueryWord}`}
-                      href={`/cocktail/${item.subject}`}
+                      href={{
+                        pathname: `/cocktail/post/${result}`,
+                        query: {
+                          id: encodeURIComponent(item.cocktail_uuid),
+                        },
+                      }}
                       contentsStyle="Row"
                       imgWrapper="Row"
                       listWrapper="Row"
@@ -69,11 +74,7 @@ export default function CocktailResultPage() {
                       time={date(Number(new Date(item.created_at)))}
                       count={item.like}
                       wrapperStyle="Row"
-                      src={
-                        item.cocktail_img[0]
-                          ? item.cocktail_img[0].img1
-                          : '/assets/noImage.png'
-                      }
+                      src={'/assets/no_image.png'}
                       alt={`${item.subject}에 대한 상세 게시물내용`}
                     />
                   </>

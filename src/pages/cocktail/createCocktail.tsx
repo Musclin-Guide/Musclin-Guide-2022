@@ -1,17 +1,16 @@
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, ImagedListItem, TextArea, TextInput } from '@components/index';
+import { Button, TextArea, TextInput } from '@components/index';
 import { ImageInputList } from '@components/ImageInputList/ImageInputList';
 import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
-import { SetStateAction, useEffect, useRef, useState } from 'react';
-import { ImageInputButton } from '@components/ImageInputList/ImageInputButton/ImageInputButton';
+import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { loginState } from '@atoms/Login';
 import { useRouter } from 'next/router';
 import { useForm, FieldValues } from 'react-hook-form';
 import { widgetToggle } from '@atoms/Widget';
 import { supabase } from '@lib/supabase';
-import { Session, User, UserResponse } from '@supabase/supabase-js';
+import { Session } from '@supabase/supabase-js';
 
 export default function CreateCocktail() {
   const isLogin = useRecoilValue(loginState);
@@ -51,9 +50,16 @@ export default function CreateCocktail() {
         user_id: sseion.session?.user.id,
         subject: e.subject,
         article: e.article,
-        cocktail_img: e.image,
       })
       .select();
+    for (const file of e.image) {
+      const { data: avatars } = await supabase
+        .from('cocktail')
+        .update({ cocktail_img: file.value })
+        .eq('subject', e.subject);
+
+      return avatars;
+    }
     console.log(e);
   };
   return (

@@ -1,7 +1,6 @@
 import { Layout } from '@components/Layout/Layout';
 import { Button } from '@components/Button';
 import { TextInput } from '@components/TextInput';
-import { useCallback, useState } from 'react';
 import { HiKey } from 'react-icons/hi';
 import { ALinkMenuItem as ALink } from '@components/index';
 import style from '@pages/Login.module.css';
