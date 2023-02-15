@@ -3,14 +3,13 @@
 import { Button, TextArea, TextInput } from '@components/index';
 import { ImageInputList } from '@components/ImageInputList/ImageInputList';
 import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { loginState } from '@atoms/Login';
 import { useRouter } from 'next/router';
 import { useForm, FieldValues } from 'react-hook-form';
 import { widgetToggle } from '@atoms/Widget';
 import { supabase } from '@lib/supabase';
-import { Session } from '@supabase/supabase-js';
 
 export default function CreateCocktail() {
   const isLogin = useRecoilValue(loginState);

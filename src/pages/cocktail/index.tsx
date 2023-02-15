@@ -1,9 +1,9 @@
 import { EditButton, ImagedListItem } from '@components/index';
 import styles from '@components/TextInput/TextInput.module.css';
 import { date } from '@utils/dateCalculate';
-import { BsSearch, DiVim } from 'react-icons/all';
+import { BsSearch } from 'react-icons/all';
 import { Layout } from '@components/Layout/Layout';
-import { useState, useEffect, useRef, MutableRefObject } from 'react';
+import { useRef, MutableRefObject } from 'react';
 import { supabase } from '@lib/supabase/supabase';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';

@@ -8,15 +8,7 @@ import {
 } from '@components/index';
 import { date } from '@utils/dateCalculate';
 import { useSearchParams } from 'next/navigation';
-import {
-  ForwardedRef,
-  forwardRef,
-  Key,
-  KeyboardEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Key, useEffect, useRef, useState } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { loginState } from '@atoms/Login';
@@ -28,7 +20,7 @@ import SwiperCore, { Keyboard, Navigation, Pagination } from 'swiper';
 import { supabase } from '@lib/supabase';
 import 'swiper/css/bundle';
 import { SubHeaderLayout } from '@components/Layout/SubHeaderLayout';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import clsx from 'clsx';
 import { Session } from '@supabase/supabase-js';
 import { useRouter } from 'next/router';
@@ -50,33 +42,66 @@ export default function Post() {
   const { register, handleSubmit, reset } = useForm<FieldValues>();
   const { ref } = register('comment');
   const router = useRouter();
-  const { data, isLoading } = useQuery(['Cocktails'], () => getArticle());
+  const queryClient = useQueryClient();
+
+  // queryClient.invalidateQueries({ queryKey: ['Cocktails'] });
+
   /* ---------------------------------- 핸들러함수 --------------------------------- */
 
+  const postComment = useMutation(
+    async (insertdata: {
+      related_article_number: any;
+      body_comment: string | undefined;
+      user_id: string | undefined;
+    }) => {
+      await supabase.from('cocktail_comment').insert(insertdata).select();
+      reset();
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('Cocktails');
+      },
+    }
+  );
+
+  const deleteComment = useMutation(
+    async (commentNumber: Key | null | undefined) => {
+      await supabase
+        .from('cocktail_comment')
+        .delete()
+        .eq('comment_number', commentNumber);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('Cocktails');
+      },
+    }
+  );
   /* ----------------------------------- 비동기 ---------------------------------- */
+  // console.log(data);
 
   async function getArticle() {
     const { data: cocktail, error } = await supabase
       .from('cocktail')
       .select(
         `*,
-    profile(
-    nickname,career
-    )
-    ,
-    cocktail_comment(
-      *, profile(
-        nickname
-      )
-    )
-  `
+        profile(
+        nickname,career
+        )
+        ,
+        cocktail_comment(
+          *, profile(
+            nickname
+          )
+        )
+      `
       )
 
       .eq('cocktail_uuid', decodeSearchQueryWord);
 
     return cocktail;
   }
-
+  const { data, isLoading } = useQuery(['Cocktails'], () => getArticle());
   useEffect(() => {
     const ActiveCocktailTabBar = document.querySelectorAll(
       '.TabBar_default__Dx5I1'
@@ -212,18 +237,14 @@ export default function Post() {
                         <>
                           <form
                             id="writeComment"
-                            onSubmit={handleSubmit(async (e: FieldValues) => {
-                              console.log(e.comment);
-                              await supabase
-                                .from('cocktail_comment')
-                                .insert({
-                                  related_article_number:
-                                    data[0].article_number,
-                                  body_comment: textArea.current?.value,
-                                  user_id: session?.user.id,
-                                })
-                                .select();
-                              reset();
+                            onSubmit={handleSubmit(() => {
+                              const insertData = {
+                                related_article_number:
+                                  data && data[0].article_number,
+                                body_comment: textArea.current?.value,
+                                user_id: session?.user.id,
+                              };
+                              postComment.mutate(insertData);
                             })}
                             className="relative"
                           >
@@ -276,7 +297,7 @@ export default function Post() {
                   {data &&
                     data[0].cocktail_comment.map(
                       (comment: {
-                        comment_number: Key | null | undefined;
+                        comment_number: Key | null;
                         user_id: string | undefined;
                         profile: { nickname: string };
                         created_at: string | number | Date;
@@ -290,12 +311,20 @@ export default function Post() {
                             <Button
                               className="absolute right-0 top-14"
                               size="xxs"
-                              onClick={async () => {
-                                await supabase
-                                  .from('cocktail_comment')
-                                  .delete()
-                                  .eq('comment_number', comment.comment_number);
+                              onClick={() => {
+                                const confirmMessage = confirm(
+                                  '댓글을 정말로 삭제 하시겠습니까? 삭제한 댓글은 복구할 수 없습니다'
+                                );
+                                const DeleteNumber = comment.comment_number;
+                                confirmMessage &&
+                                  deleteComment.mutate(DeleteNumber);
                               }}
+                              //   async () => {
+                              //   await supabase
+                              //     .from('cocktail_comment')
+                              //     .delete()
+                              //     .eq('comment_number', comment.comment_number);
+                              // }}
                             >
                               삭제
                             </Button>

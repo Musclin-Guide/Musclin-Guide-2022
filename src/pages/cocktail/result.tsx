@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import styles from '@components/TabBar/TabBar.module.css';
 import { useRouter } from 'next/router';
 import { LocalKey, LocalStorage } from 'ts-localstorage';
+import { useQuery } from 'react-query';
 
 export default function CocktailResultPage() {
   const searchParams = useSearchParams();
@@ -23,41 +24,39 @@ export default function CocktailResultPage() {
       .or(`subject.like.%${searchQueryWord}%,article.like.%${searchQueryWord}%`)
       .limit(50);
 
-    if (cocktail !== null) {
-      setfetchData(cocktail);
-    }
+    return cocktail;
   }
 
+  const { data, isLoading } = useQuery(['Result'], () => filterData());
   useEffect(() => {
-    filterData();
     LocalStorage.setItem(key, JSON.stringify(fetchData));
 
     const ActiveCocktailTabBar = document.querySelectorAll(
       '.TabBar_default__Dx5I1'
     );
     ActiveCocktailTabBar[1].classList.add(styles.active);
-  }, [filterData]);
+  }, []);
   return (
     <div>
       <SubHeaderLayout
         className="s-center"
         subject={`${searchQueryWord}(으로/로) 검색한 결과입니다`}
       >
-        <section key={`result_page`}>
+        <section key={`result_page_${searchQueryWord}`}>
           <h2 className="text-neutral-500">
             <strong className="text-lg text-primary-default">{`"${searchQueryWord}"`}</strong>
             {' 검색결과'}
           </h2>
 
-          {fetchData?.length ? (
-            fetchData
+          {data?.length ? (
+            data
               .slice(0)
               .reverse()
               .map((item) => {
                 return (
                   <>
                     <ImagedListItem
-                      key={`item_${searchQueryWord}`}
+                      key={`${item.cocktail_uuid}`}
                       href={{
                         pathname: `/cocktail/post/${result}`,
                         query: {

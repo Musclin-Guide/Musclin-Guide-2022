@@ -1,6 +1,5 @@
 import { Button } from '@components/Button';
 import { ErrorLayout } from '@components/Layout/ErrorLayout';
-import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
