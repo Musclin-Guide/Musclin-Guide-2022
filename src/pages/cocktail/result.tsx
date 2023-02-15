@@ -9,12 +9,12 @@ import { useRouter } from 'next/router';
 import { LocalKey, LocalStorage } from 'ts-localstorage';
 
 export default function CocktailResultPage() {
-  const [fetchData, setfetchData] = useState<any[]>();
   const searchParams = useSearchParams();
-  const searchQueryWord = searchParams.get('id');
+  const searchQueryWord = searchParams.get('re');
+  const [fetchData, setfetchData] = useState<any[]>();
   const router = useRouter();
   const key = new LocalKey('search_result', '');
-  const result = (router.query.id as string[]) || [];
+  const result = (router.query.id as string) || '';
   async function filterData() {
     const { data: cocktail, error } = await supabase
       .from('cocktail')
@@ -36,14 +36,14 @@ export default function CocktailResultPage() {
       '.TabBar_default__Dx5I1'
     );
     ActiveCocktailTabBar[1].classList.add(styles.active);
-  }, []);
+  }, [filterData]);
   return (
     <div>
       <SubHeaderLayout
         className="s-center"
         subject={`${searchQueryWord}(으로/로) 검색한 결과입니다`}
       >
-        <section>
+        <section key={`result_page`}>
           <h2 className="text-neutral-500">
             <strong className="text-lg text-primary-default">{`"${searchQueryWord}"`}</strong>
             {' 검색결과'}
@@ -56,15 +56,12 @@ export default function CocktailResultPage() {
               .map((item) => {
                 return (
                   <>
-                    <div key={`reult_${item}`} className="sr-only">
-                      {item.article}
-                    </div>
                     <ImagedListItem
-                      key={item + `${searchQueryWord}`}
+                      key={`item_${searchQueryWord}`}
                       href={{
                         pathname: `/cocktail/post/${result}`,
                         query: {
-                          id: encodeURIComponent(item.cocktail_uuid),
+                          id: item.cocktail_uuid,
                         },
                       }}
                       contentsStyle="Row"
@@ -76,6 +73,7 @@ export default function CocktailResultPage() {
                       wrapperStyle="Row"
                       src={'/assets/no_image.png'}
                       alt={`${item.subject}에 대한 상세 게시물내용`}
+                      id={item}
                     />
                   </>
                 );

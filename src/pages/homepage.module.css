@@ -31,7 +31,7 @@
   @apply flex flex-wrap;
 }
 .Product {
-  @apply flex;
+  @apply flex gap-4;
 }
 .InfoText {
   @apply pt-3;

@@ -162,8 +162,9 @@ export default function AddUserInfo({ size = 'small', name }: ProfileProps) {
                 )}
               />
             </div>
-            <Button type="submit" className="w-full h-10 mt-20">
-              <p className="text-base">추가 정보 업데이트</p>
+            <Button type="submit" className="w-full h-10 mt-20 text-base">
+              {/* <p className="text-base">추가 정보 업데이트</p> */}
+              추가 정보 업데이트
             </Button>
           </fieldset>
         </form>

@@ -18,49 +18,51 @@ interface TextAreaProps {
   onKeyup?: KeyboardEventHandler<HTMLTextAreaElement>;
 }
 
-export const TextArea = forwardRef(
-  (
-    {
-      htmlFor,
-      readOnly,
-      cols = 38,
-      rows = 20,
-      minLength = 10,
-      labelname = '내용',
-      placeholder = '최소 10자 이상 입력해주세요',
-      register,
-      name,
-      className,
-      onKeyup,
-    }: TextAreaProps,
-    ref: ForwardedRef<HTMLTextAreaElement>
-  ) => {
-    return (
-      <>
-        <label className={clsx(TextInput.Label, 'mt-4 mb-1')} htmlFor={htmlFor}>
-          {!readOnly && labelname}
-        </label>
-        <textarea
-          onKeyUp={onKeyup}
-          ref={ref}
-          readOnly={readOnly}
-          required
-          autoCorrect="on"
-          cols={cols}
-          rows={rows}
-          minLength={minLength}
-          placeholder={placeholder}
-          id={htmlFor}
-          name={name}
-          className={clsx(
-            TextInput.Input,
-            'noresize',
-            readOnly ? 'outline-none' : 'primaryFocusVisible',
-            className
-          )}
-          {...(register && register(name))}
-        />
-      </>
-    );
-  }
-);
+export const TextArea = forwardRef(function TextArea(
+  props: TextAreaProps,
+  ref: ForwardedRef<HTMLTextAreaElement>
+) {
+  const {
+    htmlFor,
+    readOnly,
+    cols = 38,
+    rows = 20,
+    minLength = 8,
+    labelname = '',
+    placeholder = '최소 10자 이상 입력해주세요',
+    register,
+    name,
+    className,
+    onKeyup,
+  } = props;
+
+  return (
+    <>
+      <label className={clsx(TextInput.Label, 'mt-4 mb-1')} htmlFor={htmlFor}>
+        {!readOnly && labelname}
+      </label>
+      <textarea
+        {...(register && register(name))} // ->issue
+        ref={ref}
+        onKeyUp={onKeyup}
+        readOnly={readOnly}
+        required
+        autoCorrect="on"
+        cols={cols}
+        rows={rows}
+        minLength={minLength}
+        placeholder={placeholder}
+        id={htmlFor}
+        name={name}
+        className={clsx(
+          TextInput.Input,
+          'resize-none',
+          readOnly ? 'outline-none' : 'primaryFocusVisible',
+          className
+        )}
+      />
+    </>
+  );
+});
+
+// TextArea.displayName = 'TextArea';

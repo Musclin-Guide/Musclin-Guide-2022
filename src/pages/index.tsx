@@ -1,5 +1,5 @@
 import { Button } from '@components/Button';
-import { ImagedListItem } from '@components/ImagedListItem';
+import { ImagedListItem } from '@components/index';
 import { Layout } from '@components/Layout/Layout';
 import styles from '@pages/homepage.module.css';
 import { supabase } from '@lib/supabase';
@@ -45,7 +45,7 @@ export default function Home() {
   const result = (router.query.id as string[]) || [];
 
   return (
-    <div>
+    <>
       <Layout subject="머슬랭 가이드 홈페이지 입니다" className="s-center">
         <div className={styles.Contents}>
           <section className={styles.Section}>
@@ -65,9 +65,9 @@ export default function Home() {
                   data.map((cocktail) => (
                     <ImagedListItem
                       key={cocktail.article_number}
+                      id={cocktail.article_number}
                       subject={cocktail.subject}
                       time={date(Number(new Date(cocktail.created_at)))}
-                      // likeQuantity={cocktail.like}
                       imgWrapper="Row"
                       listWrapper="Row"
                       href={{
@@ -78,7 +78,7 @@ export default function Home() {
                       }}
                       src={'/assets/no_image.png'}
                       count={cocktail.like}
-                      alt={cocktail.article}
+                      alt={`${cocktail.subject}에 대한 게시물입니다.`}
                     />
                   ))}
               </ul>
@@ -101,75 +101,44 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="">
-              <ul
-                className={clsx(
-                  styles.Product,
-                  'pointer-events-none blur-md noselect -z-40'
-                )}
-              >
-                <ImagedListItem
-                  contentsStyle="Col"
-                  imgWrapper="Col"
-                  likeQuantity={244}
-                  listWrapper="Col"
-                  subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
-                  time="크레아틴"
-                  wrapperStyle="Col"
-                  count={0}
-                  href={''}
-                  src={'/assets/demo.jpeg'}
-                  alt={''}
-                />
-                <ImagedListItem
-                  contentsStyle="Col"
-                  imgWrapper="Col"
-                  likeQuantity={244}
-                  listWrapper="Col"
-                  subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
-                  time="크레아틴"
-                  wrapperStyle="Col"
-                  count={0}
-                  href={''}
-                  src={'/assets/demo.jpeg'}
-                  alt={''}
-                />
-              </ul>
-              <ul
-                className={clsx(
-                  styles.Product,
-                  'pointer-events-none blur-md noselect -z-40'
-                )}
-              >
-                <ImagedListItem
-                  contentsStyle="Col"
-                  imgWrapper="Col"
-                  likeQuantity={244}
-                  listWrapper="Col"
-                  subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
-                  time="크레아틴"
-                  wrapperStyle="Col"
-                  count={0}
-                  href={''}
-                  src={'/assets/demo.jpeg'}
-                  alt={''}
-                />
-                <ImagedListItem
-                  contentsStyle="Col"
-                  imgWrapper="Col"
-                  likeQuantity={244}
-                  listWrapper="Col"
-                  subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
-                  time="크레아틴"
-                  className="float-right"
-                  wrapperStyle="Col"
-                  count={0}
-                  href={''}
-                  src={'/assets/demo.jpeg'}
-                  alt={''}
-                />
-              </ul>
-            </div>
+            <ul
+              className={clsx(
+                styles.Product
+
+                // 'pointer-events-none blur-md noselect -z-40'
+              )}
+            >
+              <ImagedListItem
+                contentsStyle="Col"
+                imgWrapper="Col"
+                likeQuantity={244}
+                listWrapper="Col"
+                subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+                time="크레아틴"
+                wrapperStyle="Col"
+                count={0}
+                href={''}
+                src={'/assets/demo.jpeg'}
+                alt={''}
+                id={'item1'}
+              />
+              <ImagedListItem
+                contentsStyle="Col"
+                imgWrapper="Col"
+                likeQuantity={244}
+                listWrapper="Col"
+                subject="고양이가 고양고양해서 고양시 스타필드 하남시 스타필드"
+                time="크레아틴"
+                className="float-right"
+                wrapperStyle="Col"
+                count={0}
+                href={''}
+                src={'/assets/demo.jpeg'}
+                alt={''}
+                id={'item2'}
+              />
+            </ul>
+
             <section className="flex flex-col h-32 rounded-md justify-center items-center text-center z-10">
               <h2>더 많은 정보를 얻고싶다면?</h2>
               <Button size="base">로그인하러가기</Button>
@@ -177,6 +146,6 @@ export default function Home() {
           </section>
         </div>
       </Layout>
-    </div>
+    </>
   );
 }

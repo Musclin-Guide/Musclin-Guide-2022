@@ -7,13 +7,12 @@
 }
 
 .wrapperCol {
-  @apply w-[11.25rem] h-[16.5rem] py-4;
+  @apply h-[16.5rem] px-2 py-4;
   @apply flex-col;
 }
 
 .imgWrapper {
   @apply rounded-md bg-auto bg-center relative;
-  /* @apply bg-[url('/assets/non_img.png')]; */
 }
 
 .imgWrapperRow {

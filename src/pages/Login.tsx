@@ -16,13 +16,18 @@ export default function Login() {
 
   const router = useRouter();
 
-  const handleClick = async (Formdata: FieldValues) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: Formdata.email,
-      password: Formdata.password,
+  const handleClick = async (formData: FieldValues) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password,
     });
+
     if (!error) {
       router.push('/');
+      // setTimeout(async () => {
+      //   const { error } = await supabase.auth.signOut();
+      //   console.log(error);
+      // }, 5000);
     } else {
       alert('로그인 정보를 다시 확인해주세요');
     }

@@ -13,6 +13,7 @@ export default function Welcome() {
   useEffect(() => {
     const getToken = async () => {
       const userInfo = await supabase.auth.getSession();
+      console.log(userInfo);
       setToken(userInfo.data.session);
     };
     getToken();

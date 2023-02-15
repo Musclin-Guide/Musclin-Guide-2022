@@ -228,8 +228,9 @@ export default function Signup({ color = 'Outline' }: ButtonProps) {
               required={true}
             />
           </fieldset>
-          <Button type="submit" className="w-full mt-10 h-10">
-            <p className="text-base">회원가입 완료</p>
+          <Button type="submit" className="w-full mt-10 h-10 text-base">
+            {/* <p className="text-base">회원가입 완료</p> */}
+            회원가입 완료
           </Button>
         </form>
       </NoFooterLayout>

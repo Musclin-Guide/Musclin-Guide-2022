@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ListItem } from '@components/index';
+
+import { ListItem, ListItemProps } from '@components/index';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '@components/ImagedListItem/ImagedListItem.module.css';
-import { ListItemProps } from '@components/ListItem/ListItem';
-import { ALinkMenuItem as ALink } from '@components/index';
 
 export interface ImagedListItem extends ListItemProps {
   imgWrapper: 'Row' | 'Col';
   listWrapper: 'Row' | 'Col';
   href: string | object;
-  className?: string;
   src: string;
   alt: string;
+  id: string;
 }
 
 const imgWrappers = {
@@ -31,38 +31,36 @@ export const ImagedListItem = ({
   contentsStyle,
   wrapperStyle,
   count,
-  className,
   subject,
   time,
   src,
   alt,
+  id,
   href = '/',
-  likeQuantity,
 }: ImagedListItem): JSX.Element => {
   return (
-    <ALink
-      className={clsx(styles.wrapper, wrappers[listWrapper], className)}
-      href={href}
-      isExternal={false}
-    >
-      <li className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className={clsx(styles.imgCommon, className)}
-          placeholder="blur"
-          blurDataURL="/assets/noImage.png"
+    <li className="list-none" key={id}>
+      <Link className={clsx(styles.wrapper, wrappers[listWrapper])} href={href}>
+        <div className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
+          <Image
+            src={src}
+            alt={alt}
+            sizes={'20'}
+            fill
+            className={clsx(styles.imgCommon)}
+            placeholder="blur"
+            blurDataURL="/assets/no_image.png"
+          />
+        </div>
+        <ListItem
+          contentsStyle={contentsStyle}
+          wrapperStyle={wrapperStyle}
+          count={count}
+          subject={subject}
+          time={time}
+          // likeQuantity={likeQuantity}
         />
-      </li>
-      <ListItem
-        contentsStyle={contentsStyle}
-        count={count}
-        likeQuantity={likeQuantity}
-        wrapperStyle={wrapperStyle}
-        subject={subject}
-        time={time}
-      />
-    </ALink>
+      </Link>
+    </li>
   );
 };

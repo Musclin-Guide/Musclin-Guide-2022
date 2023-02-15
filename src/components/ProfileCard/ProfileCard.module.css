@@ -13,3 +13,9 @@
 .usercareer {
   @apply text-xs font-light text-neutral-500;
 }
+
+@media (prefers-contrast: more) {
+  .usercareer {
+    @apply text-state-neutral-900;
+  }
+}

@@ -4,7 +4,6 @@ import { UserReviewUnitItem } from '@components/index';
 import { HiOutlineHeart, HiOutlineStar } from 'react-icons/hi';
 
 export interface ListItemProps {
-  id?: number;
   subject?: string;
   time?: string;
   likeQuantity?: number;
@@ -25,36 +24,28 @@ const wrapperStyles = {
 };
 
 export const ListItem = ({
-  id,
   subject = '고양이는 귀엽고 또 귀여우니 우리는 받아들여야해 그렇단말이야!',
   time = '3일전',
   count,
   contentsStyle = 'Row',
   wrapperStyle = 'Row',
-  className,
 }: ListItemProps) => {
   return (
-    <>
-      <div
-        id={`${id}`}
-        className={clsx(className, styles.wrapper, wrapperStyles[wrapperStyle])}
-      >
-        <span>{time}</span>
-        <strong className={clsx(styles.common, contentsStyles[contentsStyle])}>
-          {subject}
-        </strong>
+    <div className={clsx(styles.wrapper, wrapperStyles[wrapperStyle])}>
+      <span>{time}</span>
+      <strong className={clsx(styles.common, contentsStyles[contentsStyle])}>
+        {subject}
+      </strong>
 
-        <div className="inline-flex gap-4">
-          {/* <UserReviewUnitItem
+      {/* <div className="inline-flex gap-4"> */}
+      {/* <UserReviewUnitItem
             count={81}
             icon={<HiOutlineStar className="fill-yellow-300" />}
           /> */}
-          <UserReviewUnitItem
-            count={count}
-            icon={<HiOutlineHeart className="fill-red-500" />}
-          />
-        </div>
-      </div>
-    </>
+      <UserReviewUnitItem
+        count={count}
+        icon={<HiOutlineHeart className="fill-red-500" />}
+      />
+    </div>
   );
 };

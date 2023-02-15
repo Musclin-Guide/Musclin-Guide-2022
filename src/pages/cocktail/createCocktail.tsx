@@ -14,15 +14,17 @@ import { Session } from '@supabase/supabase-js';
 
 export default function CreateCocktail() {
   const isLogin = useRecoilValue(loginState);
-  const [getUserInfo, setUserInfo] = useState<Session>();
+
   const [Toggle, setToggle] = useRecoilState(widgetToggle);
   const router = useRouter();
+  const result = (router.query.re as string) || '';
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<FieldValues>({ mode: 'onBlur' });
-
+  const { ref } = register('article');
   const useFormData = () => {
     let formdata;
 
@@ -35,32 +37,50 @@ export default function CreateCocktail() {
   const formdata = useFormData();
 
   useEffect(() => {
+    console.log(isLogin);
     if (isLogin === false) {
       router.push('/Login');
     }
     setToggle(true);
-
-    console.log(getUserInfo);
   }, []);
+
   const onhandler = async (e: FieldValues) => {
-    const { data: sseion } = await supabase.auth.getSession();
+    const { data: session } = await supabase.auth.getSession();
+    console.log(session);
     const { data, error } = await supabase
       .from('cocktail')
       .insert({
-        user_id: sseion.session?.user.id,
+        user_id: session.session?.user.id,
         subject: e.subject,
         article: e.article,
       })
       .select();
     for (const file of e.image) {
-      const { data: avatars } = await supabase
+      const uploadPictures = await supabase
         .from('cocktail')
-        .update({ cocktail_img: file.value })
-        .eq('subject', e.subject);
-
-      return avatars;
+        .update({ cocktail_img: file.value });
+      console.log(uploadPictures);
+      return uploadPictures;
     }
-    console.log(e);
+
+    const getSubjectValue = getValues('subject');
+    const getArtcleValue = getValues('article');
+    console.log(getSubjectValue);
+    const { data: cocktail_data } = await supabase
+      .from('cocktail')
+      .select('*')
+      .eq('subject', getSubjectValue)
+      .eq('article', getArtcleValue)
+      .eq('user_id', session.session?.user.id);
+
+    if (cocktail_data !== null) {
+      router.replace({
+        pathname: `/cocktail/post/${result}`,
+        query: {
+          id: cocktail_data[0].cocktail_uuid,
+        },
+      });
+    }
   };
   return (
     <NoFooterLayout subject={'칵테일 게시물 작성 페이지입니다.'}>
@@ -76,6 +96,7 @@ export default function CreateCocktail() {
         />
         <TextArea
           register={register}
+          ref={(e) => ref(e)}
           rows={10}
           readOnly={false}
           name={'article'}

@@ -81,7 +81,7 @@ export const Button = ({
   );
 
   return (
-    <button type="button" className={buttonClass} {...props}>
+    <button type="button" className={clsx(buttonClass, textClass)} {...props}>
       {icon.type !== 'False' && (
         <IconContext.Provider
           value={{
@@ -92,7 +92,8 @@ export const Button = ({
           {icon.element}
         </IconContext.Provider>
       )}
-      <span className={textClass}>{children}</span>
+      {children}
+      {/* <span className={textClass}>{children}</span> */}
     </button>
   );
 };

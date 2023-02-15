@@ -8,10 +8,18 @@ import {
 } from '@components/index';
 import { date } from '@utils/dateCalculate';
 import { useSearchParams } from 'next/navigation';
-import { Key, useEffect, useRef, useState } from 'react';
+import {
+  ForwardedRef,
+  forwardRef,
+  Key,
+  KeyboardEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import { loginState } from '.';
+import { loginState } from '@atoms/Login';
 import Image from 'next/image';
 import styles from '@components/FeaturedSlide/FeaturedSlideList.module.css';
 import Tabbarstyles from '@components/TabBar/TabBar.module.css';
@@ -23,6 +31,7 @@ import { SubHeaderLayout } from '@components/Layout/SubHeaderLayout';
 import { useQuery } from 'react-query';
 import clsx from 'clsx';
 import { Session } from '@supabase/supabase-js';
+import { useRouter } from 'next/router';
 
 export default function Post() {
   /* ---------------------------------- 상태 관리 ---------------------------------- */
@@ -33,22 +42,16 @@ export default function Post() {
   const [session, setSession] = useState<Session | null>(null);
   /* ------------------------------ 생성한 객체들 ------------------------------ */
 
+  const textArea = useRef<HTMLTextAreaElement | null>(null);
   const searchParams = useSearchParams();
   const searchQueryWord = searchParams.get('id');
-  const decodeSearchQueryWord = decodeURIComponent(`${searchQueryWord}`);
+  const decodeSearchQueryWord = `${searchQueryWord}`;
   SwiperCore.use([Navigation, Pagination, Keyboard]);
-  const { register, handleSubmit } = useForm<FieldValues>();
-
+  const { register, handleSubmit, reset } = useForm<FieldValues>();
+  const { ref } = register('comment');
+  const router = useRouter();
+  const { data, isLoading } = useQuery(['Cocktails'], () => getArticle());
   /* ---------------------------------- 핸들러함수 --------------------------------- */
-
-  const textArea = useRef<HTMLTextAreaElement | null>(null);
-
-  const handleResizingCommentBox = () => {
-    if (textArea.current && textArea.current !== null) {
-      textArea.current.style.height = 'auto';
-      textArea.current.style.height = textArea.current.scrollHeight + 'px';
-    }
-  };
 
   /* ----------------------------------- 비동기 ---------------------------------- */
 
@@ -58,7 +61,7 @@ export default function Post() {
       .select(
         `*,
     profile(
-    nickname, career
+    nickname,career
     )
     ,
     cocktail_comment(
@@ -75,11 +78,10 @@ export default function Post() {
   }
 
   useEffect(() => {
-    console.log(textArea.current);
     const ActiveCocktailTabBar = document.querySelectorAll(
       '.TabBar_default__Dx5I1'
     );
-    textArea.current && textArea.current.focus();
+    // textArea.current && textArea.current.focus();
     ActiveCocktailTabBar[1].classList.add(Tabbarstyles.active);
     async function getUser() {
       const { data: ssesion } = await supabase.auth.getSession();
@@ -87,10 +89,6 @@ export default function Post() {
     }
     getUser();
   }, []);
-
-  const { data, isLoading } = useQuery(['Cocktails'], () => getArticle(), {
-    staleTime: Infinity,
-  });
 
   return (
     <SubHeaderLayout subject={'칵테일 게시물 상세 페이지입니다.'}>
@@ -107,6 +105,7 @@ export default function Post() {
                   </h2>
 
                   <Swiper
+                    key={`cocktail${Math.random()}}`}
                     spaceBetween={1}
                     slidesPerView={1}
                     pagination={{ clickable: true }}
@@ -136,10 +135,7 @@ export default function Post() {
                       />
                     </>
                     <>
-                      <SwiperSlide
-                        key={`cocktail${Math.random()}}`}
-                        className={styles.swiperslide}
-                      >
+                      <SwiperSlide className={styles.swiperslide}>
                         <div className="w-[20rem] h-[20rem] flex justify-center items-center">
                           <Image
                             src={'/assets/no_image.png'}
@@ -178,12 +174,27 @@ export default function Post() {
                   <p className="mb-4">{cocktail.article}</p>
                 </article>
                 <section className="flex gap-1 justify-end">
-                  <Button color="White" size="xxs">
-                    수정
-                  </Button>
-                  <Button color="White" size="xxs">
-                    삭제
-                  </Button>
+                  {cocktail.user_id === session?.user.id ? (
+                    <Button
+                      onClick={async () => {
+                        const confirmMessage =
+                          confirm('정말로 삭제 하시겠습니까?');
+                        if (confirmMessage === true) {
+                          await supabase
+                            .from('cocktail')
+                            .delete()
+                            .eq('cocktail_uuid', cocktail.cocktail_uuid);
+                          router.back();
+                        }
+                      }}
+                      color="White"
+                      size="xxs"
+                    >
+                      삭제
+                    </Button>
+                  ) : (
+                    ''
+                  )}
                 </section>
                 <section>
                   <h3 className="text-xl">
@@ -199,41 +210,38 @@ export default function Post() {
                     {isLoggedIn ? (
                       <>
                         <>
-                          {/* <div className="flex-none mt-5">
-                            <Image
-                              src={'/assets/profile_demo.jpg'}
-                              alt={'유저 프로필 이미지'}
-                              className="rounded-full"
-                              width={40}
-                              height={40}
-                            />
-                          </div> */}
                           <form
                             id="writeComment"
                             onSubmit={handleSubmit(async (e: FieldValues) => {
-                              const { data: comment, error } = await supabase
+                              console.log(e.comment);
+                              await supabase
                                 .from('cocktail_comment')
                                 .insert({
                                   related_article_number:
                                     data[0].article_number,
-                                  body_comment: e.comment,
+                                  body_comment: textArea.current?.value,
                                   user_id: session?.user.id,
                                 })
                                 .select();
-
-                              window.location.reload();
-
-                              console.log(e);
-                              console.log(comment, error);
+                              reset();
                             })}
                             className="relative"
                           >
                             <TextArea
-                              onKeyup={handleResizingCommentBox}
                               register={register}
-                              ref={textArea}
-                              className="-mt-2"
-                              labelname=""
+                              ref={(e) => {
+                                ref(e), (textArea.current = e);
+                              }}
+                              onKeyup={() => {
+                                if (
+                                  textArea.current &&
+                                  textArea.current !== null
+                                ) {
+                                  textArea.current.style.height = 'auto';
+                                  textArea.current.style.height =
+                                    textArea.current.scrollHeight + 'px';
+                                }
+                              }}
                               placeholder="상대방을 배려하는 댓글을 써주세요"
                               name={'comment'}
                               rows={1}
@@ -243,7 +251,7 @@ export default function Post() {
                             <button
                               type="submit"
                               className={clsx(
-                                'absolute right-2 top-5 text-sm',
+                                'absolute right-2 top-7 text-sm',
                                 'text-neutral-500'
                               )}
                               color="Outline"
@@ -255,6 +263,7 @@ export default function Post() {
                       </>
                     ) : (
                       <TextArea
+                        ref={textArea}
                         className="border-0 h-auto"
                         labelname=""
                         readOnly={true}
@@ -274,7 +283,7 @@ export default function Post() {
                         body_comment: string;
                       }) => (
                         <section
-                          key={comment.comment_number}
+                          key={`${comment.comment_number}댓글목록`}
                           className={'relative'}
                         >
                           {comment.user_id === session?.user.id && (
@@ -285,13 +294,14 @@ export default function Post() {
                                 await supabase
                                   .from('cocktail_comment')
                                   .delete()
-                                  .eq('user_id', comment.user_id);
+                                  .eq('comment_number', comment.comment_number);
                               }}
                             >
                               삭제
                             </Button>
                           )}
                           <CommentListItem
+                            key={comment.comment_number}
                             writer={comment.profile.nickname}
                             date={date(Number(new Date(comment.created_at)))}
                             comment={comment.body_comment}
