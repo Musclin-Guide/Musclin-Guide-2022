@@ -36,7 +36,7 @@ export const ImageInputButton = ({
 }: ImageInputButtonProps): JSX.Element => {
   const [imgSrc, setImgSrc] = useState<string>('');
 
-  const fields = register(name);
+  const fields = register('image');
   const { onChange, onBlur, ref, ...newFields } = fields;
 
   let inputRef: HTMLInputElement | null;
@@ -75,6 +75,7 @@ export const ImageInputButton = ({
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const newFile = (e.target.files as FileList)[0];
+      console.log(formData);
       const reader = new FileReader();
       reader.onload = () => {
         onChange({ target: { name, vlaue: reader.result } });
@@ -90,7 +91,7 @@ export const ImageInputButton = ({
         alert('업로드 가능한 최대 용량은 5MB입니다. ');
         return;
       }
-      if (formData?.has(newFile.name)) {
+      if (formData !== undefined && formData?.has(newFile.name)) {
         alert('동일한 이름의 파일을 등록할수 없습니다.');
         return;
       }
@@ -162,7 +163,7 @@ export const ImageInputButton = ({
         )}
         {file && (
           <Button
-            className={'absolute top-[-1rem] left-[108px] '}
+            className={'absolute top-[-1rem] left-[108px] not-sr-only'}
             color="Primary"
             size="xs"
             onClick={handleDelete}

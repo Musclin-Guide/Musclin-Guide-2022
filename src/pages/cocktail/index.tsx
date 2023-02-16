@@ -3,22 +3,36 @@ import styles from '@components/TextInput/TextInput.module.css';
 import { date } from '@utils/dateCalculate';
 import { BsSearch } from 'react-icons/all';
 import { Layout } from '@components/Layout/Layout';
-import { useRef, MutableRefObject } from 'react';
+import { useState, useEffect, useRef, MutableRefObject, Key } from 'react';
 import { supabase } from '@lib/supabase/supabase';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import { loginState } from '@atoms/Login';
 import { useRecoilState } from 'recoil';
 export { loginState } from '@atoms/Login';
 
+interface getDataProps {
+  select?: string;
+  limit: number;
+}
 const getData = async () => {
   const { data: cocktail } = await supabase
     .from('cocktail')
     .select('*')
+    .limit(3)
     .order('created_at', { ascending: true });
 
   return cocktail;
 };
+// const getData = async ({select}:getDataProps) => {
+//   const { data: cocktail } = await supabase
+//     .from('cocktail')
+//     .select(select)
+//     .order('created_at', { ascending: true });
+//
+//
+//   const { posts, isLast } = cocktail &&  cocktail.data;
+// };
 
 const inputValue = (inputRef: MutableRefObject<HTMLInputElement | null>) => {
   if (inputRef && inputRef.current !== null) {
@@ -76,7 +90,7 @@ export default function CocktailPage() {
               return (
                 <ImagedListItem
                   key={item.article_number}
-                  id={item.article_number}
+                  id={item.subject}
                   href={{
                     pathname: `/cocktail/post/${result}`,
                     query: {

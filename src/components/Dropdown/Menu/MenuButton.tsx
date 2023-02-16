@@ -15,6 +15,8 @@ export function MenuButton({ className }: MenuButtonProps): JSX.Element {
 
   return (
     <button
+      name="MenuButton"
+      aria-label="MenuButton"
       id="MenuButton"
       type="button"
       className={className}

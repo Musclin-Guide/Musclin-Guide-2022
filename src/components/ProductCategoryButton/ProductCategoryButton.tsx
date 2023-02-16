@@ -8,12 +8,8 @@ import clsx from 'clsx';
 import styles from '@components/ProductCategoryButton/ProductCategoryButton.module.css';
 import { IconContext } from 'react-icons';
 import { ALinkMenuItem as ALink } from '@components/index';
+import { useState } from 'react';
 
-// ? 하위 리스트들 칠드런으로 빼야할까요?
-const toggle = atom({
-  key: 'toggle',
-  default: true,
-});
 const DummyData: string[] = ['크레아틴', '베타알라닌', '시트룰린'];
 
 interface ProductCategoryButtonProps {
@@ -22,6 +18,7 @@ interface ProductCategoryButtonProps {
     element: JSX.Element;
   };
   listName?: string;
+  listData?: string[];
 }
 
 export const ProductCategoryButton = ({
@@ -30,8 +27,9 @@ export const ProductCategoryButton = ({
     element: <Down />,
   },
   listName,
+  listData = DummyData,
 }: ProductCategoryButtonProps): JSX.Element => {
-  const [istoggle, settoggle] = useRecoilState(toggle);
+  const [istoggle, settoggle] = useState(true);
 
   const changeToggle = () => {
     settoggle((prev: boolean) => !prev);
@@ -48,7 +46,7 @@ export const ProductCategoryButton = ({
           </IconContext.Provider>
         </li>
         <ul>
-          {DummyData.map((i) => (
+          {listData.map((i) => (
             <li key={i} className={clsx(istoggle ? 'hidden' : styles.li)}>
               <ALink className={styles.aLink} href={''} isExternal={false}>
                 {i}

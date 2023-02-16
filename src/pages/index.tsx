@@ -51,6 +51,7 @@ export default function Home() {
             <div className={styles.CocktailHeader}>
               <h2 className={styles.Title}>인기 칵테일</h2>
               <Button
+                name="moreCocktailContents"
                 color="White"
                 size="base"
                 onClick={() => router.push('/cocktail')}
@@ -88,6 +89,7 @@ export default function Home() {
               <div className={styles.ProductHeader}>
                 <h2 className={styles.Title}>추천 제품</h2>
                 <Button
+                  name="moreProductContents"
                   color="White"
                   size="base"
                   onClick={() => router.push('/search')}

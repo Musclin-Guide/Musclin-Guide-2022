@@ -27,7 +27,10 @@ export default function CocktailResultPage() {
     return cocktail;
   }
 
-  const { data, isLoading } = useQuery(['Result'], () => filterData());
+  const { data, isLoading } = useQuery(['Result', searchQueryWord], () =>
+    filterData()
+  );
+
   useEffect(() => {
     LocalStorage.setItem(key, JSON.stringify(fetchData));
 

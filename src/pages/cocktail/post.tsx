@@ -1,6 +1,7 @@
 import {
   Button,
   CommentListItem,
+  FeaturedSlideList,
   LikeToggleButton,
   ProfileCard,
   TextArea,
@@ -12,11 +13,7 @@ import { Key, useEffect, useRef, useState } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 import { loginState } from '@atoms/Login';
-import Image from 'next/image';
-import styles from '@components/FeaturedSlide/FeaturedSlideList.module.css';
 import Tabbarstyles from '@components/TabBar/TabBar.module.css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Keyboard, Navigation, Pagination } from 'swiper';
 import { supabase } from '@lib/supabase';
 import 'swiper/css/bundle';
 import { SubHeaderLayout } from '@components/Layout/SubHeaderLayout';
@@ -38,13 +35,10 @@ export default function Post() {
   const searchParams = useSearchParams();
   const searchQueryWord = searchParams.get('id');
   const decodeSearchQueryWord = `${searchQueryWord}`;
-  SwiperCore.use([Navigation, Pagination, Keyboard]);
   const { register, handleSubmit, reset } = useForm<FieldValues>();
   const { ref } = register('comment');
   const router = useRouter();
   const queryClient = useQueryClient();
-
-  // queryClient.invalidateQueries({ queryKey: ['Cocktails'] });
 
   /* ---------------------------------- 핸들러함수 --------------------------------- */
 
@@ -102,6 +96,7 @@ export default function Post() {
     return cocktail;
   }
   const { data, isLoading } = useQuery(['Cocktails'], () => getArticle());
+  console.log(data && data[0].article.split('/n'));
   useEffect(() => {
     const ActiveCocktailTabBar = document.querySelectorAll(
       '.TabBar_default__Dx5I1'
@@ -128,66 +123,17 @@ export default function Post() {
                   <h2 className=" text-neutral-700 text-xl mb-4 leading-9 font-semibold">
                     {cocktail.subject}
                   </h2>
-
-                  <Swiper
-                    key={`cocktail${Math.random()}}`}
-                    spaceBetween={1}
-                    slidesPerView={1}
-                    pagination={{ clickable: true }}
-                    keyboard={true}
-                    centeredSlides={true}
-                    centeredSlidesBounds={true}
-                  >
-                    <>
-                      <SwiperSlide
-                        key={`cocktail${Math.random()}}`}
-                        className={styles.swiperslide}
-                      >
-                        <div className="w-[20rem] h-[20rem] flex justify-center items-center">
-                          <Image
-                            src={'/assets/no_image.png'}
-                            width={320}
-                            height={320}
-                            alt={'유저가 업로드한 이미지'}
-                          />
-                        </div>
-                      </SwiperSlide>
-                      <Image
-                        src={'/assets/no_image.png'}
-                        width={320}
-                        height={320}
-                        alt={'유저가 업로드한 이미지'}
-                      />
-                    </>
-                    <>
-                      <SwiperSlide className={styles.swiperslide}>
-                        <div className="w-[20rem] h-[20rem] flex justify-center items-center">
-                          <Image
-                            src={'/assets/no_image.png'}
-                            width={320}
-                            height={320}
-                            alt={'유저가 업로드한 이미지'}
-                          />
-                        </div>
-                      </SwiperSlide>
-                      <Image
-                        src={'/assets/no_image.png'}
-                        width={320}
-                        height={320}
-                        alt={'유저가 업로드한 이미지'}
-                      />
-                    </>
-                  </Swiper>
-
+                  <FeaturedSlideList></FeaturedSlideList>
                   <LikeToggleButton
                     className="mt-4"
                     onClick={() => {
                       setPlusLike(() => {
                         return !like ? 1 : 0;
                       });
+
                       setLike((prev) => !prev);
 
-                      // if (!isLoggedIn) alert('로그인 후 이용이 가능합니다');
+                      if (!isLoggedIn) alert('로그인 후 이용이 가능합니다');
                     }}
                     toggle={like}
                     count={cocktail.like + plusLike}
@@ -196,20 +142,23 @@ export default function Post() {
                     userCareer={cocktail.profile.career}
                     userName={cocktail.profile.nickname}
                   />
-                  <p className="mb-4">{cocktail.article}</p>
+                  {cocktail.article.split('\n').map((i: string[]) => {
+                    console.log(i);
+                    return <p>{i}</p>;
+                  })}
                 </article>
                 <section className="flex gap-1 justify-end">
                   {cocktail.user_id === session?.user.id ? (
                     <Button
                       onClick={async () => {
                         const confirmMessage =
-                          confirm('정말로 삭제 하시겠습니까?');
+                          confirm('정말 삭제 하시겠습니까?');
                         if (confirmMessage === true) {
                           await supabase
                             .from('cocktail')
                             .delete()
                             .eq('cocktail_uuid', cocktail.cocktail_uuid);
-                          router.back();
+                          router.push('/cocktail');
                         }
                       }}
                       color="White"
@@ -309,22 +258,17 @@ export default function Post() {
                         >
                           {comment.user_id === session?.user.id && (
                             <Button
+                              aria-label="delete"
                               className="absolute right-0 top-14"
                               size="xxs"
                               onClick={() => {
                                 const confirmMessage = confirm(
-                                  '댓글을 정말로 삭제 하시겠습니까? 삭제한 댓글은 복구할 수 없습니다'
+                                  '댓글을 정말 삭제 하시겠습니까? 삭제한 댓글은 복구할 수 없습니다'
                                 );
                                 const DeleteNumber = comment.comment_number;
                                 confirmMessage &&
                                   deleteComment.mutate(DeleteNumber);
                               }}
-                              //   async () => {
-                              //   await supabase
-                              //     .from('cocktail_comment')
-                              //     .delete()
-                              //     .eq('comment_number', comment.comment_number);
-                              // }}
                             >
                               삭제
                             </Button>

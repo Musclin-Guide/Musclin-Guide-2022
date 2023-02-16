@@ -10,7 +10,7 @@ export const Header = ({
   return (
     <header className={styles.container}>
       <h1 className="sr-only">{subject}</h1>
-      <Logo className="mt-1.5 ml-5" />
+      <Logo aria-label="HomeLogo" className="mt-1.5 ml-5" />
       <button type="button">
         <Noti />
       </button>

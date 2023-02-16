@@ -24,6 +24,7 @@ export default function CreateCocktail() {
     formState: { errors },
   } = useForm<FieldValues>({ mode: 'onBlur' });
   const { ref } = register('article');
+
   const useFormData = () => {
     let formdata;
 
@@ -44,6 +45,7 @@ export default function CreateCocktail() {
   }, []);
 
   const onhandler = async (e: FieldValues) => {
+    console.log(e);
     const { data: session } = await supabase.auth.getSession();
     console.log(session);
     const { data, error } = await supabase
@@ -54,13 +56,13 @@ export default function CreateCocktail() {
         article: e.article,
       })
       .select();
-    for (const file of e.image) {
-      const uploadPictures = await supabase
-        .from('cocktail')
-        .update({ cocktail_img: file.value });
-      console.log(uploadPictures);
-      return uploadPictures;
-    }
+    // for (const file of e.image) {
+    //   const uploadPictures = await supabase
+    //     .from('cocktail')
+    //     .update({ cocktail_img: file.value });
+    //   console.log(uploadPictures);
+    //   return uploadPictures;
+    // }
 
     const getSubjectValue = getValues('subject');
     const getArtcleValue = getValues('article');

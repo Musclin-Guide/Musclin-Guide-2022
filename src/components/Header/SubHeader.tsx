@@ -15,7 +15,12 @@ export const SubHeader = ({
     <>
       <header className={styles.container}>
         <h1 className="sr-only">{subject}</h1>
-        <button className="self-center" onClick={() => router.back()}>
+        <button
+          type="button"
+          name="backButton"
+          className="self-center"
+          onClick={() => router.back()}
+        >
           <FiChevronLeft className="ml-2" strokeWidth={2} size={28} />
         </button>
 

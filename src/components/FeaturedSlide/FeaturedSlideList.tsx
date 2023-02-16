@@ -12,26 +12,34 @@ interface FeaturedSlideListProps {
   [propsName: string]: any;
 }
 export const FeaturedSlideList = ({ ...props }: FeaturedSlideListProps) => {
-  useEffect(() => {
-    const $ = document.querySelector('.swiper-slide');
-  }, []);
-
   SwiperCore.use([Navigation, Pagination, Keyboard]);
   return (
     <>
       <Swiper
         spaceBetween={1}
         slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
         pagination={{ clickable: true }}
         keyboard={true}
         centeredSlides={true}
         centeredSlidesBounds={true}
       >
-        <SwiperSlide key={`cocktail`} className={styles.swiperslide}>
+        <SwiperSlide
+          key={`cocktail${Math.random()}}`}
+          className={styles.swiperslide}
+        >
           <Image
-            src={`/`}
+            src={'/assets/no_image.png'}
+            width={320}
+            height={320}
+            alt={'유저가 업로드한 이미지'}
+          />
+        </SwiperSlide>
+        <SwiperSlide
+          key={`cocktail${Math.random()}}`}
+          className={styles.swiperslide}
+        >
+          <Image
+            src={'/assets/no_image.png'}
             width={320}
             height={320}
             alt={'유저가 업로드한 이미지'}
