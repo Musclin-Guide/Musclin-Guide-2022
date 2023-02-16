@@ -34,6 +34,8 @@ const getData = async () => {
 //   const { posts, isLast } = cocktail &&  cocktail.data;
 // };
 
+// const observer = new IntersectionObserver
+
 const inputValue = (inputRef: MutableRefObject<HTMLInputElement | null>) => {
   if (inputRef && inputRef.current !== null) {
     return inputRef.current.value;
