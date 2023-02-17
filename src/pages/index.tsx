@@ -2,30 +2,29 @@ import { ImagedListItem, Button } from '@components/index';
 import { Layout } from '@components/Layout/Layout';
 import styles from '@pages/homepage.module.css';
 import { supabase } from '@lib/supabase';
-import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { Key, useEffect, useState } from 'react';
+// import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { date } from '@utils/dateCalculate';
 import { useRecoilState } from 'recoil';
 import { loginState } from '@atoms/Login';
 
-async function getCocktails() {
-  const { data: cocktail } = await supabase
-    .from('cocktail')
-    .select('*')
-    .order('like', { ascending: false })
-    .limit(3);
-  return cocktail;
-}
+//
+// async function getCocktails() {
+//   const { data: cocktail } = await supabase
+//     .from('cocktail')
+//     .select('*')
+//     .order('like', { ascending: false })
+//     .limit(3);
+//   return cocktail;
+// }
+// const { data, isLoading } = useQuery(['Articles'], () => getCocktails(), {
+//   staleTime: 5000, // 5초
+//   cacheTime: Infinity, // 제한 없음
+// });
 
-export default function Home() {
-  const [cocktail, setCocktail] = useState();
-  const { data, isLoading } = useQuery(['Articles'], () => getCocktails(), {
-    staleTime: 5000, // 5초
-    cacheTime: Infinity, // 제한 없음
-  });
-
+export default function Home({ cocktail }: { cocktail: any }) {
   const [isLoggedIn, setLoggedIn] = useRecoilState(loginState);
   useEffect(() => {
     async function isLoginUser() {
@@ -61,26 +60,34 @@ export default function Home() {
             </div>
             <div>
               <ul className={styles.Cocktail}>
-                {data &&
-                  data.map((cocktail) => (
-                    <ImagedListItem
-                      key={cocktail.article_number}
-                      id={cocktail.article_number}
-                      subject={cocktail.subject}
-                      time={date(Number(new Date(cocktail.created_at)))}
-                      imgWrapper="Row"
-                      listWrapper="Row"
-                      href={{
-                        pathname: `/cocktail/post/${result}`,
-                        query: {
-                          id: encodeURIComponent(cocktail.cocktail_uuid),
-                        },
-                      }}
-                      src={'/assets/no_image.png'}
-                      count={cocktail.like}
-                      alt={`${cocktail.subject}에 대한 게시물입니다.`}
-                    />
-                  ))}
+                {cocktail &&
+                  cocktail.map(
+                    (cocktail: {
+                      article_number: Key | null | undefined;
+                      subject: string | undefined;
+                      created_at: string | number | Date;
+                      cocktail_uuid: string | number | boolean;
+                      like: number;
+                    }) => (
+                      <ImagedListItem
+                        key={cocktail.article_number}
+                        id={`${cocktail.article_number}`}
+                        subject={cocktail.subject}
+                        time={date(Number(new Date(cocktail.created_at)))}
+                        imgWrapper="Row"
+                        listWrapper="Row"
+                        href={{
+                          pathname: `/cocktail/post/${result}`,
+                          query: {
+                            id: encodeURIComponent(cocktail.cocktail_uuid),
+                          },
+                        }}
+                        src={'/assets/no_image.png'}
+                        count={cocktail.like}
+                        alt={`${cocktail.subject}에 대한 게시물입니다.`}
+                      />
+                    )
+                  )}
               </ul>
             </div>
           </section>
@@ -150,3 +157,18 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = async () => {
+  const { data: cocktail } = await supabase
+    .from('cocktail')
+    .select('*')
+    .order('like', { ascending: false })
+    .limit(3);
+
+  // Pass data to the page via props
+  return {
+    props: {
+      cocktail: cocktail ?? [],
+    },
+  };
+};

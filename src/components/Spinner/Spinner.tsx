@@ -1,7 +1,11 @@
-import { memo } from 'react';
+import { ForwardedRef, forwardRef, memo } from 'react';
 import ReactLoading from 'react-loading';
-function Spinner() {
-  return <ReactLoading type="spin" color="#a3a3a3" />;
+function Spinner(_: any, ref: ForwardedRef<HTMLDivElement>) {
+  return (
+    <div ref={ref} aria-label="loading_Spinner" className="flex justify-center">
+      <ReactLoading type="spin" color="#a3a3a3" />
+    </div>
+  );
 }
 
-export default memo(Spinner);
+export const Spinners = forwardRef(Spinner);

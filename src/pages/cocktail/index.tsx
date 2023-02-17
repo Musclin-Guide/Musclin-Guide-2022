@@ -1,58 +1,75 @@
-import { EditButton, ImagedListItem } from '@components/index';
+import { EditButton, ImagedListItem, Spinners } from '@components/index';
 import styles from '@components/TextInput/TextInput.module.css';
 import { date } from '@utils/dateCalculate';
 import { BsSearch } from 'react-icons/all';
 import { Layout } from '@components/Layout/Layout';
-import { useState, useEffect, useRef, MutableRefObject, Key } from 'react';
+import { useState, useEffect, useRef, MutableRefObject, Key, use } from 'react';
 import { supabase } from '@lib/supabase/supabase';
 import { useRouter } from 'next/router';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { loginState } from '@atoms/Login';
 import { useRecoilState } from 'recoil';
+import { GetStaticProps, GetStaticPropsContext } from 'next/types';
+import { NextApiHandler } from 'next';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 export { loginState } from '@atoms/Login';
-
-interface getDataProps {
-  select?: string;
-  limit: number;
-}
-const getData = async () => {
-  const { data: cocktail } = await supabase
-    .from('cocktail')
-    .select('*')
-    .limit(3)
-    .order('created_at', { ascending: true });
-
-  return cocktail;
-};
-// const getData = async ({select}:getDataProps) => {
-//   const { data: cocktail } = await supabase
-//     .from('cocktail')
-//     .select(select)
-//     .order('created_at', { ascending: true });
-//
-//
-//   const { posts, isLast } = cocktail &&  cocktail.data;
-// };
-
-// const observer = new IntersectionObserver
 
 const inputValue = (inputRef: MutableRefObject<HTMLInputElement | null>) => {
   if (inputRef && inputRef.current !== null) {
     return inputRef.current.value;
   }
 };
-
-export default function CocktailPage() {
+function CocktailPage() {
   const router = useRouter();
-
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const targetRef = useRef<HTMLDivElement | null>(null);
   const [isLoggedIn, setLoggedIn] = useRecoilState(loginState);
   const result = (router.query.re as string) || '';
+  const [loading, setLoading] = useState(false); // 로딩 성공, 실패
+  // const { data, isLoading } = useQuery(['Articles'], () => getData(), {
+  //   staleTime: 5000, // 5초
+  //   cacheTime: Infinity, // 제한 없음
+  // });
+  const [target, setTarget] = useState<HTMLElement | null>(null); // 교차상태를 판별하기 위함;
+  const [item, setItem] = useState<any[]>([]); // 페이지아이템 담기 위해;
 
-  const { data, isLoading } = useQuery(['Articles'], () => getData(), {
-    staleTime: 5000, // 5초
-    cacheTime: Infinity, // 제한 없음
-  });
+  let fromPage = 0;
+  let toPage = 2;
+  async function getData() {
+    const { data } = await supabase
+      .from('cocktail')
+      .select('*')
+      .order('article_number', { ascending: false })
+      .range(fromPage, toPage);
+    console.log(data);
+    setItem((prev) => prev.concat(data));
+    fromPage += 3;
+    toPage += 3;
+    console.log(fromPage, toPage);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    let observer: IntersectionObserver;
+    if (targetRef.current) {
+      const onIntersect = async (
+        [entry]: IntersectionObserverEntry[],
+        observer: IntersectionObserver
+      ) => {
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          await getData();
+          observer.observe(entry.target);
+        }
+      };
+      observer = new IntersectionObserver(onIntersect, { threshold: 0.5 });
+      observer.observe(targetRef.current);
+    }
+    return () => observer && observer.disconnect();
+  }, [target]);
 
   return (
     <Layout className="s-center" subject={'칵테일페이지입니다'}>
@@ -82,36 +99,59 @@ export default function CocktailPage() {
           <BsSearch className="EditButton_icon__iGeUo" />
         </EditButton>
       </section>
-      <section key={'coktail_list'}>
-        {data &&
-          data
+      <section>
+        {item &&
+          item
             .slice(0)
-            .reverse()
-            .map((item) => {
-              // console.log(item);
-              return (
-                <ImagedListItem
-                  key={item.article_number}
-                  id={item.subject}
-                  href={{
-                    pathname: `/cocktail/post/${result}`,
-                    query: {
-                      id: item.cocktail_uuid,
-                    },
-                  }}
-                  contentsStyle="Row"
-                  imgWrapper="Row"
-                  listWrapper="Row"
-                  subject={item.subject}
-                  time={date(Number(new Date(item.created_at)))}
-                  count={item.like}
-                  wrapperStyle="Row"
-                  src={'/assets/no_image.png'}
-                  alt={`${item.subject}에 대한 게시물입니다.`}
-                />
-              );
-            })}
+            .map(
+              (item: {
+                article_number: Key | null | undefined;
+                subject: string;
+                cocktail_uuid: any;
+                created_at: string | number | Date;
+                like: number;
+              }) => {
+                // console.log(item);
+                return (
+                  <ImagedListItem
+                    key={item.article_number}
+                    id={item.subject}
+                    href={{
+                      pathname: `/cocktail/post/${result}`,
+                      query: {
+                        id: item.cocktail_uuid,
+                      },
+                    }}
+                    contentsStyle="Row"
+                    imgWrapper="Row"
+                    listWrapper="Row"
+                    subject={item.subject}
+                    time={date(Number(new Date(item.created_at)))}
+                    count={item.like}
+                    wrapperStyle="Row"
+                    src={'/assets/no_image.png'}
+                    alt={`${item.subject}에 대한 게시물입니다.`}
+                  />
+                );
+              }
+            )}
+
+        <div>test</div>
+        <Spinners ref={targetRef} />
       </section>
     </Layout>
   );
 }
+
+// export async function getServerSideProps() {
+//   const { data: cocktail } = await supabase
+//     .from('cocktail')
+//     .select('*')
+//     .order('created_at', { ascending: true });
+//   // .range(0, 2);
+//
+//   // Pass data to the page via props
+//   return { props: { cocktail: cocktail ?? [] } };
+// }
+//
+export default CocktailPage;

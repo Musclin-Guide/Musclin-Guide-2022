@@ -15,6 +15,7 @@
     "preserveValueImports": false,
     "jsx": "preserve",
     "incremental": true,
+    "downlevelIteration": true,
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],

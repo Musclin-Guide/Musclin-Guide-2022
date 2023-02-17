@@ -8,8 +8,9 @@
 }
 
 .common {
-  @apply font-semibold line-clamp-2 break-words;
+  @apply font-semibold line-clamp-2 break-words break-all;
   @apply underline-offset-1;
+  @apply overflow-hidden;
 }
 .common:hover {
   @apply underline underline-offset-1;

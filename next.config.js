@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withTM = require('next-transpile-modules')(['react-icons']);
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
 
   webpack: (config) => {
