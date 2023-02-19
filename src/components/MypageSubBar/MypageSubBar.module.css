@@ -1,6 +1,6 @@
 .li {
   @apply text-xs text-center;
-  @apply w-[90px] h-[42px] leading-[42px];
+  @apply w-40 h-[42px] leading-[42px];
   @apply justify-center items-center;
   @apply bg-white text-neutral-200;
   @apply cursor-pointer;

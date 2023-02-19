@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, memo } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 import ReactLoading from 'react-loading';
 function Spinner(_: any, ref: ForwardedRef<HTMLDivElement>) {
   return (

@@ -2,10 +2,7 @@ import Image from 'next/image';
 import styles from '@components/FeaturedSlide/FeaturedSlideList.module.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Keyboard, Navigation, Pagination } from 'swiper';
-import { supabase } from '@lib/supabase';
-import { SupabaseClient } from '@supabase/supabase-js';
 import 'swiper/css/bundle';
-import { useEffect, useState } from 'react';
 
 interface FeaturedSlideListProps {
   children?: React.ReactNode;

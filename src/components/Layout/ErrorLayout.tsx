@@ -1,4 +1,4 @@
-import { Header } from '@components/index';
+import { Header } from '@components/Header/Header';
 import styles from '@components/Layout/Layout.module.css';
 import clsx from 'clsx';
 import { LayoutProps } from '@components/Layout/Layout';

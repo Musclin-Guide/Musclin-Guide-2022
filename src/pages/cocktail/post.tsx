@@ -1,13 +1,10 @@
-import {
-  Button,
-  CommentListItem,
-  FeaturedSlideList,
-  LikeToggleButton,
-  ProfileCard,
-  TextArea,
-  Waiting,
-} from '@components/index';
-import { date } from '@utils/dateCalculate';
+import { Button } from '@components/Button/index';
+import { CommentListItem } from '@components/CommentList/CommentListItem/CommentListItem';
+import { FeaturedSlideList } from '@components/FeaturedSlide/index';
+import { LikeToggleButton } from '@components/LikeToggleButton/index';
+import { ProfileCard } from '@components/ProfileCard/index';
+import { TextArea } from '@components/TextArea/index';
+import { Waiting } from '@components/Waiting/index';
 import { useSearchParams } from 'next/navigation';
 import { Key, useEffect, useRef, useState } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
@@ -18,9 +15,12 @@ import { supabase } from '@lib/supabase';
 import 'swiper/css/bundle';
 import { SubHeaderLayout } from '@components/Layout/SubHeaderLayout';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import clsx from 'clsx';
+
 import { Session } from '@supabase/supabase-js';
 import { useRouter } from 'next/router';
+import Nocomment from '@components/Nocomment/Nocomment';
+import { date } from '@utils/dateCalculate';
+import CommentButton from '@components/CommentButton/CommentButton';
 
 export default function Post() {
   /* ---------------------------------- 상태 관리 ---------------------------------- */
@@ -75,7 +75,7 @@ export default function Post() {
   // console.log(data);
 
   async function getArticle() {
-    const { data: cocktail, error } = await supabase
+    const { data: cocktail } = await supabase
       .from('cocktail')
       .select(
         `*,
@@ -119,34 +119,33 @@ export default function Post() {
           {data &&
             data.map((cocktail) => (
               <>
-                <article key={`cocktailArticle_${cocktail.article_number}`}>
-                  <h2 className=" text-neutral-700 text-xl mb-4 leading-9 font-semibold">
-                    {cocktail.subject}
-                  </h2>
-                  <FeaturedSlideList></FeaturedSlideList>
-                  <LikeToggleButton
-                    className="mt-4"
-                    onClick={() => {
-                      setPlusLike(() => {
-                        return !like ? 1 : 0;
-                      });
+                <h2 className=" text-neutral-700 text-xl mb-4 leading-9 font-semibold">
+                  {cocktail.subject}
+                </h2>
+                <FeaturedSlideList></FeaturedSlideList>
+                <LikeToggleButton
+                  className="mt-4"
+                  onClick={() => {
+                    setPlusLike(() => {
+                      return !like ? 1 : 0;
+                    });
 
-                      setLike((prev) => !prev);
+                    setLike((prev) => !prev);
 
-                      if (!isLoggedIn) alert('로그인 후 이용이 가능합니다');
-                    }}
-                    toggle={like}
-                    count={cocktail.like + plusLike}
-                  />
-                  <ProfileCard
-                    userCareer={cocktail.profile.career}
-                    userName={cocktail.profile.nickname}
-                  />
-                  {cocktail.article.split('\n').map((i: string[]) => {
-                    console.log(i);
-                    return <p>{i}</p>;
-                  })}
-                </article>
+                    if (!isLoggedIn) alert('로그인 후 이용이 가능합니다');
+                  }}
+                  toggle={like}
+                  count={cocktail.like + plusLike}
+                />
+                <ProfileCard
+                  userCareer={cocktail.profile.career}
+                  userName={cocktail.profile.nickname}
+                />
+                {cocktail.article.split('\n').map((i: string[]) => {
+                  console.log(i);
+                  return <p key={'p'}>{i}</p>;
+                })}
+
                 <section className="flex gap-1 justify-end">
                   {cocktail.user_id === session?.user.id ? (
                     <Button
@@ -217,17 +216,7 @@ export default function Post() {
                               rows={1}
                               minLength={1}
                             />
-
-                            <button
-                              type="submit"
-                              className={clsx(
-                                'absolute right-2 top-7 text-sm',
-                                'text-neutral-500'
-                              )}
-                              color="Outline"
-                            >
-                              등록
-                            </button>
+                            <CommentButton />
                           </form>
                         </>
                       </>
@@ -282,13 +271,7 @@ export default function Post() {
                         </section>
                       )
                     )}
-                  {data[0].cocktail_comment.length === 0 && (
-                    <div role={'no_comment'} className={'mt-24 text-center'}>
-                      <span className="text-neutral-400">
-                        작성된 댓글이 없어요!
-                      </span>
-                    </div>
-                  )}
+                  {data[0].cocktail_comment.length === 0 && <Nocomment />}
                 </section>
               </>
             ))}

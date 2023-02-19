@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { SVGProps } from 'react';
-import { ALinkMenuItem as ALink } from '@components/index';
-const SvgLogo = (props: SVGProps<SVGSVGElement>) => (
+// import * as React from 'react';
+import { memo, SVGProps } from 'react';
+import { ALinkMenuItem as ALink } from '@components/Dropdown/ALinkMenuItem';
+const SvgLogo = memo((props: SVGProps<SVGSVGElement>) => (
   <ALink href={'/'} isExternal={false} replace>
     <svg
       width={140}
@@ -28,5 +28,7 @@ const SvgLogo = (props: SVGProps<SVGSVGElement>) => (
       </defs>
     </svg>
   </ALink>
-);
+));
 export default SvgLogo;
+
+SvgLogo.displayName = 'SvgLogo';

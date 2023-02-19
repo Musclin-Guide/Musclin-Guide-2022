@@ -1,5 +1,5 @@
 .box {
-  @apply w-[344px] h-6 text-base;
+  @apply w-[344px] text-base;
 }
 
 .produectImg {
@@ -9,11 +9,13 @@
 
 .icon {
   @apply w-6 h-6 fill-neutral-500;
+  @apply cursor-pointer;
 }
 
 .li {
   @apply h-10 px-6 py-2;
   @apply bg-neutral-100;
+  @apply border-b border-neutral-200;
 }
 
 .lis {

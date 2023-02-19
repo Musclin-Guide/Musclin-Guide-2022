@@ -2,13 +2,14 @@ import { HiOutlineHome, HiOutlineUser, HiOutlineSearch } from 'react-icons/hi';
 import SvgCocktail from './Cocktail';
 import styles from '@components/TabBar/TabBar.module.css';
 import clsx from 'clsx';
-import { ActiveLink } from '@components/index';
+import { ActiveLink } from '@components/ActiveLink/index';
+import { memo } from 'react';
 
 interface TabBarProps {
   className?: string;
 }
 
-export const TabBar = ({ className }: TabBarProps) => {
+export const TabBar = memo(({ className }: TabBarProps) => {
   return (
     <ul id="tabBar" className={clsx('flex fixed bottom-0', [className])}>
       <li className={styles.wrapper}>
@@ -54,4 +55,6 @@ export const TabBar = ({ className }: TabBarProps) => {
       </li>
     </ul>
   );
-};
+});
+
+TabBar.displayName = 'TabBar';

@@ -93,7 +93,6 @@ export const Button = ({
         </IconContext.Provider>
       )}
       {children}
-      {/* <span className={textClass}>{children}</span> */}
     </button>
   );
 };

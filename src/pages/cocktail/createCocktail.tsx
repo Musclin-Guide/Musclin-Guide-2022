@@ -1,7 +1,6 @@
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, TextArea, TextInput } from '@components/index';
-import { ImageInputList } from '@components/ImageInputList/ImageInputList';
+
 import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -10,10 +9,24 @@ import { useRouter } from 'next/router';
 import { useForm, FieldValues } from 'react-hook-form';
 import { widgetToggle } from '@atoms/Widget';
 import { supabase } from '@lib/supabase';
+import dynamic from 'next/dynamic';
 
+const TextArea = dynamic(() =>
+  import('@components/TextArea/index').then((module) => module.TextArea)
+);
+const TextInput = dynamic(() =>
+  import('@components/TextInput/index').then((module) => module.TextInput)
+);
+const ImageInputList = dynamic(() =>
+  import('@components/ImageInputList/ImageInputList').then(
+    (module) => module.ImageInputList
+  )
+);
+const Button = dynamic(() =>
+  import('@components/Button/index').then((module) => module.Button)
+);
 export default function CreateCocktail() {
   const isLogin = useRecoilValue(loginState);
-
   const [Toggle, setToggle] = useRecoilState(widgetToggle);
   const router = useRouter();
   const result = (router.query.re as string) || '';
@@ -48,7 +61,7 @@ export default function CreateCocktail() {
     console.log(e);
     const { data: session } = await supabase.auth.getSession();
     console.log(session);
-    const { data, error } = await supabase
+    await supabase
       .from('cocktail')
       .insert({
         user_id: session.session?.user.id,
@@ -56,13 +69,6 @@ export default function CreateCocktail() {
         article: e.article,
       })
       .select();
-    // for (const file of e.image) {
-    //   const uploadPictures = await supabase
-    //     .from('cocktail')
-    //     .update({ cocktail_img: file.value });
-    //   console.log(uploadPictures);
-    //   return uploadPictures;
-    // }
 
     const getSubjectValue = getValues('subject');
     const getArtcleValue = getValues('article');

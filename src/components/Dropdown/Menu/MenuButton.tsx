@@ -2,11 +2,14 @@ import { FiPlusCircle } from 'react-icons/fi';
 import menuButton from '@components/Dropdown/Menu/MenuButton.module.css';
 import { widgetToggle } from '@atoms/Widget';
 import { useRecoilState } from 'recoil';
+import { memo } from 'react';
 interface MenuButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
-export function MenuButton({ className }: MenuButtonProps): JSX.Element {
+export const MenuButton = memo(function MenuButton({
+  className,
+}: MenuButtonProps): JSX.Element {
   const [istoggle, setToggle] = useRecoilState(widgetToggle);
 
   const changeToggle = () => {
@@ -25,4 +28,4 @@ export function MenuButton({ className }: MenuButtonProps): JSX.Element {
       <FiPlusCircle className={menuButton.plusCircle} />
     </button>
   );
-}
+});

@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import type { PostgrestResponse } from '@supabase/supabase-js'
+import { NextApiRequest, NextApiResponse } from 'next';
+import type { PostgrestResponse } from '@supabase/supabase-js';
 
 interface data {
-  error: null
-  data: any[]
-  count: number | null
+  error: null;
+  data: any[];
+  count: number | null;
 }
 export default async function handler(
   req: NextApiRequest,
@@ -15,6 +15,5 @@ export default async function handler(
 
   const pageCondition = {
     skip: 1,
-    
-}
+  };
 }

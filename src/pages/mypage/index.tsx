@@ -1,11 +1,12 @@
-import { CareerInput, TextInput } from '@components/index';
+import { CareerInput, MyPagSubBar, TextInput } from '@components/index';
 import { supabase } from '@lib/supabase/index';
 import styles from '@components/CareerInput/CareerInput.module.css';
 import type { UserResponse, User } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import clsx from 'clsx';
-
+import { SubHeaderLayout } from '@components/Layout/SubHeaderLayout';
+import { CommentListItem } from '@components/CommentList/CommentListItem/CommentListItem';
 interface MypageProps {
   type: string;
   disabled: boolean;
@@ -48,9 +49,9 @@ export default function Mypage({ type, disabled }: MypageProps) {
   }
 
   return (
-    <>
+    <SubHeaderLayout subject={'제품탐색페이지입니다'}>
       <TextInput name={'email'} value={getUserInfo.email} readOnly />
-      <TextInput
+      {/* <TextInput
         disabled={disabled}
         name={'birthday'}
         type={disabled ? 'text' : 'date'}
@@ -74,10 +75,24 @@ export default function Mypage({ type, disabled }: MypageProps) {
           selectName="career"
           text="년"
         />
-      </div>
+      </div> */}
 
       <div>{getUserInfo.user_metadata.career}</div>
       <div>{getUserInfo.user_metadata.nickname}</div>
-    </>
+      <MyPagSubBar
+        firstContents={undefined}
+        secondContents={undefined}
+        thirdContents={
+          <CommentListItem
+            onClick={() => console.log('이동하기')}
+            key={2}
+            writer={'teset'}
+            date={3}
+            comment={'wow'}
+          />
+        }
+        forthContents={undefined}
+      ></MyPagSubBar>
+    </SubHeaderLayout>
   );
 }

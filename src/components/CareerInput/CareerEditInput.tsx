@@ -1,4 +1,5 @@
-import { EditButton, CareerInput } from '@components/index';
+import { EditButton } from '@components/EditButton/index';
+import { CareerInput } from '@components/CareerInput/CareerInput';
 import Inputstyles from '@components/CareerInput/CareerInput.module.css';
 import Buttonstyles from '@components/EditButton/EditButton.module.css';
 import { empty } from '@components/CareerInput/CareerInput';

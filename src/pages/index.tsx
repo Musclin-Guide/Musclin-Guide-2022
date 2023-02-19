@@ -1,45 +1,39 @@
-import { ImagedListItem, Button } from '@components/index';
-import { Layout } from '@components/Layout/Layout';
+import dynamic from 'next/dynamic';
 import styles from '@pages/homepage.module.css';
 import { supabase } from '@lib/supabase';
-import { Key, useEffect, useState } from 'react';
-// import { useQuery } from 'react-query';
+import { Key, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { date } from '@utils/dateCalculate';
 import { useRecoilState } from 'recoil';
 import { loginState } from '@atoms/Login';
+import type { LayoutProps } from '@components/Layout/Layout';
 
-//
-// async function getCocktails() {
-//   const { data: cocktail } = await supabase
-//     .from('cocktail')
-//     .select('*')
-//     .order('like', { ascending: false })
-//     .limit(3);
-//   return cocktail;
-// }
-// const { data, isLoading } = useQuery(['Articles'], () => getCocktails(), {
-//   staleTime: 5000, // 5초
-//   cacheTime: Infinity, // 제한 없음
-// });
+const Layout = dynamic<LayoutProps>(() =>
+  import('@components/Layout/Layout').then((module) => module.Layout)
+);
+const ImagedListItem = dynamic(() =>
+  import('@components/ImagedListItem/index').then(
+    (module) => module.ImagedListItem
+  )
+);
+const Button = dynamic(() =>
+  import('@components/Button/index').then((module) => module.Button)
+);
 
 export default function Home({ cocktail }: { cocktail: any }) {
   const [isLoggedIn, setLoggedIn] = useRecoilState(loginState);
   useEffect(() => {
     async function isLoginUser() {
-      const { data, error } = await supabase.auth.getSession();
-      console.log(data);
+      const { data } = await supabase.auth.getSession();
       if (data.session?.access_token) {
         setLoggedIn(true);
       }
-      console.log(isLoggedIn);
     }
     isLoginUser();
   }, []);
 
   const router = useRouter();
-
   const result = (router.query.id as string[]) || [];
 
   return (
@@ -111,9 +105,9 @@ export default function Home({ cocktail }: { cocktail: any }) {
 
             <ul
               className={clsx(
-                styles.Product
+                styles.Product,
 
-                // 'pointer-events-none blur-md noselect -z-40'
+                'pointer-events-none blur-md noselect -z-40'
               )}
             >
               <ImagedListItem

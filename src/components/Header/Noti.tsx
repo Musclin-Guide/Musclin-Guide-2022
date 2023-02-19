@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { SVGProps } from 'react';
-import { ALinkMenuItem as ALink } from '@components/index';
+import { ALinkMenuItem as ALink } from '@components/Dropdown/ALinkMenuItem';
 const Bell = (props: SVGProps<SVGSVGElement>) => {
   return (
     <ALink hidden href={'/'} isExternal={false} replace>

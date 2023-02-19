@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { ForwardedRef, forwardRef, KeyboardEventHandler } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
-interface TextAreaProps {
+export interface TextAreaProps {
   htmlFor?: string;
   labelname?: string;
   register?: UseFormRegister<FieldValues>;

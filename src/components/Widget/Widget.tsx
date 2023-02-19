@@ -1,11 +1,12 @@
-import { Menu, MenuButton } from '@components/index';
+import { Menu, MenuButton } from '@components/Dropdown/Menu/index';
 import { widgetToggle } from '@atoms/Widget';
 import { useRecoilState } from 'recoil';
 import menuStyle from '@components/Dropdown/Menu/Menu.module.css';
 import widgetStyle from '@components/Widget/Widget.module.css';
 import clsx from 'clsx';
+import { memo } from 'react';
 
-export const Widget = (): JSX.Element => {
+export const Widget = memo((): JSX.Element => {
   const [Toggle, setToggle] = useRecoilState(widgetToggle);
 
   return (
@@ -30,4 +31,6 @@ export const Widget = (): JSX.Element => {
       />
     </aside>
   );
-};
+});
+
+Widget.displayName = 'Widget';

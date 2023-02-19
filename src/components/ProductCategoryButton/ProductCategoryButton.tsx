@@ -1,16 +1,14 @@
-import { atom, useRecoilState } from 'recoil';
 import {
   HiChevronDown as Down,
   HiChevronUp as Up,
   HiChevronRight as Right,
 } from 'react-icons/hi';
-import clsx from 'clsx';
+
 import styles from '@components/ProductCategoryButton/ProductCategoryButton.module.css';
 import { IconContext } from 'react-icons';
-import { ALinkMenuItem as ALink } from '@components/index';
-import { useState } from 'react';
-
-const DummyData: string[] = ['크레아틴', '베타알라닌', '시트룰린'];
+import { memo, ReactNode, useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 interface ProductCategoryButtonProps {
   icon?: {
@@ -18,44 +16,71 @@ interface ProductCategoryButtonProps {
     element: JSX.Element;
   };
   listName?: string;
-  listData?: string[];
+  children?: ReactNode;
+  onClick?: () => void;
 }
 
-export const ProductCategoryButton = ({
+const ProductCategoryButton = ({
   icon = {
     type: 'Down',
     element: <Down />,
   },
   listName,
-  listData = DummyData,
+  children,
+  onClick,
 }: ProductCategoryButtonProps): JSX.Element => {
-  const [istoggle, settoggle] = useState(true);
-
+  const [isToggle, settoggle] = useState(true);
   const changeToggle = () => {
     settoggle((prev: boolean) => !prev);
   };
-
+  const router = useRouter();
+  const depth = (router.query.de as string) || '';
   return (
-    <>
-      <ul className={styles.box}>
-        <li onClick={changeToggle} className={styles.lis}>
-          <div className={styles.produectImg}></div>
-          <span className="grow">{listName}</span>
-          <IconContext.Provider value={{ className: styles.icon }}>
-            {(icon.element = istoggle ? <Down /> : <Up />)}
-          </IconContext.Provider>
-        </li>
-        <ul>
-          {listData.map((i) => (
-            <li key={i} className={clsx(istoggle ? 'hidden' : styles.li)}>
-              <ALink className={styles.aLink} href={''} isExternal={false}>
-                {i}
-                <Right className={styles.icon} />
-              </ALink>
-            </li>
-          ))}
-        </ul>
-      </ul>
-    </>
+    <ul className={styles.box}>
+      <div onClick={changeToggle} className={styles.lis}>
+        <div className={styles.produectImg}></div>
+        <span className="grow">{listName}</span>
+        <IconContext.Provider value={{ className: styles.icon }}>
+          {(icon.element = isToggle ? <Down /> : <Up />)}
+        </IconContext.Provider>
+      </div>
+
+      {isToggle ? null : children}
+    </ul>
   );
 };
+
+interface ProductCategoryProps extends ProductCategoryButtonProps {
+  listData?: any[];
+  href?: string;
+}
+
+export const ProductCategory = memo(function ProductCategory({
+  listName,
+  listData,
+  href,
+}: ProductCategoryProps) {
+  return (
+    <ProductCategoryButton listName={listName}>
+      {listData?.map((index) => {
+        return (
+          <li key={index.id} className={styles.li}>
+            <Link
+              className={styles.aLink}
+              href={{
+                pathname: `search/[...category]`,
+                query: {
+                  category: href,
+                  detail: index.category_name,
+                },
+              }}
+            >
+              {index.category_name}
+              <Right className={styles.icon} />
+            </Link>
+          </li>
+        );
+      })}
+    </ProductCategoryButton>
+  );
+});

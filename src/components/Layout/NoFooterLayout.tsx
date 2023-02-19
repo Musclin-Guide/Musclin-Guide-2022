@@ -1,4 +1,4 @@
-import { SubHeader, Widget } from '@components/index';
+import { SubHeader } from '@components/Header/SubHeader';
 import styles from '@components/Layout/Layout.module.css';
 import clsx from 'clsx';
 import type { LayoutProps } from '@components/Layout/Layout';

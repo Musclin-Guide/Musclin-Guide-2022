@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { ListItem, ListItemProps } from '@components/index';
+import { ListItem, ListItemProps } from '@components/ListItem/index';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,47 +26,44 @@ const wrappers = {
   Col: styles.wrapperCol,
 };
 
-export const ImagedListItem = memo(
-  ({
-    imgWrapper,
-    listWrapper,
-    contentsStyle,
-    wrapperStyle,
-    count,
-    subject,
-    time,
-    src,
-    alt,
-    id,
-    href = '/',
-  }: ImagedListItem): JSX.Element => {
-    return (
-      <li className="list-none" key={id}>
-        <Link
-          className={clsx(styles.wrapper, wrappers[listWrapper])}
-          href={href}
-        >
-          <div className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
-            <Image
-              src={src}
-              alt={alt}
-              sizes={'20'}
-              fill
-              className={clsx(styles.imgCommon)}
-              placeholder="blur"
-              blurDataURL="/assets/no_image.png"
-            />
-          </div>
-          <ListItem
-            contentsStyle={contentsStyle}
-            wrapperStyle={wrapperStyle}
-            count={count}
-            subject={subject}
-            time={time}
-            // likeQuantity={likeQuantity}
+export const ImagedListItem = ({
+  imgWrapper,
+  listWrapper,
+  contentsStyle,
+  wrapperStyle,
+  count,
+  subject,
+  time,
+  src,
+  alt,
+  id,
+  href = '/',
+}: ImagedListItem): JSX.Element => {
+  return (
+    <li className="list-none" key={id}>
+      <Link className={clsx(styles.wrapper, wrappers[listWrapper])} href={href}>
+        <div className={clsx(styles.imgWrapper, imgWrappers[imgWrapper])}>
+          <Image
+            loading="lazy"
+            src={src}
+            alt={alt}
+            fill
+            className={clsx(styles.imgCommon)}
+            placeholder="blur"
+            blurDataURL="/assets/no_image.png"
           />
-        </Link>
-      </li>
-    );
-  }
-);
+        </div>
+        <ListItem
+          contentsStyle={contentsStyle}
+          wrapperStyle={wrapperStyle}
+          count={count}
+          subject={subject}
+          time={time}
+          // likeQuantity={likeQuantity}
+        />
+      </Link>
+    </li>
+  );
+};
+
+ImagedListItem.displayName = 'ImagedListItem';

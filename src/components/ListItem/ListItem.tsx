@@ -1,6 +1,6 @@
 import styles from '@components/ListItem/ListItem.module.css';
 import clsx from 'clsx';
-import { UserReviewUnitItem } from '@components/index';
+import { UserReviewUnitItem } from '@components/UserReviewUnitList/UserReviewUnitItem/UserReviewUnitItem';
 import { HiOutlineHeart, HiOutlineStar } from 'react-icons/hi';
 
 export interface ListItemProps {

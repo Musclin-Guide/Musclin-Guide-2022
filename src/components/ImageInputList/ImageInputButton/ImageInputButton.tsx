@@ -9,10 +9,10 @@ import React, {
   useState,
 } from 'react';
 import addImg from '@public/ImageListInput/BG.png';
-import { HiOutlinePencilAlt, HiOutlineX } from 'react-icons/hi';
+import { HiOutlinePencilAlt, HiOutlineX } from 'react-icons/hi/index';
 import buttonStyle from '@components/ImageInputList/ImageInputButton/ImageInputButton.module.css';
 import clsx from 'clsx';
-import { Button } from '@components/Button';
+import { Button } from '@components/Button/Button';
 import { UseFormRegister, FieldValues } from 'react-hook-form';
 
 const FILE_SIZE_MAX_LIMIT = 5 * 1024 * 1024;

@@ -55,21 +55,3 @@ export const Select = ({
     </>
   );
 };
-
-// export const SelectType = (): JSX.Element => (
-//   <Select>
-//     {ListDummy.map(({ id, value, text, href, isExternal }) => {
-//       return (
-//         <li
-//           className="first:rounded-t-md last:rounded-b-md  flex justify-center items-center text-center w-[108px] h-[38px]"
-//           key={id}
-//           value={value}
-//         >
-//           <ALinkMenuItem href={href} isExternal={isExternal}>
-//             {text}
-//           </ALinkMenuItem>
-//         </li>
-//       );
-//     })}
-//   </Select>
-// );
