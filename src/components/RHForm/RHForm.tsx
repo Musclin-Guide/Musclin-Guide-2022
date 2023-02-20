@@ -1,5 +1,10 @@
 import { DevTool } from '@hookform/devtools';
-import React, { FormEventHandler, PropsWithChildren, useCallback } from 'react';
+import React, {
+  FormEventHandler,
+  PropsWithChildren,
+  useCallback, useEffect,
+  useMemo, useState
+} from "react";
 import {
   FormProvider,
   SubmitErrorHandler,
@@ -30,6 +35,11 @@ export function RHForm<FormType extends object>({
     [methods, onReset]
   );
 
+  const [RHFDevTool, setRHFDevTool] = useState(<></>);
+  useEffect(() => {
+    setRHFDevTool(<DevTool control={methods.control} />);
+  }, [methods.control]);
+
   return (
     <FormProvider {...methods}>
       <form
@@ -38,9 +48,7 @@ export function RHForm<FormType extends object>({
       >
         {children}
       </form>
-      {process.env.NODE_ENV !== 'production' && (
-        <DevTool control={methods.control} />
-      )}
+      {RHFDevTool}
     </FormProvider>
   );
 }
