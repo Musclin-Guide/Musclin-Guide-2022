@@ -72,7 +72,6 @@ export default function Post() {
     }
   );
   /* ----------------------------------- 비동기 ---------------------------------- */
-  // console.log(data);
 
   async function getArticle() {
     const { data: cocktail } = await supabase
@@ -95,7 +94,10 @@ export default function Post() {
 
     return cocktail;
   }
-  const { data, isLoading } = useQuery(['Cocktails'], () => getArticle());
+  const { data, isLoading } = useQuery(
+    ['Cocktails', decodeSearchQueryWord],
+    () => getArticle()
+  );
   console.log(data && data[0].article.split('/n'));
   useEffect(() => {
     const ActiveCocktailTabBar = document.querySelectorAll(

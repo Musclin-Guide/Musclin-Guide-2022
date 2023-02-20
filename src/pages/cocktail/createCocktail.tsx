@@ -102,6 +102,7 @@ export default function CreateCocktail() {
           name={'subject'}
         />
         <TextArea
+          labelname="내용"
           register={register}
           ref={(e) => ref(e)}
           rows={10}

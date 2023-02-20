@@ -1,4 +1,5 @@
-import { Button, TextInput } from '@components/index';
+import { Button } from '@components/Button/index';
+import { TextInput } from '@components/TextInput/index';
 import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
 import { supabase } from '@lib/supabase/supabase';
 import type { ButtonProps } from '@components/Button/Button';
@@ -229,7 +230,6 @@ export default function Signup({ color = 'Outline' }: ButtonProps) {
             />
           </fieldset>
           <Button type="submit" className="w-full mt-10 h-10 text-base">
-            {/* <p className="text-base">회원가입 완료</p> */}
             회원가입 완료
           </Button>
         </form>

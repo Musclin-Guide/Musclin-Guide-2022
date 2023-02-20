@@ -13,7 +13,7 @@ export const List = [
   },
   {
     id: 3,
-    href: '/request',
+    href: '/productRequest',
     text: '제품 등록 요청',
     isExternal: false,
   },

@@ -1,5 +1,5 @@
 .box {
-  @apply w-[344px] text-base;
+  @apply w-[344px] text-base px-2;
 }
 
 .produectImg {
