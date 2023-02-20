@@ -6,7 +6,7 @@ const globalDecorator = [
   wrapperDecorator,
   recoilDecorator,
   ReactQueryDecorator,
-  StorybookFormDecorator,
+  // StorybookFormDecorator,
 ];
 
 export default globalDecorator;
