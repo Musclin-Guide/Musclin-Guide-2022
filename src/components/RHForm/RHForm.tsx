@@ -1,5 +1,5 @@
-import { DevTool as RHFDevTool } from '@hookform/devtools';
-import React, { FormEventHandler, PropsWithChildren } from 'react';
+import { DevTool } from '@hookform/devtools';
+import React, { FormEventHandler, PropsWithChildren, useCallback } from 'react';
 import {
   FormProvider,
   SubmitErrorHandler,
@@ -8,29 +8,38 @@ import {
 } from 'react-hook-form';
 
 interface IRHForm<FormType extends object> {
-  onSubmit: SubmitHandler<FormType>;
+  onValid: SubmitHandler<FormType>;
   onInvalid?: SubmitErrorHandler<FormType>;
   onReset?: FormEventHandler<HTMLFormElement>;
 }
 
 export function RHForm<FormType extends object>({
   children,
-  onSubmit,
+  onValid,
   onReset,
   onInvalid,
 }: PropsWithChildren<IRHForm<FormType>>) {
   const methods = useForm<FormType>();
+  const handleReset = useCallback<FormEventHandler<HTMLFormElement>>(
+    (e) => {
+      methods.reset();
+      if (onReset) {
+        onReset(e);
+      }
+    },
+    [methods, onReset]
+  );
 
   return (
     <FormProvider {...methods}>
       <form
-        onReset={onReset}
-        onSubmit={methods.handleSubmit(onSubmit, onInvalid)}
+        onReset={handleReset}
+        onSubmit={methods.handleSubmit(onValid, onInvalid)}
       >
         {children}
       </form>
       {process.env.NODE_ENV !== 'production' && (
-        <RHFDevTool control={methods.control} />
+        <DevTool control={methods.control} />
       )}
     </FormProvider>
   );
