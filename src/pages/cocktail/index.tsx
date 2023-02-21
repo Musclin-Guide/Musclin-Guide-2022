@@ -1,27 +1,69 @@
-import { EditButton, ImagedListItem, Spinners } from '@components/index';
-import styles from '@components/TextInput/TextInput.module.css';
-import { date } from '@utils/dateCalculate';
-import { BsSearch } from 'react-icons/all';
-import { Layout } from '@components/Layout/Layout';
-import { useState, useEffect, useRef, MutableRefObject, Key, use } from 'react';
-import { supabase } from '@lib/supabase/supabase';
-import { useRouter } from 'next/router';
-import { useInfiniteQuery, useQuery } from 'react-query';
 import { loginState } from '@atoms/Login';
+import { EditButton, ImagedListItem, Spinners } from '@components/index';
+import { Layout } from '@components/Layout/Layout';
+import { RHForm } from '@components/RHForm';
+import { RHInput } from '@components/RHInput/RHInput';
+import styles from '@components/TextInput/TextInput.module.css';
+import { supabase } from '@lib/supabase/supabase';
+import { date } from '@utils/dateCalculate';
+import { useRouter } from 'next/router';
+import { Key, useCallback, useEffect, useRef, useState } from 'react';
+import { SubmitErrorHandler, SubmitHandler } from 'react-hook-form';
+import { BsSearch } from 'react-icons/all';
 import { useRecoilState } from 'recoil';
-import { GetStaticProps, GetStaticPropsContext } from 'next/types';
-import { NextApiHandler } from 'next';
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
+
 export { loginState } from '@atoms/Login';
 
-const inputValue = (inputRef: MutableRefObject<HTMLInputElement | null>) => {
-  if (inputRef && inputRef.current !== null) {
-    return inputRef.current.value;
-  }
+interface ISearchForm {
+  keyword: string;
+}
+
+const SearchSection = () => {
+  const router = useRouter();
+  const onValid = useCallback<SubmitHandler<ISearchForm>>(
+    ({ keyword }) => {
+      router.push({
+        pathname: `/cocktail/result/${keyword}`,
+        query: {
+          re: keyword,
+        },
+      });
+    },
+    [router]
+  );
+  const onInvalid = useCallback<SubmitErrorHandler<ISearchForm>>((erros) => {
+    if (!erros.keyword) {
+      return;
+    }
+
+    if (erros.keyword.type === 'minLength') {
+      alert('검색어가 너무 짧습니다. 2자이상 입력해주세요.');
+
+      return;
+    }
+
+    alert('검색어를 입력하세요');
+  }, []);
+
+  return (
+    <RHForm<ISearchForm> onValid={onValid} onInvalid={onInvalid}>
+      <section className="flex items-center gap-2">
+        <RHInput<ISearchForm>
+          name="keyword"
+          placeholder="칵테일을 검색해보세요"
+          className={styles.Input}
+          type="text"
+          rules={{ required: true, minLength: 2 }}
+        />
+        <EditButton size="large" type="submit">
+          <BsSearch className="EditButton_icon__iGeUo" />
+        </EditButton>
+      </section>
+    </RHForm>
+  );
 };
 function CocktailPage() {
   const router = useRouter();
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const targetRef = useRef<HTMLDivElement | null>(null);
   const [isLoggedIn, setLoggedIn] = useRecoilState(loginState);
   const result = (router.query.re as string) || '';
@@ -35,6 +77,7 @@ function CocktailPage() {
 
   let fromPage = 0;
   let toPage = 2;
+
   async function getData() {
     const { data } = await supabase
       .from('cocktail')
@@ -73,32 +116,7 @@ function CocktailPage() {
 
   return (
     <Layout className="s-center" subject={'칵테일페이지입니다'}>
-      <section className="flex items-center gap-2">
-        <input
-          className={styles.Input}
-          type="text"
-          placeholder="칵테일을 검색해보세요"
-          ref={inputRef}
-        />
-        <EditButton
-          size="large"
-          type="button"
-          onClick={() => {
-            if (inputRef.current !== null && inputRef.current.value) {
-              router.push({
-                pathname: `/cocktail/result/${result}`,
-                query: {
-                  re: `${inputValue(inputRef)}`,
-                },
-              });
-            } else {
-              alert('검색어가 너무 짧습니다. 2자이상 입력해주세요.');
-            }
-          }}
-        >
-          <BsSearch className="EditButton_icon__iGeUo" />
-        </EditButton>
-      </section>
+      <SearchSection />
       <section>
         {item &&
           item

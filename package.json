@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.5",
+    "@hookform/devtools": "^4.3.0",
     "@hookform/error-message": "2.0.1",
     "@hookform/resolvers": "2.9.10",
     "@storybook/addon-a11y": "6.5.14",
