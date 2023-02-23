@@ -1,4 +1,4 @@
-import { Button } from '@components/index';
+import { Button } from '@components/Button/index';
 import { NoFooterLayout } from '@components/Layout/NoFooterLayout';
 import { Session } from '@supabase/supabase-js';
 import Image from 'next/image';
@@ -41,7 +41,7 @@ export default function Welcome() {
             width={90}
             height={90}
           />
-          <h2 className="mt-8 text-center  leading-7 text-base text-neutral-800">
+          <h2 className="mt-8 text-center  leading-7 text-base text-neutral-800 bg-state">
             <span>맛있는 운동 정보를 한 눈에,</span>
             <br />
             <span>머슬랭에서 확인하세요!</span>

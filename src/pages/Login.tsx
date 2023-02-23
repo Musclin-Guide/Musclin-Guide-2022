@@ -2,11 +2,13 @@ import { Layout } from '@components/Layout/Layout';
 import { Button } from '@components/Button';
 import { TextInput } from '@components/TextInput';
 import { HiKey } from 'react-icons/hi';
-import { ALinkMenuItem as ALink } from '@components/index';
+import { ALinkMenuItem as ALink } from '@components/Dropdown/ALinkMenuItem';
 import style from '@pages/Login.module.css';
 import { supabase } from '@lib/supabase';
 import { useForm, FieldValues } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import { loginState } from '@atoms/Login';
 export default function Login() {
   const {
     register,
@@ -15,6 +17,7 @@ export default function Login() {
   } = useForm<FieldValues>({ mode: 'onBlur' });
 
   const router = useRouter();
+  const [isLoggedIn, setLoggedIn] = useRecoilState(loginState);
 
   const handleClick = async (formData: FieldValues) => {
     const { error } = await supabase.auth.signInWithPassword({
@@ -23,7 +26,9 @@ export default function Login() {
     });
 
     if (!error) {
+      setLoggedIn(true);
       router.push('/');
+
       // setTimeout(async () => {
       //   const { error } = await supabase.auth.signOut();
       //   console.log(error);

@@ -42,6 +42,17 @@ export default function Post() {
 
   /* ---------------------------------- 핸들러함수 --------------------------------- */
 
+  // const postLike = useMutation(async () => {
+  //   await supabase.from('cocktail').update({ like: 1 }).select(),
+  //     {
+  //       onSuccess: () => {
+  //         console.log('like success!');
+  //         queryClient.setQueryData(['Cocktails', 1], (old) => ({
+  //           ...old,
+  //         }));
+  //       },
+  //     };
+  // });
   const postComment = useMutation(
     async (insertdata: {
       related_article_number: any;
@@ -128,13 +139,16 @@ export default function Post() {
                 <LikeToggleButton
                   className="mt-4"
                   onClick={() => {
-                    setPlusLike(() => {
-                      return !like ? 1 : 0;
-                    });
+                    if (isLoggedIn) {
+                      setLike((prev) => !prev);
+                      setPlusLike(() => {
+                        return !like ? 1 : 0;
+                      });
+                    }
 
-                    setLike((prev) => !prev);
-
-                    if (!isLoggedIn) alert('로그인 후 이용이 가능합니다');
+                    if (isLoggedIn === false) {
+                      alert('로그인 후 이용가능합니다');
+                    }
                   }}
                   toggle={like}
                   count={cocktail.like + plusLike}
