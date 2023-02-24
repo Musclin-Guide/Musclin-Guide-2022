@@ -1,41 +1,72 @@
-import { Layout, LayoutProps } from '@components/Layout/Layout';
-import { useState, useEffect, useRef, MutableRefObject, Key } from 'react';
-import { supabase } from '@lib/supabase/supabase';
+import { EditButton } from '@components/EditButton/EditButton';
+import { Layout } from '@components/Layout/Layout';
+import { RHForm } from '@components/RHForm';
+import { RHInput } from '@components/RHInput/RHInput';
+import styles from '@components/TextInput/TextInput.module.css';
 import { useRouter } from 'next/router';
-import { loginState } from '@atoms/Login';
-import { useRecoilState } from 'recoil';
-import dynamic from 'next/dynamic';
-// import { CocktailList } from '@components/CocktailList/CocktailList';
-
+import { useCallback } from 'react';
+import { SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
+import { BsSearch } from 'react-icons/bs';
 export { loginState } from '@atoms/Login';
 
-const SearchSection = dynamic(() =>
-  import('@components/SearchSection/SearchSection').then(
-    (module) => module.default
-  )
-);
+// import { CocktailList } from '@components/CocktailList/CocktailList';
 
-function CocktailPage() {
-  //   useEffect(() => {
-  //     let observer: IntersectionObserver;
-  //
-  //     if (targetRef.current) {
-  //       const onIntersect = async (
-  //         [entry]: IntersectionObserverEntry[],
-  //         observer: IntersectionObserver
-  //       ) => {
-  //         if (entry.isIntersecting) {
-  //           observer.unobserve(entry.target);
-  //           await getData();
-  //           observer.observe(entry.target);
-  //         }
-  //       };
-  //       observer = new IntersectionObserver(onIntersect, { threshold: 0.5 });
-  //       observer.observe(targetRef.current);
-  //     }
-  //     return () => observer && observer.disconnect();
-  //   }, [targetRef]);
+interface ISearchForm {
+  keyword: string;
+}
 
+const SearchSection = () => {
+  const router = useRouter();
+  const onValid = useCallback<SubmitHandler<ISearchForm>>(
+    ({ keyword }) => {
+      router.push({
+        pathname: `/cocktail/result/${keyword}`,
+        query: {
+          re: keyword,
+        },
+      });
+    },
+    [router]
+  );
+  const onInvalid = useCallback<SubmitErrorHandler<ISearchForm>>((erros) => {
+    if (!erros.keyword) {
+      return;
+    }
+
+    if (erros.keyword.type === 'minLength') {
+      alert('검색어가 너무 짧습니다. 2자이상 입력해주세요.');
+
+      return;
+    }
+
+    alert('검색어를 입력하세요');
+  }, []);
+
+  return (
+    <RHForm<ISearchForm> onValid={onValid} onInvalid={onInvalid}>
+      <section className="flex items-center gap-2">
+        <RHInput<ISearchForm>
+          name="keyword"
+          placeholder="칵테일을 검색해보세요"
+          className={styles.Input}
+          type="text"
+          rules={{ required: true, minLength: 2 }}
+        />
+        <EditButton size="large" type="submit">
+          <BsSearch className="EditButton_icon__iGeUo" />
+        </EditButton>
+      </section>
+    </RHForm>
+  );
+};
+
+// const SearchSection = dynamic(() =>
+//   import('@components/SearchSection/SearchSection').then(
+//     (module) => module.default
+//   )
+// );
+
+export default function CocktailPage() {
   return (
     <Layout className="s-center" subject={'칵테일페이지입니다'}>
       <SearchSection />
