@@ -64,7 +64,7 @@ export default function Mypage({ type, disabled }: MypageProps) {
       .from('cocktail')
       .select('*')
       .eq('user_id', getUserInfo?.id);
-    console.log(cocktail);
+
     return cocktail;
   }
   const { data: cocktail } = useQuery(
@@ -89,14 +89,14 @@ export default function Mypage({ type, disabled }: MypageProps) {
       )
       .eq('user_id', getLoginUser.data.user?.id);
 
-    if (error) console.log(error);
     return cocktail_comment;
   }
   const { data: cocktail_comments } = useQuery(
     ['Comment', getUserInfo?.user_metadata.nickname],
     getComment,
     {
-      onSuccess: () => queryClient.invalidateQueries('Comment'),
+      // onSuccess: () => queryClient.invalidateQueries('Comment'),
+      // onError: () =>
     }
   ); //-> 이슈
 
