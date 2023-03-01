@@ -9,7 +9,6 @@ import { SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
 import { BsSearch } from 'react-icons/bs';
 export { loginState } from '@atoms/Login';
 
-// import { CocktailList } from '@components/CocktailList/CocktailList';
 
 interface ISearchForm {
   keyword: string;
@@ -60,17 +59,18 @@ const SearchSection = () => {
   );
 };
 
-// const SearchSection = dynamic(() =>
-//   import('@components/SearchSection/SearchSection').then(
-//     (module) => module.default
-//   )
-// );
+
+
 
 export default function CocktailPage() {
   return (
-    <Layout className="s-center" subject={'칵테일페이지입니다'}>
+    <Layout className="s-center" subject="칵테일페이지입니다">
       <SearchSection />
-      {/* <CocktailList /> */}
+      <Suspense fallback={<Spinners />}>
+        <CocktailList />
+      </Suspense>
     </Layout>
   );
 }
+
+
